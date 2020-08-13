@@ -1,0 +1,34 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:Table="sap.ui.table">
+	<Table id="bptable" width="auto" items="{toPartners}" updateFinished="onListUpdateFinished">
+		<headerToolbar>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button text="New Partner" press="onSetStatus" ariaLabelledBy="editButtonLabel" tooltip="Set Status"/>
+			</Toolbar>
+		</headerToolbar>
+		<columns>
+			<Column id="bpcol">
+				<Text text="Partner" id="bpi"/>
+			</Column>
+			<Column>
+				<Text text="Partner Role" id="bpc"/>
+			</Column>
+			<Column>
+				<Text text="Partner Name" id="bpe"/>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem type="Navigation" press="onPress">
+				<cells>
+					<ObjectIdentifier title="{Partnumber}"/>
+				</cells>
+				<cells>
+					<Text text="{Partnerrole}"/>
+				</cells>
+				<cells>
+					<Text text="{Partner}"/>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</core:FragmentDefinition>

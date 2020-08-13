@@ -1,0 +1,146 @@
+<edmx:Edmx
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZPM_INVESTIGATIONS_SRV" xml:lang="en" sap:schema-version="1">
+            <EntityType Name="InvTasks" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Notifid"/>
+                    <PropertyRef Name="Tasknumber"/>
+                </Key>
+                <Property Name="Notifid" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Notification" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Taskstatus" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Notific. Status" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Tasknumber" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Task" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Userstatusflag" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="User Status" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Tasksortno" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Sort number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Userstatus" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="User Status" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Itemsortno" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Sort number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Taskgrptxt" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Short text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Taskgrp" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Code group" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Taskcodetxt" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Txt TaskCode" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Taskcode" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Task code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Taskshrtxt" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Task text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Taskperson" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Responsible" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Taskcompby" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Completed By" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Taskcomdate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Completed On" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="InvHeader" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Notifid"/>
+                </Key>
+                <Property Name="Notifid" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Notification" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Notiftype" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Notifictn type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Notifstatus" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Notifshtxt" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Codinggrp" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Code group" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Codingcode" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Coding" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Equipment" Type="Edm.String" Nullable="false" MaxLength="18" sap:unicode="false" sap:label="Equipment" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Notifdate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Notif.date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Notifreporter" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Reported by" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Priority" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Priority" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Notifcreatedby" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Created by" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Notifcreatedon" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Created on" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Itemnum" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Item" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Itobjpartgrp" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Code group" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Itobjpartcode" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="ObjectPartCode" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Itdamagegrp" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Code group" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Itdamagecode" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Damage Code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Itgrowhouse" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Char. Value" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Itratetype" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Char. Value" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Itfwdbill" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Char. Value" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Itfwdkwh" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Char. Value" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Causenum" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Cause" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Causegrp" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Code group" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Causecode" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Cause code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Causeshtxt" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Cause text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="toActivities" Relationship="ZPM_INVESTIGATIONS_SRV.HeaderToActivities" FromRole="FromRole_HeaderToActivities" ToRole="ToRole_HeaderToActivities"/>
+                <NavigationProperty Name="toPartners" Relationship="ZPM_INVESTIGATIONS_SRV.HeaderToPartners" FromRole="FromRole_HeaderToPartners" ToRole="ToRole_HeaderToPartners"/>
+                <NavigationProperty Name="toTasks" Relationship="ZPM_INVESTIGATIONS_SRV.HeaderToTasks" FromRole="FromRole_HeaderToTasks" ToRole="ToRole_HeaderToTasks"/>
+            </EntityType>
+            <EntityType Name="InvActivities" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Notifid"/>
+                    <PropertyRef Name="Activityno"/>
+                </Key>
+                <Property Name="Notifid" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Notification" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Activityno" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Task" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Activitysortno" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Sort number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Itemsortno" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Sort number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Activitygrp" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Code group" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Activitycode" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Activity code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Activitytxt" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Activity text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Activitystrdate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Start" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="InvPartners" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Notifid"/>
+                    <PropertyRef Name="Partnumber"/>
+                </Key>
+                <Property Name="Notifid" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Notification" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Partnumber" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="Counter" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Partnerrole" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Partner Functn" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Partner" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Partner" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <Association Name="HeaderToPartners" sap:content-version="1">
+                <End Type="ZPM_INVESTIGATIONS_SRV.InvHeader" Multiplicity="1" Role="FromRole_HeaderToPartners"/>
+                <End Type="ZPM_INVESTIGATIONS_SRV.InvPartners" Multiplicity="*" Role="ToRole_HeaderToPartners"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_HeaderToPartners">
+                        <PropertyRef Name="Notifid"/>
+                    </Principal>
+                    <Dependent Role="ToRole_HeaderToPartners">
+                        <PropertyRef Name="Notifid"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="HeaderToTasks" sap:content-version="1">
+                <End Type="ZPM_INVESTIGATIONS_SRV.InvHeader" Multiplicity="1" Role="FromRole_HeaderToTasks"/>
+                <End Type="ZPM_INVESTIGATIONS_SRV.InvTasks" Multiplicity="*" Role="ToRole_HeaderToTasks"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_HeaderToTasks">
+                        <PropertyRef Name="Notifid"/>
+                    </Principal>
+                    <Dependent Role="ToRole_HeaderToTasks">
+                        <PropertyRef Name="Notifid"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="HeaderToActivities" sap:content-version="1">
+                <End Type="ZPM_INVESTIGATIONS_SRV.InvHeader" Multiplicity="1" Role="FromRole_HeaderToActivities"/>
+                <End Type="ZPM_INVESTIGATIONS_SRV.InvActivities" Multiplicity="*" Role="ToRole_HeaderToActivities"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_HeaderToActivities">
+                        <PropertyRef Name="Notifid"/>
+                    </Principal>
+                    <Dependent Role="ToRole_HeaderToActivities">
+                        <PropertyRef Name="Notifid"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="ZPM_INVESTIGATIONS_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="InvTasksSet" EntityType="ZPM_INVESTIGATIONS_SRV.InvTasks" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="InvHeaderSet" EntityType="ZPM_INVESTIGATIONS_SRV.InvHeader" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="InvActivitiesSet" EntityType="ZPM_INVESTIGATIONS_SRV.InvActivities" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="InvPartnersSet" EntityType="ZPM_INVESTIGATIONS_SRV.InvPartners" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <AssociationSet Name="HeaderToPartnersSet" Association="ZPM_INVESTIGATIONS_SRV.HeaderToPartners" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="InvHeaderSet" Role="FromRole_HeaderToPartners"/>
+                    <End EntitySet="InvPartnersSet" Role="ToRole_HeaderToPartners"/>
+                </AssociationSet>
+                <AssociationSet Name="HeaderToTasksSet" Association="ZPM_INVESTIGATIONS_SRV.HeaderToTasks" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="InvHeaderSet" Role="FromRole_HeaderToTasks"/>
+                    <End EntitySet="InvTasksSet" Role="ToRole_HeaderToTasks"/>
+                </AssociationSet>
+                <AssociationSet Name="HeaderToActivitiesSet" Association="ZPM_INVESTIGATIONS_SRV.HeaderToActivities" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="InvHeaderSet" Role="FromRole_HeaderToActivities"/>
+                    <End EntitySet="InvActivitiesSet" Role="ToRole_HeaderToActivities"/>
+                </AssociationSet>
+            </EntityContainer>
+            <atom:link
+                xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZPM_INVESTIGATIONS_SRV/$metadata"/>
+                <atom:link
+                    xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZPM_INVESTIGATIONS_SRV/$metadata"/>
+                </Schema>
+            </edmx:DataServices>
+        </edmx:Edmx>

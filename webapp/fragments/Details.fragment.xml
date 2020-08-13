@@ -1,0 +1,58 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Toolbar>
+		<ToolbarSpacer/>
+		<Button text="Put in Process" press="onSetStatus" ariaLabelledBy="editButtonLabel" tooltip="Set Status"/>
+		<Button text="Postpone" press="onSetStatus" ariaLabelledBy="editButtonLabel" tooltip="Set Status"/>
+		<Button text="Complete" press="onSetStatus" ariaLabelledBy="editButtonLabel" tooltip="Set Status"/>
+	</Toolbar>
+	<VBox class="sapUiSmallMargin">
+		<f:SimpleForm id="detailsFrom" editable="false" layout="ResponsiveGridLayout" singleContainerFullSize="false">
+			<f:content>
+				<!--header Information-->
+				<core:Title text="Header"/>
+				<Label text="Status"/>
+				<Text text="{Notifstatus} - {Notifstatustxt}"/>
+				<Label text="Coding Group"/>
+				<Text text="{Codinggrp}"/>
+				<Label text="Coding Code"/>
+				<Text text="{Codingcode}"/>
+				<Label text="Priority"/>
+				<Text text="{Priority}"/>
+				<Label text="Equipment"/>
+				<Text text="{Equipment} - {Equipdesc}"/>
+				<Label text="Equipment Address"/>
+				<Text text="{Equipaddress}"/>
+				<!--Causes Information-->
+				<core:Title text="Causes"/>
+				<Label text="Cause Group"/>
+				<Text text="{Causegrp}"/>
+				<Label text="Cause Code"/>
+				<Text text="{Causecode}"/>
+				<Label text="Cause Text"/>
+				<Text text="{Causeshtxt}"/>
+				<!--Item Information-->
+				<core:Title text="Items"/>
+				<Label text="Item Group"/>
+				<Text text="{Itobjpartgrp}"/>
+				<Label text="Item Code"/>
+				<Text text="{Itobjpartcode}"/>
+				<Label text="Damage Group"/>
+				<Text text="{Itdamagegrp}"/>
+				<Label text="Damage Code"/>
+				<Text text="{Itdamagecode}"/>
+				<Label text="Grow House"/>
+				<Text text="{Itgrowhouse}"/>
+				<Label text="Rate Type"/>
+				<Text text="{Itratetype}"/>
+				<Label text="12 Month Forward Billing $"/>
+				<Text text="{Itfwdbill}"/>
+				<Label text="12 Month Forward KWH"/>
+				<Text text="{Itfwdkwh}"/>
+				<!--Item Information-->
+				<core:Title text="Notes"/>
+				<Label text="Notes"/>
+				<TextArea editable="fasle" value="{Notiflongtxt}" rows="6"/>
+			</f:content>
+		</f:SimpleForm>
+	</VBox>
+</core:FragmentDefinition>

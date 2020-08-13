@@ -1,0 +1,24 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Dialog id="openDialog" title="Enter Your Data">
+		<VBox class="sapUiSmallMargin">
+			<f:SimpleForm id="createForm" editable="true" layout="ResponsiveGridLayout" title="Create New Investigation">
+				<f:content>
+					<Label text="Equipment"/>
+					<Input id="equip" showValueHelp="true" valueHelpRequest=".onValueHelpRequest" value="12412485"/>
+					<Label text="Priority"/>
+					<Input id="pri" showValueHelp="true" valueHelpRequest=".onValueHelpRequest" value="C"/>
+					<Label text="Coding Code"/>
+					<Input id="code" showValueHelp="true" valueHelpRequest=".onValueHelpRequest" value="EVD"/>
+					<Label text="Customer"/>
+					<Input id="cust" showValueHelp="true" valueHelpRequest=".onValueHelpRequest" value="1034420"/>
+				</f:content>
+			</f:SimpleForm>
+		</VBox>
+		<beginButton>
+			<Button text="Create" press="navCreate"/>
+		</beginButton>
+		<endButton>
+			<Button text="Close" press="closeFrag"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

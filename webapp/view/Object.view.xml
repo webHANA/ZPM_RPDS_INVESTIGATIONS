@@ -1,0 +1,59 @@
+<mvc:View controllerName="smud.pm.ZPM_RPDS_INVESTIGATIONS.controller.Object" xmlns:core="sap.ui.core" xmlns="sap.m"
+	xmlns:layout="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.f.semantic" xmlns:footerbar="sap.ushell.ui.footerbar">
+	<semantic:SemanticPage id="page" headerPinnable="true" toggleHeaderOnTitleClick="true" busy="{objectView>/busy}"
+		busyIndicatorDelay="{objectView>/delay}">
+		<semantic:titleHeading>
+			<Title text="{Notifid}"/>
+		</semantic:titleHeading>
+		<semantic:headerContent>
+			<layout:HorizontalLayout allowWrapping="true">
+				<layout:VerticalLayout class="sapUiMediumMarginEnd">
+					<ObjectAttribute title="Text" text="{Notifshtxt}"/>
+					<ObjectAttribute title="Coding Group" text="{Codinggrp}"/>
+				</layout:VerticalLayout>
+				<layout:VerticalLayout>
+					<ObjectAttribute title="Notification Date"/>
+					<ObjectStatus text="{Notifdate}"/>
+				</layout:VerticalLayout>
+			</layout:HorizontalLayout>
+		</semantic:headerContent>
+		<semantic:content>
+			<IconTabBar class="sapUiResponsiveContentPadding">
+				<items>
+					<IconTabFilter text="{i18n>Details}">
+						<content>
+							<core:Fragment fragmentName="smud.pm.ZPM_RPDS_INVESTIGATIONS.fragments.Details" type="XML"/>
+						</content>
+					</IconTabFilter>
+					<IconTabFilter text="{i18n>Tasks}">
+						<content>
+							<core:Fragment fragmentName="smud.pm.ZPM_RPDS_INVESTIGATIONS.fragments.Tasks" type="XML"/>
+						</content>
+					</IconTabFilter>
+					<IconTabFilter text="{i18n>Activities}">
+						<content>
+							<core:Fragment fragmentName="smud.pm.ZPM_RPDS_INVESTIGATIONS.fragments.Activities" type="XML"/>
+						</content>
+					</IconTabFilter>
+					<IconTabFilter text="{i18n>Partners}">
+						<content>
+							<core:Fragment fragmentName="smud.pm.ZPM_RPDS_INVESTIGATIONS.fragments.Partners" type="XML"/>
+						</content>
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
+		</semantic:content>
+		<semantic:titleMainAction>
+			<semantic:TitleMainAction id="editAction" text="Status" press="onEdit"/>
+		</semantic:titleMainAction>
+		<semantic:sendEmailAction>
+			<semantic:SendEmailAction id="shareEmail" press="onShareEmailPress"/>
+		</semantic:sendEmailAction>
+		<semantic:shareInJamAction>
+			<semantic:ShareInJamAction id="shareInJam" visible="{FLP>/isShareInJamActive}" press="onShareInJamPress"/>
+		</semantic:shareInJamAction>
+		<semantic:saveAsTileAction>
+			<footerbar:AddBookmarkButton id="shareTile" title="{objectView>/saveAsTileTitle}"/>
+		</semantic:saveAsTileAction>
+	</semantic:SemanticPage>
+</mvc:View>

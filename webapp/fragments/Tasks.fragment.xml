@@ -1,0 +1,95 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:Table="sap.ui.table">
+	<!--<Table id="table" width="auto" items="{ path : '/InvHeaderSet' , parameters : {expand:'toTasks'} }">-->
+	<Table id="table" width="auto" items="{toTasks}" updateFinished="onListUpdateFinished" mode="SingleSelectLeft">
+		<headerToolbar>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button icon="sap-icon://flag" press="taskOnRelease" ariaLabelledBy="editButtonLabel" tooltip="Release"/>
+				<Button icon="sap-icon://complete" press="onComplete" ariaLabelledBy="editButtonLabel" tooltip="Complete"/>
+				<Button icon="sap-icon://hr-approval" press="onSuccessful" ariaLabelledBy="editButtonLabel" tooltip="Succcessful"/>
+				<Button icon="sap-icon://key-user-settings" press="onSetStatus" ariaLabelledBy="editButtonLabel" tooltip="Set Status"/>
+				<Button text="Create Task" press="onSetStatus" ariaLabelledBy="editButtonLabel" tooltip="Set Status"/>
+			</Toolbar>
+		</headerToolbar>
+		<columns>
+			<Column id="nameColumn">
+				<Text text="Tasks" id="notifid"/>
+			</Column>
+			<Column>
+				<Text text="Task Code" id="equi"/>
+			</Column>
+			<Column>
+				<Text text="Task Status" id="dcode"/>
+			</Column>
+			<Column>
+				<Text text="Task Processer" id="codegrp"/>
+			</Column>
+			<Column>
+				<Text text="Start Date" id="sdate"/>
+			</Column>
+			<Column>
+				<Text text="End Date" id="edate"/>
+			</Column>
+			<Column>
+				<Text text="Task Status " id="tstat"/>
+			</Column>
+			<Column>
+				<Text text="User Status " id="ustat"/>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem type="Navigation" press="onPress">
+				<cells>
+					<ObjectIdentifier title="{Tasknumber}" text="{Taskcodetxt}"/>
+				</cells>
+				<cells>
+					<Text text="{Taskcode}"/>
+				</cells>
+				<cells>
+					<Text text="{Taskstatus}"/>
+				</cells>
+				<cells>
+					<Text text="{Taskperson}"/>
+				</cells>
+				<cells>
+					<Text text="{Taskcomdate}"/>
+				</cells>
+				<cells>
+					<Text text="{Taskcomdate}"/>
+				</cells>
+				<cells>
+					<MenuButton text="Set Status">
+						<menu>
+							<Menu itemSelected="updateTaskStatus">
+								<items>
+									<MenuItem text="Release" icon="sap-icon://flag"/>
+									<MenuItem text="Complete" icon="sap-icon://complete"/>
+									<MenuItem text="Successful" icon="sap-icon://hr-approval"/>
+								</items>
+							</Menu>
+						</menu>
+					</MenuButton>
+					<!--<Button icon="sap-icon://flag" press="taskOnRelease" ariaLabelledBy="editButtonLabel" tooltip="Release"/>-->
+					<!--<Button icon="sap-icon://complete" press="onComplete" ariaLabelledBy="editButtonLabel" tooltip="Complete"/>-->
+					<!--<Button icon="sap-icon://hr-approval" press="onSuccessful" ariaLabelledBy="editButtonLabel" tooltip="Succcessful"/>-->
+					<!--<Button icon="sap-icon://key-user-settings" press="onSetStatus" ariaLabelledBy="editButtonLabel" tooltip="Set Status"/>-->
+					<!--<Button text="Create Task" press="onSetStatus" ariaLabelledBy="editButtonLabel" tooltip="Set Status"/>-->
+				</cells>
+				<cells>
+					<MenuButton text="User Status">
+						<menu>
+							<Menu itemSelected="updateUserStatus">
+								<items>
+									<MenuItem text="Peer Review Required" icon="sap-icon://flag"/>
+									<MenuItem text="Not Enough Information" icon="sap-icon://complete"/>
+									<MenuItem text="No Work Required" icon="sap-icon://hr-approval"/>
+									<MenuItem text="Rework Required" icon="sap-icon://hr-approval"/>
+								</items>
+							</Menu>
+						</menu>
+					</MenuButton>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</core:FragmentDefinition>

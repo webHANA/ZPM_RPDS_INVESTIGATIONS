@@ -216,6 +216,11 @@ sap.ui.define([
 		},
 		updateUserStatus: function(oEvent) {
 			debugger;
+		},
+
+		goBack: function() {
+			debugger;
+			this.getRouter().navTo("worklist");
 		}
 
 	});

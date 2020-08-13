@@ -2,7 +2,7 @@
 	controllerName="smud.pm.ZPM_RPDS_INVESTIGATIONS.controller.Create" xmlns:html="http://www.w3.org/1999/xhtml">
 	<App>
 		<pages>
-			<Page title="Title">
+			<Page title="Title" showNavButton="true" navButtonPress="goBack" >
 				<content>
 					<VBox class="sapUiSmallMargin">
 						<f:SimpleForm id="createForm" editable="true" layout="ResponsiveGridLayout" title="Create Investigation">
@@ -14,11 +14,11 @@
 										<Label text="Equipment Address"/>
 										<Input id="eaddress" enabled="false" value="add address here"/>
 										<Label text="Coding Code Group"/>
-										<Input id="cgrp" enabled="false" value="RPDS"/>
+										<Input id="ccgrp" enabled="false" value="RPDS"/>
 										<Label text="Item Code Group"/>
 										<Input id="igrp" enabled="false" value="RP010"/>
 										<Label text="Cause Code Group"/>
-										<Input id="cagrp" showValueHelp="true" valueHelpRequest=".onValueHelpRequest" value=""/>
+										<Input id="cagrp" showValueHelp="true" enabled="false" value="RPRESULT"/>
 									</VBox>
 								</HBox>
 								<HBox>
@@ -28,17 +28,17 @@
 										<Label text="Priority"/>
 										<Input id="pri" showValueHelp="true" valueHelpRequest=".onValueHelpRequest" value="{tempModel>/argsPri}"/>
 										<Label text="Coding Code"/>
-										<Input id="code" showValueHelp="true" valueHelpRequest=".onValueHelpRequest" value="{tempModel>/argsCode}"/>
+										<Input id="ccode" showValueHelp="true" valueHelpRequest=".onValueHelpRequest" value="{tempModel>/argsCode}"/>
 										<Label text="Item Code"/>
-										<Input id="icode" showValueHelp="true" valueHelpRequest=".onValueHelpRequest" value="{tempModel>/argsCode}"/>
+										<Input id="icode" showValueHelp="true" valueHelpRequest=".onValueHelpRequest" value="001"/>
 										<Label text="Cause Code"/>
-										<Input id="cacode" showValueHelp="true" valueHelpRequest=".onValueHelpRequest" value=""/>
+										<Input id="cacode" showValueHelp="true" valueHelpRequest=".onValueHelpRequest" value="TOS"/>
 									</VBox>
 								</HBox>
 								<HBox>
 									<VBox>
 										<Label text="Created By"/>
-										<Input id="rep" enabled="false" value="{tempModel>/argUser}"/>
+										<Input id="cuser" enabled="false" value="{tempModel>/argUser}"/>
 										<Label text="Notification Date"/>
 										<DatePicker id="date" enabled="false" valueFormat="yyyy-MM-dd" displayFormat="long" class="sapUiSmallMarginBottom"/>
 										<Label text="Sold-To Business Partner"/>

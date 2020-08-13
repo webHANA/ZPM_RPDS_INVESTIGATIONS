@@ -1,6 +1,9 @@
 sap.ui.define([
-	"smud/pm/ZPM_RPDS_INVESTIGATIONS/controller/BaseController"
-], function(BaseController) {
+	"smud/pm/ZPM_RPDS_INVESTIGATIONS/controller/BaseController",
+	'sap/m/MessageToast',
+	"sap/m/MessageBox",
+	'sap/ui/core/BusyIndicator'
+], function(BaseController, MessageToast, MessageBox, BusyIndicator) {
 	"use strict";
 
 	return BaseController.extend("smud.pm.ZPM_RPDS_INVESTIGATIONS.controller.Create", {
@@ -71,26 +74,46 @@ sap.ui.define([
 
 			var myModel = sap.ui.getCore().getModel("myModel");
 			var obj = {};
+			var that = this;
 			obj.Notifshtxt = this.getView().byId("ntxt").getValue();
-			obj.Notifreporter = this.getView().byId("rep").getValue();
+			obj.Codinggrp = this.getView().byId("ccgrp").getValue();
+			obj.Itobjpartgrp = this.getView().byId("igrp").getValue();
+			obj.Causegrp = this.getView().byId("cagrp").getValue();
 			obj.Equipment = this.getView().byId("equip").getValue();
 			obj.Priority = this.getView().byId("pri").getValue();
-			obj.Causegrp = this.getView().byId("cagrp").getValue();
+			obj.Codingcode = this.getView().byId("ccode").getValue();
+			obj.Itobjpartcode = this.getView().byId("icode").getValue();
 			obj.Causecode = this.getView().byId("cacode").getValue();
-			obj.Codinggrp = this.getView().byId("cgrp").getValue();
-			obj.Codingcode = this.getView().byId("code").getValue();
-
+			obj.Notifreporter = this.getView().byId("cuser").getValue();
+			//	obj.Notifdate = this.getView().byId("date").getValue();
+			obj.Partnerid = this.getView().byId("cust").getValue();
+			BusyIndicator.show();
 			myModel.create('/InvHeaderSet', obj, {
 				success: function(oData, oResponse) {
-
+					BusyIndicator.hide();
 					console.log('Record Created Successfully...');
+					sap.m.MessageToast.show("Notification Created: " + oResponse.data.Notifid);
+					//	MessageBox.success("Notification Created: " + oResponse.data.Notifid);
+					debugger;
+					that.getRouter().navTo("object", {
+						objectId: oResponse.data.Notifid
+					});
+
 				},
 				error: function(err, oResponse) {
 					//	debugger;
+					BusyIndicator.hide();
 					console.log("Error while creating record - ");
+					//					sap.m.MessageToast.show("Error Creating Record: " + err.responseText.split('message')[2]);
+					sap.m.MessageToast.show("Error Creating Record: " + err.responseText.split('message')[2]);
+					MessageBox.error("Erro Updating Record: " + err.responseText.split('message')[2]);
+
 				}
 			});
 
+		},
+		goBack: function() {
+			this.getRouter().navTo("worklist");
 		}
 
 	});

@@ -3,7 +3,8 @@
 	<semantic:SemanticPage id="page" headerPinnable="true" toggleHeaderOnTitleClick="true" busy="{objectView>/busy}"
 		busyIndicatorDelay="{objectView>/delay}">
 		<semantic:titleHeading>
-			<Title text="{Notifid}"/>
+			<Button icon="sap-icon://nav-back" press="goBack" tooltip="Back To Investigations"/>
+					
 		</semantic:titleHeading>
 		<semantic:headerContent>
 			<layout:HorizontalLayout allowWrapping="true">

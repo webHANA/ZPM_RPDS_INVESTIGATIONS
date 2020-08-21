@@ -9,8 +9,8 @@
 					<Input id="pri" showValueHelp="true" valueHelpRequest=".onValueHelpRequest" value="C"/>
 					<Label text="Coding Code"/>
 					<Input id="code" showValueHelp="true" valueHelpRequest=".onValueHelpRequest" value="EVD"/>
-					<Label text="Customer"/>
-					<Input id="cust" showValueHelp="true" valueHelpRequest=".onValueHelpRequest" value="1034420"/>
+					<!--<Label text="Customer"/>-->
+					<!--<Input id="cust" showValueHelp="true" valueHelpRequest=".onValueHelpRequest" value="1034420"/>-->
 				</f:content>
 			</f:SimpleForm>
 		</VBox>

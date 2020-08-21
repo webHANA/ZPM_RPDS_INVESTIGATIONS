@@ -1,6 +1,10 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller"
-], function(Controller) {
+	"sap/ui/core/mvc/Controller",
+	'sap/ui/model/json/JSONModel',
+	'sap/m/MessageToast',
+	"sap/m/MessageBox",
+	'sap/ui/core/BusyIndicator'
+], function(Controller, JSONModel, MessageToast, MessageBox, BusyIndicator) {
 	"use strict";
 
 	return Controller.extend("smud.pm.ZPM_RPDS_INVESTIGATIONS.controller.BaseController", {
@@ -59,6 +63,130 @@ sap.ui.define([
 				oViewModel.getProperty("/shareSendEmailSubject"),
 				oViewModel.getProperty("/shareSendEmailMessage")
 			);
+		},
+		// Create New Partner Logic
+		newPartner: function() {
+
+			var oView = this.getView();
+			var oDialog = oView.byId("openDialog");
+			// create dialog lazily
+			if (!oDialog) {
+				// create dialog via fragment factory
+				oDialog = sap.ui.xmlfragment(oView.getId(), "smud.pm.ZPM_RPDS_INVESTIGATIONS.fragments.newPartner", this);
+				oView.addDependent(oDialog);
+			}
+			oDialog.open();
+
+		},
+		closePartner: function() {
+			this.getView().byId("openDialog").close();
+		},
+
+		createPartner: function(oEvent) {
+
+			////set Model for create Partner
+			var oModel = this.oDataModel("create");
+			sap.ui.getCore().setModel(oModel, "myModel");
+
+			var myModel = sap.ui.getCore().getModel("myModel");
+			var obj = {};
+			var that = this;
+			// obj.Notifid = this.getView().byId("notifid").getValue();
+			obj.Notifid = this.getView().byId('createForm').getTitle();
+			obj.Partnerrole = this.byId("ptype").getSelectedKey();
+			obj.Partner = this.byId('partner').getValue();
+			BusyIndicator.show();
+
+			myModel.create('/InvPartnersSet', obj, {
+				success: function(oData, oResponse) {
+					//	BusyIndicator.hide();
+					console.log('Record Created Successfully...');
+					sap.m.MessageToast.show("New Partner Created: " + oResponse.data.Partner);
+					//	MessageBox.success("Notification Created: " + oResponse.data.Notifid);
+					BusyIndicator.hide();
+					//					that.getView().byId("openDialog").close();
+					that.getView().byId("openDialog").destroy();
+
+				},
+				error: function(err, oResponse) {
+					//	debugger;
+					BusyIndicator.hide();
+					console.log("Error while creating record - ");
+					//					sap.m.MessageToast.show("Error Creating Record: " + err.responseText.split('message')[2]);
+					sap.m.MessageToast.show("Error Creating Record: " + err.responseText.split('message')[2]);
+					MessageBox.error("Erro Updating Record: " + err.responseText.split('message')[2]);
+					that.getView().byId("openDialog").destroy();
+
+				}
+			});
+
+		},
+		// Create New Activity Logic
+		newActivity: function() {
+			var oView = this.getView();
+			var oDialog = oView.byId("openDialog");
+			// create dialog lazily
+			if (!oDialog) {
+				// create dialog via fragment factory
+				oDialog = sap.ui.xmlfragment(oView.getId(), "smud.pm.ZPM_RPDS_INVESTIGATIONS.fragments.newActivity", this);
+				oView.addDependent(oDialog);
+			}
+			oDialog.open();
+
+		},
+		closeActivity: function() {
+			this.getView().byId("openDialog").close();
+		},
+
+		createActivity: function(oEvent) {
+
+			////set Model for create Activity
+			var oModel = this.oDataModel("activity");
+			sap.ui.getCore().setModel(oModel, "myModel");
+			var myModel = sap.ui.getCore().getModel("myModel");
+			var obj = {};
+			var that = this;
+			// obj.Notifid = this.getView().byId("notifid").getValue();
+			obj.Notifid = this.getView().byId('createForm').getTitle();
+			obj.Activitygrp = 'RP010';
+			obj.Activitycode = this.byId("atype").getSelectedKey();
+			obj.Activitytxt = this.byId('amount').getValue();
+			obj.Activitystrdate = this.byId('date').getValue() + "T00:00:00";
+			//obj.Activitystrdate  = this.byId('date').getValue();
+			BusyIndicator.show();
+
+			myModel.create('/InvActivitiesSet', obj, {
+				success: function(oData, oResponse) {
+					//	BusyIndicator.hide();
+					console.log('Record Created Successfully...');
+					sap.m.MessageToast.show("New Activity Created: " + oResponse.data.activitycode);
+					//	MessageBox.success("Notification Created: " + oResponse.data.Notifid);
+					BusyIndicator.hide();
+					//that.getView().byId("openDialog").close();
+					that.getView().byId("openDialog").destroy();
+				},
+				error: function(err, oResponse) {
+					//	debugger;
+					BusyIndicator.hide();
+					console.log("Error while creating record - ");
+					//					sap.m.MessageToast.show("Error Creating Record: " + err.responseText.split('message')[2]);
+					sap.m.MessageToast.show("Error Creating Record: " + err.responseText.split('message')[2]);
+					MessageBox.error("Erro Updating Record: " + err.responseText.split('message')[2]);
+					that.getView().byId("openDialog").destroy();
+
+				}
+			});
+
+		},
+
+		dialogAfterclose: function(oEvent) {
+			debugger;
+			this.getView().byId("openDialog").destroy();
+		},
+
+		dialogClear: function() {
+			this.byId('amount').setValue('');
+			this.byId('date').setValue('');
 		},
 
 		/**

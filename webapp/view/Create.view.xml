@@ -2,17 +2,31 @@
 	controllerName="smud.pm.ZPM_RPDS_INVESTIGATIONS.controller.Create" xmlns:html="http://www.w3.org/1999/xhtml">
 	<App>
 		<pages>
-			<Page title="Title" showNavButton="true" navButtonPress="goBack" >
+			<Page title="Title" showNavButton="true" navButtonPress="goBack">
 				<content>
 					<VBox class="sapUiSmallMargin">
+						<Panel>
+							<content>
+								<FlexBox alignItems="Start" justifyContent="Center">
+									<VBox>
+										<Label text="Equipment"/>
+										<Input id="equip" submit="refreshEqui" value="{tempModel>/argsEquip}"/>
+									</VBox>
+								</FlexBox>
+								<FlexBox alignItems="Start" justifyContent="Center">
+									<VBox>
+										<Text/>
+										<MessageStrip id="dnp" type="Warning" text=""/>
+									</VBox>
+								</FlexBox>
+							</content>
+						</Panel>
 						<f:SimpleForm id="createForm" editable="true" layout="ResponsiveGridLayout" title="Create Investigation">
 							<f:content>
 								<HBox>
 									<VBox>
 										<Label text="Notification Text"/>
 										<Input id="ntxt" enabled="false" value="Power Theft Investigation"/>
-										<Label text="Equipment Address"/>
-										<Input id="eaddress" enabled="false" value="add address here"/>
 										<Label text="Coding Code Group"/>
 										<Input id="ccgrp" enabled="false" value="RPDS"/>
 										<Label text="Item Code Group"/>
@@ -23,8 +37,6 @@
 								</HBox>
 								<HBox>
 									<VBox>
-										<Label text="Equipment"/>
-										<Input id="equip" showValueHelp="true" valueHelpRequest=".onValueHelpRequest" value="{tempModel>/argsEquip}"/>
 										<Label text="Priority"/>
 										<Input id="pri" showValueHelp="true" valueHelpRequest=".onValueHelpRequest" value="{tempModel>/argsPri}"/>
 										<Label text="Coding Code"/>
@@ -37,12 +49,14 @@
 								</HBox>
 								<HBox>
 									<VBox>
-										<Label text="Created By"/>
-										<Input id="cuser" enabled="false" value="{tempModel>/argUser}"/>
 										<Label text="Notification Date"/>
 										<DatePicker id="date" enabled="false" valueFormat="yyyy-MM-dd" displayFormat="long" class="sapUiSmallMarginBottom"/>
-										<Label text="Sold-To Business Partner"/>
-										<Input id="cust" showValueHelp="true" valueHelpRequest=".onValueHelpRequest" value="{tempModel>/argsCust}"/>
+										<Label text="Created By"/>
+										<Input id="cuser" enabled="false" value="{tempModel>/argUser}"/>
+										<Label text="Customer Details"/>
+										<Input id="cust" enabled="false" value=""/>
+										<Text id="cdesc" wrapping="true" text=""/>
+										<Text id="cadd" wrapping="true" text=""/>
 									</VBox>
 								</HBox>
 							</f:content>

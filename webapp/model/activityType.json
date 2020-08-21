@@ -1,0 +1,14 @@
+{
+	"activityType": [{
+			"ActGroup": "RP010",
+			"ActCode": "080",
+			"ActName": "Billed Amount"
+
+		}, {
+			"ActGroup": "RP010",
+			"ActCode": "090",
+			"ActName": "Payment Received and Sent to Post"
+		}
+
+	]
+}

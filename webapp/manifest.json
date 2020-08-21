@@ -15,8 +15,17 @@
 				"type": "OData",
 				"settings": {
 					"odataVersion": "2.0",
-					"localUri": "localService/metadata.xml"
+					"localUri": "localService/metadata.xml",
+					"annotations": []
 				}
+			},
+			"localPT": {
+				"uri": "model/partnerType.json",
+				"type": "JSON"
+			},
+			"localAT": {
+				"uri": "model/activityType.json",
+				"type": "JSON"
 			}
 		},
 		"sourceTemplate": {
@@ -73,6 +82,14 @@
 			"": {
 				"dataSource": "mainService",
 				"preload": true
+			},
+			"partnerType": {
+				"type": "sap.ui.model.json.JSONModel",
+				"dataSource": "localPT"
+			},
+			"activityType": {
+				"type": "sap.ui.model.json.JSONModel",
+				"dataSource": "localAT"
 			}
 		},
 		"services": {
@@ -106,7 +123,7 @@
 				"target": ["object"]
 			}, {
 				"name": "create",
-				"pattern": "create/{equip}/{pri}/{code}/{cust}",
+				"pattern": "create/{equip}/{pri}/{code}",
 				"titleTarget": "",
 				"greedy": false,
 				"target": ["create"]
@@ -143,5 +160,9 @@
 				}
 			}
 		}
+	},
+	"sap.platform.abap": {
+		"uri": "/sap/bc/ui5_ui5/sap/zpm_rpds_inv/webapp",
+		"_version": "1.1.0"
 	}
 }

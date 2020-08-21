@@ -155,18 +155,18 @@ sap.ui.define([
 				oResourceBundle.getText("shareSendEmailObjectMessage", [sObjectName, sObjectId, location.href]));
 		},
 
-		taskOnRelease: function(oEvent) {
-			debugger;
-			// if (oEvent.getSource().getParent().getParent().getSelectedItems().length === 0) {
-			// 	return MessageToast.show('Please select a Task');
-			// }
+		// taskOnRelease: function(oEvent) {
+		// 	debugger;
+		// 	// if (oEvent.getSource().getParent().getParent().getSelectedItems().length === 0) {
+		// 	// 	return MessageToast.show('Please select a Task');
+		// 	// }
 
-			var itemnum = this.getView().getModel().getProperty("Tasknumber", oEvent.getSource().getBindingContext());
-			var notifnum = this.getView().getModel().getProperty("Notifid", oEvent.getSource().getBindingContext());
-			return MessageToast.show(notifnum + ' ' + itemnum);
-			var sPath = oEvent.getSource().getParent().getParent().getSelectedItems()[0].getBindingContext().sPath;
+		// 	var itemnum = this.getView().getModel().getProperty("Tasknumber", oEvent.getSource().getBindingContext());
+		// 	var notifnum = this.getView().getModel().getProperty("Notifid", oEvent.getSource().getBindingContext());
+		// 	return MessageToast.show(notifnum + ' ' + itemnum);
+		// 	var sPath = oEvent.getSource().getParent().getParent().getSelectedItems()[0].getBindingContext().sPath;
 
-		},
+		// },
 		updateTaskStatus: function(oEvent) {
 			debugger;
 			var oItem = oEvent.getParameter("item"),
@@ -190,15 +190,6 @@ sap.ui.define([
 			obj.Tasksortno = sItem;
 			obj.Taskstatus = sItemPath;
 
-			// obj.Notifshtxt = this.getView().byId("ntxt").getValue();
-			// obj.Notifreporter = this.getView().byId("rep").getValue();
-			// obj.Equipment = this.getView().byId("equip").getValue();
-			// obj.Priority = this.getView().byId("pri").getValue();
-			// obj.Causegrp = this.getView().byId("cagrp").getValue();
-			// obj.Causecode = this.getView().byId("cacode").getValue();
-			// obj.Codinggrp = this.getView().byId("cgrp").getValue();
-			// obj.Codingcode = this.getView().byId("code").getValue();
-
 			myModel.update(uPath, obj, {
 				merge: false,
 				success: function(oData, oResponse) {
@@ -219,8 +210,39 @@ sap.ui.define([
 		},
 
 		goBack: function() {
-			debugger;
 			this.getRouter().navTo("worklist");
+		},
+
+		// Update Notification Status on detail Page
+
+		statusInProcess: function(oEvent) {
+			debugger;
+			var myModel = this.getOwnerComponent().getModel();
+			var uPath = oEvent.getSource().getBindingContext().getPath();
+			var sNotifid = this.getView().getModel().getProperty("Notifid", oEvent.getSource().getBindingContext());
+			var sStatus = "InProcess";
+			var obj = {};
+			obj.Notifid = sNotifid;
+			obj.Notifstatus = sStatus;
+
+			myModel.update(uPath, obj, {
+				merge: false,
+				success: function(oData, oResponse) {
+
+					console.log('Status Updated Successfully...');
+				},
+				error: function(err, oResponse) {
+					//	debugger;
+					sap.m.MessageToast.show("Erro Updating Record: " + err.responseText.split('message')[2]);
+					MessageBox.error("Erro Updating Record: " + err.responseText.split('message')[2]);
+					console.log("Error while creating record - ");
+				}
+			});
+
+		},
+		statusComplete: function(oEvent) {
+			debugger;
+
 		}
 
 	});

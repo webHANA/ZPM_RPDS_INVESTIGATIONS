@@ -3,7 +3,7 @@
 		<headerToolbar>
 			<Toolbar>
 				<ToolbarSpacer/>
-				<Button text="New Activity" press="onSetStatus" ariaLabelledBy="editButtonLabel" tooltip="Set Status"/>
+				<Button text="New Activity" press="newActivity" ariaLabelledBy="editButtonLabel" tooltip="Set Status"/>
 			</Toolbar>
 		</headerToolbar>
 		<columns>
@@ -11,7 +11,7 @@
 				<Text text="Activity" id="acti"/>
 			</Column>
 			<Column>
-				<Text text="Activty Group" id="actr"/>
+				<Text text="Activty Type" id="actr"/>
 			</Column>
 			<Column>
 				<Text text="Activity Code" id="actq"/>
@@ -29,7 +29,7 @@
 					<ObjectIdentifier title="{Activityno}"/>
 				</cells>
 				<cells>
-					<Text text="{Activitygrp}"/>
+					<Text text="{Activitycodetxt}"/>
 				</cells>
 				<cells>
 					<Text text="{Activitycode}"/>
@@ -38,7 +38,7 @@
 					<Text text="{Activitytxt}"/>
 				</cells>
 				<cells>
-					<Text text="{Activitystrdate}"/>
+					<Text text="{ path: 'Activitystrdate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium' } }"/>
 				</cells>
 			</ColumnListItem>
 		</items>

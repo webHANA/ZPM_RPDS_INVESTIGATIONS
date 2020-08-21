@@ -12,7 +12,8 @@
     "excludedFiles": [
       "test.html"
     ],
-    "buildRequired": true
+    "buildRequired": true,
+    "lastBuildDateTime": "Fri, 14 Aug 2020 00:01:41 GMT"
   },
   "dataBinding": {
     "/webapp/view/App.view.xml": {
@@ -68,5 +69,9 @@
     "notifyBeforePushLevel": "Error",
     "blockPush": false,
     "blockPushLevel": "Error"
+  },
+  "deploy": {
+    "destination": "GD1",
+    "name": "ZPM_RPDS_INV"
   }
 }

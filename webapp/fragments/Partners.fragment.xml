@@ -3,7 +3,7 @@
 		<headerToolbar>
 			<Toolbar>
 				<ToolbarSpacer/>
-				<Button text="New Partner" press="onSetStatus" ariaLabelledBy="editButtonLabel" tooltip="Set Status"/>
+				<Button text="New Partner" press="newPartner" ariaLabelledBy="editButtonLabel" tooltip="Set Status"/>
 			</Toolbar>
 		</headerToolbar>
 		<columns>
@@ -16,6 +16,12 @@
 			<Column>
 				<Text text="Partner Name" id="bpe"/>
 			</Column>
+			<Column>
+				<Text text="Partner Name" id="pname"/>
+			</Column>
+			<Column>
+				<Text text="Partner Address" id="padd"/>
+			</Column>
 		</columns>
 		<items>
 			<ColumnListItem type="Navigation" press="onPress">
@@ -27,6 +33,12 @@
 				</cells>
 				<cells>
 					<Text text="{Partner}"/>
+				</cells>
+				<cells>
+					<Text text="{Partnername}"/>
+				</cells>
+				<cells>
+					<Text text="{Partneraddress}"/>
 				</cells>
 			</ColumnListItem>
 		</items>

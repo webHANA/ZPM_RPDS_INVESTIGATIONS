@@ -4,19 +4,27 @@
 		busyIndicatorDelay="{objectView>/delay}">
 		<semantic:titleHeading>
 			<Button icon="sap-icon://nav-back" press="goBack" tooltip="Back To Investigations"/>
-					
 		</semantic:titleHeading>
 		<semantic:headerContent>
 			<layout:HorizontalLayout allowWrapping="true">
 				<layout:VerticalLayout class="sapUiMediumMarginEnd">
+					<ObjectAttribute title="Investogstion Number" text="{Notifid}"/>
 					<ObjectAttribute title="Text" text="{Notifshtxt}"/>
 					<ObjectAttribute title="Coding Group" text="{Codinggrp}"/>
 				</layout:VerticalLayout>
 				<layout:VerticalLayout>
 					<ObjectAttribute title="Notification Date"/>
-					<ObjectStatus text="{Notifdate}"/>
+					<!--<ObjectStatus text="{Notifdate}"/>-->
+					<ObjectStatus text="{ path: 'Notifdate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium' } }"/>
 				</layout:VerticalLayout>
 			</layout:HorizontalLayout>
+			<FlexBox alignItems="Start" justifyContent="End">
+				<layout:HorizontalLayout>
+					<Button text="Put in Process" type="Emphasized" class="sapUiSmallMarginBeginEnd" press="statusInProcess" ariaLabelledBy="editButtonLabel"
+						tooltip="Set Status"/>
+					<Button text="Complete" type="Emphasized" press="statusComplete" ariaLabelledBy="editButtonLabel" tooltip="Set Status"/>
+				</layout:HorizontalLayout>
+			</FlexBox>
 		</semantic:headerContent>
 		<semantic:content>
 			<IconTabBar class="sapUiResponsiveContentPadding">
@@ -41,12 +49,17 @@
 							<core:Fragment fragmentName="smud.pm.ZPM_RPDS_INVESTIGATIONS.fragments.Partners" type="XML"/>
 						</content>
 					</IconTabFilter>
+					<IconTabFilter text="{i18n>Attachment}">
+						<content>
+							<Text text="Add Document Upload Logic here"/>
+						</content>
+					</IconTabFilter>
 				</items>
 			</IconTabBar>
 		</semantic:content>
-		<semantic:titleMainAction>
-			<semantic:TitleMainAction id="editAction" text="Status" press="onEdit"/>
-		</semantic:titleMainAction>
+		<!--<semantic:titleMainAction>-->
+		<!--	<semantic:TitleMainAction id="editAction" text="Status" press="onEdit"/>-->
+		<!--</semantic:titleMainAction>-->
 		<semantic:sendEmailAction>
 			<semantic:SendEmailAction id="shareEmail" press="onShareEmailPress"/>
 		</semantic:sendEmailAction>

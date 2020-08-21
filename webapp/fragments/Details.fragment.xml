@@ -1,10 +1,10 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
-	<Toolbar>
-		<ToolbarSpacer/>
-		<Button text="Put in Process" press="onSetStatus" ariaLabelledBy="editButtonLabel" tooltip="Set Status"/>
-		<Button text="Postpone" press="onSetStatus" ariaLabelledBy="editButtonLabel" tooltip="Set Status"/>
-		<Button text="Complete" press="onSetStatus" ariaLabelledBy="editButtonLabel" tooltip="Set Status"/>
-	</Toolbar>
+	<!--<Toolbar>-->
+	<!--	<ToolbarSpacer/>-->
+	<!--	<Button text="Put in Process" press="statusInProcess" ariaLabelledBy="editButtonLabel" tooltip="Set Status"/>-->
+	<!--	<Button text="Postpone" press="statusPostpone" ariaLabelledBy="editButtonLabel" tooltip="Set Status"/>-->
+	<!--	<Button text="Complete" press="statusComplete" ariaLabelledBy="editButtonLabel" tooltip="Set Status"/>-->
+	<!--</Toolbar>-->
 	<VBox class="sapUiSmallMargin">
 		<f:SimpleForm id="detailsFrom" editable="false" layout="ResponsiveGridLayout" singleContainerFullSize="false">
 			<f:content>

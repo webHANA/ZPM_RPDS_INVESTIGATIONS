@@ -31,15 +31,34 @@ sap.ui.define([
 			var arg1 = oArgs.equip;
 			var arg2 = oArgs.pri;
 			var arg3 = oArgs.code;
-			var arg4 = oArgs.cust;
+			//	var arg4 = oArgs.cust;
 			var arg5 = sap.ushell.Container.getService("UserInfo").getId();
 			this.byId("date").setDateValue(new Date());
+
+			// get customer data 
+			var that = this;
+			this.getOwnerComponent().getModel().read(`/InvEquipmentSet('${arg1}')`, {
+				success: function(oData, response) {
+					that.getView().byId('equip').setDescription(oData.Equidescr);
+					that.getView().byId('cust').setValue(oData.Customer);
+					that.getView().byId('cdesc').setText(oData.Custname)
+					that.getView().byId('cadd').setText(oData.Custaddress)
+					var oDateFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({
+						pattern: "dd/MM/yyyy"
+					});
+					var aDate = oDateFormat.format(oData.Actdate)
+					that.getView().byId('dnp').setText('Code: ' + oData.Actstatus + ' : ' + oData.Actstatustxt + ' on ' + aDate)
+				},
+				error: function(oError) {
+					sap.m.MessageToast.show("Error Creating Record: " + oError.responseText.split('message')[2]);
+				}
+			});
 
 			this.getView().getModel("tempModel").setProperty("/", {
 				"argsEquip": arg1,
 				"argsPri": arg2,
 				"argsCode": arg3,
-				"argsCust": arg4,
+				//	"argsCust": arg4,
 				"argUser": arg5
 			});
 		},
@@ -114,6 +133,31 @@ sap.ui.define([
 		},
 		goBack: function() {
 			this.getRouter().navTo("worklist");
+		},
+		refreshEqui: function() {
+			debugger;
+			// get customer data 
+			var that = this;
+			var equi = this.getView().byId("equip").getValue();
+			this.getOwnerComponent().getModel().read(`/InvEquipmentSet('${equi}')`, {
+				success: function(oData, response) {
+					that.getView().byId('equip').setDescription(oData.Equidescr);
+					that.getView().byId('cust').setValue(oData.Customer);
+					that.getView().byId('cdesc').setText(oData.Custname)
+					that.getView().byId('cadd').setText(oData.Custaddress)
+
+					var oDateFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({
+						pattern: "dd/MM/yyyy"
+					});
+					var aDate = oDateFormat.format(oData.Actdate)
+					that.getView().byId('dnp').setText('Code: ' + oData.Actstatus + ' : ' + oData.Actstatustxt + ' on ' + aDate)
+
+					console.log(oData.Customer);
+				},
+				error: function(oError) {
+					sap.m.MessageToast.show("Error Creating Record: " + oError.responseText.split('message')[2]);
+				}
+			});
 		}
 
 	});

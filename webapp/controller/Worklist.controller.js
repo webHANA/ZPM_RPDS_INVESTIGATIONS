@@ -182,7 +182,7 @@ sap.ui.define([
 			// create dialog lazily
 			if (!oDialog) {
 				// create dialog via fragment factory
-				oDialog = sap.ui.xmlfragment(oView.getId(), "smud.pm.ZPM_RPDS_INVESTIGATIONS.fragments.createDialog", this);
+				oDialog = sap.ui.xmlfragment(oView.getId(), "smud.pm.ZPM_RPDS_INVESTIGATIONS.fragments.createInv", this);
 				oView.addDependent(oDialog);
 			}
 			oDialog.open();
@@ -191,24 +191,24 @@ sap.ui.define([
 		closeFrag: function() {
 			this.getView().byId("openDialog").close();
 		},
-		
+
 		navCreate: function(oEvent) {
 			var Pequip = this.byId('equip').getValue();
 			var Ppri = this.byId('pri').getValue();
 			var Pcode = this.byId('code').getValue();
-			var Pcust = this.byId('cust').getValue();
-			
-				this.getView().getModel("tempModel").setProperty("/", {
+			//	var Pcust = this.byId('cust').getValue();
+
+			this.getView().getModel("tempModel").setProperty("/", {
 				"Vequip": Pequip,
 				"Vsno": Ppri,
-				"Vcode": Pcode,
-				"Vcust": Pcust
+				"Vcode": Pcode
+					//		"Vcust": Pcust
 			});
 			this.getRouter().navTo("create", {
 				equip: Pequip,
 				pri: Ppri,
-				code: Pcode,
-				cust: Pcust
+				code: Pcode
+					//				cust: Pcust
 			});
 
 		}

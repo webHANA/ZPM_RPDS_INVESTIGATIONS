@@ -109,25 +109,37 @@
 				"controlId": "app",
 				"controlAggregation": "pages",
 				"bypassed": {
-					"target": ["notFound"]
+					"target": [
+						"notFound"
+					]
 				},
 				"async": true
 			},
-			"routes": [{
-				"pattern": "",
-				"name": "worklist",
-				"target": ["worklist"]
-			}, {
-				"pattern": "InvHeaderSet/{objectId}",
-				"name": "object",
-				"target": ["object"]
-			}, {
-				"name": "create",
-				"pattern": "create/{equip}/{pri}/{code}",
-				"titleTarget": "",
-				"greedy": false,
-				"target": ["create"]
-			}],
+			"routes": [
+				{
+					"pattern": "",
+					"name": "worklist",
+					"target": [
+						"worklist"
+					]
+				},
+				{
+					"pattern": "InvHeaderSet/{objectId}",
+					"name": "object",
+					"target": [
+						"object"
+					]
+				},
+				{
+					"name": "create",
+					"pattern": "create/{equip}/{pri}/{code}",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"create"
+					]
+				}
+			],
 			"targets": {
 				"worklist": {
 					"viewName": "Worklist",

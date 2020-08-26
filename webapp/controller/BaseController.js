@@ -80,6 +80,7 @@ sap.ui.define([
 		},
 		closePartner: function() {
 			this.getView().byId("openDialog").close();
+			this.getView().byId("openDialog").destroy();
 		},
 
 		createPartner: function(oEvent) {
@@ -136,6 +137,7 @@ sap.ui.define([
 		},
 		closeActivity: function() {
 			this.getView().byId("openDialog").close();
+			this.getView().byId("openDialog").destroy();
 		},
 
 		createActivity: function(oEvent) {
@@ -179,6 +181,56 @@ sap.ui.define([
 
 		},
 		newTask: function() {
+			var oView = this.getView();
+			var oDialog = oView.byId("openDialog");
+			// create dialog lazily
+			if (!oDialog) {
+				// create dialog via fragment factory
+				oDialog = sap.ui.xmlfragment(oView.getId(), "smud.pm.ZPM_RPDS_INVESTIGATIONS.fragments.newTask", this);
+				oView.addDependent(oDialog);
+			}
+			oDialog.open();
+
+		},
+
+		createTask: function(oEvent) {
+			debugger;
+			////set Model to create Task
+			var oModel = this.oDataModel("openDialog");
+			sap.ui.getCore().setModel(oModel, "myModel");
+			var myModel = sap.ui.getCore().getModel("myModel");
+			var obj = {};
+			var that = this;
+			//Fill data to create Task
+			obj.Notifid = this.getView().byId('createForm').getTitle();
+			obj.Taskgrp = 'RP010';
+			obj.Taskcode = this.byId('tcode').getValue();
+			obj.Taskshrtxt = this.byId('text').getValue();
+			obj.Taskperson = this.byId('tperson').getValue();
+			BusyIndicator.show();
+
+			//Call backedn Odata Create
+			myModel.create('/InvTasksSet', obj, {
+				success: function(oData, oResponse) {
+					//	BusyIndicator.hide();
+					console.log('Record Created Successfully...');
+					sap.m.MessageToast.show("New Task Created: " + oResponse.data.Taskcode);
+					//	MessageBox.success("Notification Created: " + oResponse.data.Notifid);
+					BusyIndicator.hide();
+					//that.getView().byId("openDialog").close();
+					that.getView().byId("openDialog").destroy();
+				},
+				error: function(err, oResponse) {
+					//	debugger;
+					BusyIndicator.hide();
+					console.log("Error while creating record - ");
+					//					sap.m.MessageToast.show("Error Creating Record: " + err.responseText.split('message')[2]);
+					sap.m.MessageToast.show("Error Creating Record: " + err.responseText.split('message')[2]);
+					MessageBox.error("Erro Updating Record: " + err.responseText.split('message')[2]);
+					that.getView().byId("opendialog").destroy();
+
+				}
+			});
 
 		},
 
@@ -231,6 +283,7 @@ sap.ui.define([
 					sap.m.MessageToast.show("Erro Updating Record: " + err.responseText.split('message')[2]);
 					MessageBox.error("Erro Updating Record: " + err.responseText.split('message')[2]);
 					console.log("Error while creating record - ");
+					that.getView().byId("openDialog").destroy();
 				}
 
 			});
@@ -240,6 +293,7 @@ sap.ui.define([
 		dialogAfterclose: function(oEvent) {
 			debugger;
 			this.getView().byId("openDialog").destroy();
+
 		},
 
 		dialogClear: function() {

@@ -8,7 +8,7 @@
 		<semantic:headerContent>
 			<layout:HorizontalLayout allowWrapping="true">
 				<layout:VerticalLayout class="sapUiMediumMarginEnd">
-					<ObjectAttribute title="Investogstion Number" text="{Notifid}"/>
+					<ObjectAttribute title="Investigation Number" text="{Notifid}"/>
 					<ObjectAttribute title="Text" text="{Notifshtxt}"/>
 					<ObjectAttribute title="Coding Group" text="{Codinggrp}"/>
 				</layout:VerticalLayout>
@@ -34,6 +34,11 @@
 							<core:Fragment fragmentName="smud.pm.ZPM_RPDS_INVESTIGATIONS.fragments.Details" type="XML"/>
 						</content>
 					</IconTabFilter>
+					<!--<IconTabFilter text="{i18n>Details}">-->
+					<!--	<content>-->
+					<!--		<core:Fragment fragmentName="smud.pm.ZPM_RPDS_INVESTIGATIONS.fragments.Details1" type="XML"/>-->
+					<!--	</content>-->
+					<!--</IconTabFilter>-->
 					<IconTabFilter text="{i18n>Tasks}">
 						<content>
 							<core:Fragment fragmentName="smud.pm.ZPM_RPDS_INVESTIGATIONS.fragments.Tasks" type="XML"/>

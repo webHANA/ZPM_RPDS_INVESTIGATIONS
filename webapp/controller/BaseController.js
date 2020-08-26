@@ -178,6 +178,64 @@ sap.ui.define([
 			});
 
 		},
+		newTask: function() {
+
+		},
+
+		onPressTask: function(oEvent) {
+			debugger;
+			var oView = this.getView();
+			var oDialog = oView.byId("openDialog");
+			//get row data
+			var rowData = oEvent.getSource().getBindingContext().getObject();
+			// create dialog lazily
+			if (!oDialog) {
+				// create dialog via fragment factory
+				oDialog = sap.ui.xmlfragment(oView.getId(), "smud.pm.ZPM_RPDS_INVESTIGATIONS.fragments.editTask", this);
+				oView.addDependent(oDialog);
+			}
+			oDialog.open();
+			this.byId('editTask').setTitle(rowData.Taskcodetxt);
+			this.byId('taskno').setText(rowData.Tasknumber);
+			this.byId('text').setValue(rowData.Taskshrtxt);
+			this.byId('tperson').setValue(rowData.Taskperson);
+		},
+		editTask: function(oEvent) {
+			////set Model to edit Task
+			var oModel = this.oDataModel("activity");
+			sap.ui.getCore().setModel(oModel, "myModel");
+			var myModel = sap.ui.getCore().getModel("myModel");
+			var obj = {};
+			var that = this;
+			// Fill data
+			var rowData = oEvent.getSource().getBindingContext().getObject();
+			obj.Notifid = rowData.Notifid;
+			obj.Taskshrtxt = this.byId('text').getValue();
+			obj.Taskperson = this.byId('tperson').getValue();
+			obj.Tasknumber = this.byId('taskno').getText();
+			BusyIndicator.show();
+
+			//	var uPath = oEvent.getSource().getBindingContext().getPath();
+			var oPath = '/InvTasksSet(Notifid=' + "'" + rowData.Notifid + "'" + ',Tasknumber=' + "'" + obj.Tasknumber + "'" + ')';
+
+			myModel.update(oPath, obj, {
+				merge: false,
+				success: function(oData, oResponse) {
+					BusyIndicator.hide();
+					console.log('Record updated Successfully...');
+					that.getView().byId("openDialog").destroy();
+				},
+				error: function(err, oResponse) {
+					//	debugger;
+					BusyIndicator.hide();
+					sap.m.MessageToast.show("Erro Updating Record: " + err.responseText.split('message')[2]);
+					MessageBox.error("Erro Updating Record: " + err.responseText.split('message')[2]);
+					console.log("Error while creating record - ");
+				}
+
+			});
+
+		},
 
 		dialogAfterclose: function(oEvent) {
 			debugger;

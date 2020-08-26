@@ -25,6 +25,14 @@ sap.ui.define([
 			var atModel = this.getOwnerComponent().getModel("activityType");
 			this.getView().setModel(atModel, "ATModel");
 
+			// Item Code Json Model
+			var icModel = this.getOwnerComponent().getModel("itemCode");
+			this.getView().setModel(icModel, "ICModel");
+
+			// Activity Type Json Model
+			var ccModel = this.getOwnerComponent().getModel("causeCode");
+			this.getView().setModel(ccModel, "CCModel");
+
 			fnSetAppNotBusy = function() {
 				oViewModel.setProperty("/busy", false);
 				oViewModel.setProperty("/delay", iOriginalBusyDelay);

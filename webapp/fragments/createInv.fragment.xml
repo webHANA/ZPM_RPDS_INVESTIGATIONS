@@ -4,7 +4,7 @@
 			<f:SimpleForm id="createForm" editable="true" layout="ResponsiveGridLayout" title="Create New Investigation">
 				<f:content>
 					<Label text="Equipment"/>
-					<Input id="equip" showValueHelp="true" valueHelpRequest=".onValueHelpRequest" value="12412485"/>
+					<Input id="equip" showValueHelp="true" valueHelpRequest=".onValueHelpRequest" value="11601424"/>
 					<Label text="Priority"/>
 					<Input id="pri" showValueHelp="true" valueHelpRequest=".onValueHelpRequest" value="C"/>
 					<Label text="Coding Code"/>

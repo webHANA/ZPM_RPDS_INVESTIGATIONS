@@ -26,6 +26,14 @@
 			"localAT": {
 				"uri": "model/activityType.json",
 				"type": "JSON"
+			},
+			"localCC": {
+				"uri": "model/causeCode.json",
+				"type": "JSON"
+			},
+			"localIC": {
+				"uri": "model/itemCode.json",
+				"type": "JSON"
 			}
 		},
 		"sourceTemplate": {
@@ -90,6 +98,14 @@
 			"activityType": {
 				"type": "sap.ui.model.json.JSONModel",
 				"dataSource": "localAT"
+			},
+			"causeCode": {
+				"type": "sap.ui.model.json.JSONModel",
+				"dataSource": "localCC"
+			},
+			"itemCode": {
+				"type": "sap.ui.model.json.JSONModel",
+				"dataSource": "localIC"
 			}
 		},
 		"services": {
@@ -109,37 +125,25 @@
 				"controlId": "app",
 				"controlAggregation": "pages",
 				"bypassed": {
-					"target": [
-						"notFound"
-					]
+					"target": ["notFound"]
 				},
 				"async": true
 			},
-			"routes": [
-				{
-					"pattern": "",
-					"name": "worklist",
-					"target": [
-						"worklist"
-					]
-				},
-				{
-					"pattern": "InvHeaderSet/{objectId}",
-					"name": "object",
-					"target": [
-						"object"
-					]
-				},
-				{
-					"name": "create",
-					"pattern": "create/{equip}/{pri}/{code}",
-					"titleTarget": "",
-					"greedy": false,
-					"target": [
-						"create"
-					]
-				}
-			],
+			"routes": [{
+				"pattern": "",
+				"name": "worklist",
+				"target": ["worklist"]
+			}, {
+				"pattern": "InvHeaderSet/{objectId}",
+				"name": "object",
+				"target": ["object"]
+			}, {
+				"name": "create",
+				"pattern": "create/{equip}/{pri}/{code}",
+				"titleTarget": "",
+				"greedy": false,
+				"target": ["create"]
+			}],
 			"targets": {
 				"worklist": {
 					"viewName": "Worklist",

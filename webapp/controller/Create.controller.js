@@ -90,7 +90,7 @@ sap.ui.define([
 		//	}
 
 		createInv: function() {
-
+			debugger;
 			var myModel = sap.ui.getCore().getModel("myModel");
 			var obj = {};
 			var that = this;
@@ -101,8 +101,10 @@ sap.ui.define([
 			obj.Equipment = this.getView().byId("equip").getValue();
 			obj.Priority = this.getView().byId("pri").getValue();
 			obj.Codingcode = this.getView().byId("ccode").getValue();
-			obj.Itobjpartcode = this.getView().byId("icode").getValue();
-			obj.Causecode = this.getView().byId("cacode").getValue();
+			// obj.Itobjpartcode = this.getView().byId("icode").getValue();
+			obj.Itobjpartcode = this.byId('icode').getSelectedKey();
+			// obj.Causecode = this.getView().byId("cacode").getValue();
+			obj.Causecode = this.byId('cacode').getSelectedKey();
 			obj.Notifreporter = this.getView().byId("cuser").getValue();
 			//	obj.Notifdate = this.getView().byId("date").getValue();
 			obj.Partnerid = this.getView().byId("cust").getValue();
@@ -147,7 +149,7 @@ sap.ui.define([
 					that.getView().byId('cadd').setText(oData.Custaddress)
 
 					var oDateFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({
-						pattern: "dd/MM/yyyy"
+						pattern: "MM/dd/yyyy"
 					});
 					var aDate = oDateFormat.format(oData.Actdate)
 					that.getView().byId('dnp').setText('Code: ' + oData.Actstatus + ' : ' + oData.Actstatustxt + ' on ' + aDate)

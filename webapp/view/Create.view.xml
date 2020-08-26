@@ -2,7 +2,7 @@
 	controllerName="smud.pm.ZPM_RPDS_INVESTIGATIONS.controller.Create" xmlns:html="http://www.w3.org/1999/xhtml">
 	<App>
 		<pages>
-			<Page title="Title" showNavButton="true" navButtonPress="goBack">
+			<Page title="New Investigation" showNavButton="true" navButtonPress="goBack">
 				<content>
 					<VBox class="sapUiSmallMargin">
 						<Panel>
@@ -21,7 +21,7 @@
 								</FlexBox>
 							</content>
 						</Panel>
-						<f:SimpleForm id="createForm" editable="true" layout="ResponsiveGridLayout" title="Create Investigation">
+						<f:SimpleForm id="createForm" editable="true" layout="ResponsiveGridLayout">
 							<f:content>
 								<HBox>
 									<VBox>
@@ -38,13 +38,19 @@
 								<HBox>
 									<VBox>
 										<Label text="Priority"/>
-										<Input id="pri" showValueHelp="true" valueHelpRequest=".onValueHelpRequest" value="{tempModel>/argsPri}"/>
+										<Input id="pri" value="{tempModel>/argsPri}"/>
 										<Label text="Coding Code"/>
-										<Input id="ccode" showValueHelp="true" valueHelpRequest=".onValueHelpRequest" value="{tempModel>/argsCode}"/>
+										<Input id="ccode" value="{tempModel>/argsCode}"/>
 										<Label text="Item Code"/>
-										<Input id="icode" showValueHelp="true" valueHelpRequest=".onValueHelpRequest" value="001"/>
+										<!--<Input id="icode" showValueHelp="true" valueHelpRequest=".onValueHelpRequest" value="000"/>-->
+										<Select id="icode" showSecondaryValues="true" items="{ path: 'ICModel>/itemCode'}">
+											<core:ListItem key="{ICModel>ItemCode}" text="{ICModel>ItemCode} - {ICModel>ItemText}"/>
+										</Select>
 										<Label text="Cause Code"/>
-										<Input id="cacode" showValueHelp="true" valueHelpRequest=".onValueHelpRequest" value="TOS"/>
+										<!--<Input id="cacode" showValueHelp="true" valueHelpRequest=".onValueHelpRequest" value="010"/>-->
+										<Select id="cacode" showSecondaryValues="true" items="{ path: 'CCModel>/causeCode'}">
+											<core:ListItem key="{CCModel>CauseCode}" text="{CCModel>CauseCode} - {CCModel>CauseText}"/>
+										</Select>
 									</VBox>
 								</HBox>
 								<HBox>

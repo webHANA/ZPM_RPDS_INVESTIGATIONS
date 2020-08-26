@@ -4,7 +4,7 @@
 		<headerToolbar>
 			<Toolbar>
 				<ToolbarSpacer/>
-				<Button text="Create Task" press="onSetStatus" ariaLabelledBy="editButtonLabel" tooltip="Set Status"/>
+				<Button text="Create Task" press="newTask" ariaLabelledBy="editButtonLabel" tooltip="Set Status"/>
 			</Toolbar>
 		</headerToolbar>
 		<columns>
@@ -15,6 +15,9 @@
 				<Text text="Task Status" id="dcode"/>
 			</Column>
 			<Column>
+				<Text text="Task Text" id="ttxt"/>
+			</Column>
+			<Column>
 				<Text text="Task Completed By" id="codegrp"/>
 			</Column>
 			<Column>
@@ -23,7 +26,7 @@
 			<Column>
 				<Text text="Inspector" id="Inp"/>
 			</Column>
-				<Column>
+			<Column>
 				<Text text="User Status" id="ust"/>
 			</Column>
 			<Column>
@@ -34,12 +37,15 @@
 			</Column>
 		</columns>
 		<items>
-			<ColumnListItem type="Navigation" press="onPress">
+			<ColumnListItem type="Navigation" press="onPressTask">
 				<cells>
 					<ObjectIdentifier title="{Tasknumber}" text="{Taskcodetxt}"/>
 				</cells>
 				<cells>
 					<Text text="{Taskstatus}"/>
+				</cells>
+				<cells>
+					<Text text="{Taskshrtxt}"/>
 				</cells>
 				<cells>
 					<Text text="{Taskcompby}"/>

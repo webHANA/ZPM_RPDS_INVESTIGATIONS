@@ -17,7 +17,7 @@
 			<!--			text="{i18n>WorklistFilterOutOfStock}"/>-->
 			<!--	</items>-->
 			<!--	<content>-->
-					<Table id="table" width="auto" items="{ path: '/InvHeaderSet', sorter: { path: 'Notifid', descending: false } }"
+					<Table id="table" width="auto" items="{ path: '/InvHeaderSet', sorter: { path: 'Notifid', ascending: true } }"
 						noDataText="{worklistView>/tableNoDataText}" busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingThreshold="14"
 						growingScrollToLoad="true" updateFinished="onUpdateFinished">
 						<headerToolbar>

@@ -6,7 +6,8 @@ sap.ui.define([
 	'sap/m/MessageToast',
 	"sap/m/MessageBox",
 	"sap/ui/core/routing/History",
-	"smud/pm/ZPM_RPDS_INVESTIGATIONS/model/formatter"
+	"smud/pm/ZPM_RPDS_INVESTIGATIONS/model/formatter",
+	'sap/ui/core/BusyIndicator'
 ], function(
 	Fragment,
 	BaseController,
@@ -14,7 +15,8 @@ sap.ui.define([
 	MessageToast,
 	MessageBox,
 	History,
-	formatter
+	formatter,
+	BusyIndicator
 ) {
 	"use strict";
 
@@ -49,6 +51,12 @@ sap.ui.define([
 				// Restore original busy indicator delay for the object view
 				oViewModel.setProperty("/delay", iOriginalBusyDelay);
 			});
+
+			// Referesh Model
+			debugger;
+		
+//			sap.ui.getCore().byId("THE_ID_OF_YOUR_VIEW").getModel().refresh(true);
+
 		},
 
 		/* =========================================================== */

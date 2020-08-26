@@ -1,0 +1,17 @@
+{
+	"causeCode": [{
+			"CauseCode": "010",
+			"CauseText": "Investigation Not Complete"
+		}, {
+			"CauseCode": "000",
+			"CauseText": "Dismissed Without Investigation"
+		}, {
+			"CauseCode": "NTOS",
+			"CauseText": "No Theft of Service"
+		}, {
+			"CauseCode": "TOS",
+			"CauseText": "Theft of Service"
+		}
+
+	]
+}

@@ -1,0 +1,20 @@
+{
+	"itemCode": [{
+			"ItemCode": "000",
+			"ItemText": "Not Selected"
+		}, {
+			"ItemCode": "001",
+			"ItemText": "SC 120V 1 ph 2 wire"
+		}, {
+			"ItemCode": "002",
+			"ItemText": "SC 120/240V 1 ph 3 wire"
+		}, {
+			"ItemCode": "003",
+			"ItemText": "SC 120/208V 3 ph 4 wire"
+		}, {
+			"ItemCode": "004",
+			"ItemText": "SC 277/480V 3 ph 4 wire"
+		}
+
+	]
+}

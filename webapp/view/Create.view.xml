@@ -38,13 +38,22 @@
 								<HBox>
 									<VBox>
 										<Label text="Priority"/>
-										<Input id="pri" value="{tempModel>/argsPri}"/>
+										<!--<Input id="pri" value="{tempModel>/argsPri}"/>-->
+										<Select id="pri" showSecondaryValues="true" items="{ path: 'PRModel>/priorityCode'}" selectedKey="">
+											<core:ListItem key="{PRModel>Priority}" text="{PRModel>Priority} - {PRModel>PriorityTxt}"/>
+										</Select>
 										<Label text="Coding Code"/>
-										<Input id="ccode" value="{tempModel>/argsCode}"/>
+										<!--<Input id="ccode" value="{tempModel>/argsCode}"/>-->
+										<Select id="ccode" showSecondaryValues="true" items="{ path: '/InvCodingCodeShSet'}">
+											<core:ListItem key="{Code}" text="{Code} - {Kurztext}"/>
+										</Select>
 										<Label text="Item Code"/>
 										<!--<Input id="icode" showValueHelp="true" valueHelpRequest=".onValueHelpRequest" value="000"/>-->
-										<Select id="icode" showSecondaryValues="true" items="{ path: 'ICModel>/itemCode'}">
-											<core:ListItem key="{ICModel>ItemCode}" text="{ICModel>ItemCode} - {ICModel>ItemText}"/>
+										<!--<Select id="icode" showSecondaryValues="true" items="{ path: 'ICModel>/itemCode'}">-->
+										<!--	<core:ListItem key="{ICModel>ItemCode}" text="{ICModel>ItemCode} - {ICModel>ItemText}"/>-->
+										<!--</Select>-->
+										<Select id="icode" showSecondaryValues="true" items="{ path: '/InvItemCodeShSet'}">
+											<core:ListItem key="{Code}" text="{Code} - {Kurztext}"/>
 										</Select>
 										<Label text="Cause Code"/>
 										<!--<Input id="cacode" showValueHelp="true" valueHelpRequest=".onValueHelpRequest" value="010"/>-->

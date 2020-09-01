@@ -5,12 +5,13 @@
 				<f:content>
 					<Label text="Select Activity Type"/>
 					<Select id="atype" showSecondaryValues="true" items="{ path: 'ATModel>/activityType'}">
-						<core:ListItem key="{ATModel>ActCode}" text="{ATModel>ActCode} - {ATModel>ActName}"/>
+						<core:ListItem key="{ATModel>ActCode}" text="{ATModel>ActGroup} - {ATModel>ActName} - {ATModel>ActCode}"/>
 					</Select>
 					<Label text="Enter Amount"/>
-					<Input id="amount"/>
+					<Input id="amount" type="Number" />
 					<Label text="Date"/>
-					<DatePicker id="date" valueFormat="yyyy-MM-dd" displayFormat="MM/dd/yyyy" dateValue="{toActivities>Activitystrdate}" class="sapUiSmallMarginBottom"/>
+					<DatePicker id="date" valueFormat="yyyy-MM-dd" displayFormat="MM/dd/yyyy" dateValue="{toActivities>Activitystrdate}"
+						class="sapUiSmallMarginBottom"/>
 				</f:content>
 			</f:SimpleForm>
 		</VBox>

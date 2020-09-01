@@ -32,6 +32,10 @@ sap.ui.define([
 			// Activity Type Json Model
 			var ccModel = this.getOwnerComponent().getModel("causeCode");
 			this.getView().setModel(ccModel, "CCModel");
+			
+			// Priority Code Json Model
+			var prModel = this.getOwnerComponent().getModel("priorityCode");
+			this.getView().setModel(prModel, "PRModel");
 
 			fnSetAppNotBusy = function() {
 				oViewModel.setProperty("/busy", false);

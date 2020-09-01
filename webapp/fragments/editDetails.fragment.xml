@@ -1,0 +1,45 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Dialog id="openDialog" title="Edit Details">
+		<VBox class="sapUiSmallMargin">
+			<f:SimpleForm id="editDetails" editable="true" layout="ResponsiveGridLayout" afterClose="dialogAfterClose" title="">
+				<f:content>
+					<Label text="Coding Code"/>
+					<!--<Input id="cocode" required="true" value=""/>-->
+					<Select id="cocode" showSecondaryValues="true" items="{ path: '/InvCodingCodeShSet'}">
+						<core:ListItem key="{Code}" text="{Code} - {Kurztext}"/>
+					</Select>
+					<Label text="Cause Code"/>
+					<!--<Input id="cacode" required="true" value=""/>-->
+					<Select id="cacode" showSecondaryValues="true" items="{ path: 'CCModel>/causeCode'}">
+						<core:ListItem key="{CCModel>CauseCode}" text="{CCModel>CauseCode} - {CCModel>CauseText}"/>
+					</Select>
+					<Label text="Cause Text"/>
+					<Input id="catxt" required="true" value=""/>
+					<Label text="Item Code"/>
+					<!--<Input id="icode" required="true" value=""/>-->
+					<Select id="icode" showSecondaryValues="true" items="{ path: '/InvItemCodeShSet'}">
+						<core:ListItem key="{Code}" text="{Code} - {Kurztext}"/>
+					</Select>
+					<Label text="Damage Group"/>
+					<Input id="dagrp" required="true" value=""/>
+					<Label text="Damage Code"/>
+					<Input id="dacode" required="true" value=""/>
+					<Label text="Grow House"/>
+					<Input id="growh" required="true" value=""/>
+					<Label text="Rate Type"/>
+					<Input id="rtype" required="true" value=""/>
+					<Label text="12 Month Forward Billing $"/>
+					<Input id="mbill" required="true" value=""/>
+					<Label text="12 Month Forward KWH"/>
+					<Input id="mkwh" required="true" value=""/>
+				</f:content>
+			</f:SimpleForm>
+		</VBox>
+		<beginButton>
+			<Button text="Save" press="editDetails"/>
+		</beginButton>
+		<endButton>
+			<Button text="Close" press="closePartner"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

@@ -8,6 +8,7 @@
 					<Input id="text" required="true" value=""/>
 					<Label text="Inspector"/>
 					<Input id="tperson" required="true" value=""/>
+					<CheckBox id="ustat" text="Peer Review Needed" valueState="Warning"/>
 				</f:content>
 			</f:SimpleForm>
 		</VBox>

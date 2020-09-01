@@ -30,10 +30,10 @@
 				<Text text="User Status" id="ust"/>
 			</Column>
 			<Column>
-				<Text text="Chnage Task Status " id="tstat"/>
+				<Text text="Notes" id="note"/>
 			</Column>
 			<Column>
-				<Text text="Change User Status " id="ustat"/>
+				<Text text="Change Task Status " id="tstat"/>
 			</Column>
 		</columns>
 		<items>
@@ -60,6 +60,9 @@
 					<Text text="{Userstatus}"/>
 				</cells>
 				<cells>
+					<Button icon="sap-icon://notes" press="editTaskNotes" tooltip="Notes"/>
+				</cells>
+				<cells>
 					<MenuButton text="Set Status">
 						<menu>
 							<Menu itemSelected="updateTaskStatus">
@@ -77,20 +80,20 @@
 					<!--<Button icon="sap-icon://key-user-settings" press="onSetStatus" ariaLabelledBy="editButtonLabel" tooltip="Set Status"/>-->
 					<!--<Button text="Create Task" press="onSetStatus" ariaLabelledBy="editButtonLabel" tooltip="Set Status"/>-->
 				</cells>
-				<cells>
-					<MenuButton text="User Status">
-						<menu>
-							<Menu itemSelected="updateUserStatus">
-								<items>
-									<MenuItem text="Peer Review Required" icon="sap-icon://flag"/>
-									<MenuItem text="Not Enough Information" icon="sap-icon://complete"/>
-									<MenuItem text="No Work Required" icon="sap-icon://hr-approval"/>
-									<MenuItem text="Rework Required" icon="sap-icon://hr-approval"/>
-								</items>
-							</Menu>
-						</menu>
-					</MenuButton>
-				</cells>
+				<!--<cells>-->
+				<!--	<MenuButton text="User Status">-->
+				<!--		<menu>-->
+				<!--			<Menu itemSelected="updateUserStatus">-->
+				<!--				<items>-->
+				<!--					<MenuItem text="Peer Review Required" icon="sap-icon://flag"/>-->
+				<!--					<MenuItem text="Not Enough Information" icon="sap-icon://complete"/>-->
+				<!--					<MenuItem text="No Work Required" icon="sap-icon://hr-approval"/>-->
+				<!--					<MenuItem text="Rework Required" icon="sap-icon://hr-approval"/>-->
+				<!--				</items>-->
+				<!--			</Menu>-->
+				<!--		</menu>-->
+				<!--	</MenuButton>-->
+				<!--</cells>-->
 			</ColumnListItem>
 		</items>
 	</Table>

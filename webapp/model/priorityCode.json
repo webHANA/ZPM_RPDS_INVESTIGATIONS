@@ -1,0 +1,16 @@
+{
+	"priorityCode": [{
+		"Priority": "",
+		"PriorityTxt": ""
+	}, {
+		"Priority": "C",
+		"PriorityTxt": "Power Theft Non-Res."
+
+	}, {
+		"Priority": "R",
+		"PriorityTxt": "Power Theft Res."
+	}, {
+		"Priority": "0",
+		"PriorityTxt": "Dismiss"
+	}]
+}

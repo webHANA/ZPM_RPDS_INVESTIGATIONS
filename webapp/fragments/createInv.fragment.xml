@@ -4,11 +4,11 @@
 			<f:SimpleForm id="createForm" editable="true" layout="ResponsiveGridLayout" title="Create New Investigation">
 				<f:content>
 					<Label text="Equipment"/>
-					<Input id="equip" showValueHelp="true" valueHelpRequest=".onValueHelpRequest" value="11601424"/>
+					<Input id="equip" value="11601424"/>
 					<Label text="Priority"/>
-					<Input id="pri" showValueHelp="true" valueHelpRequest=".onValueHelpRequest" value="C"/>
+					<Input id="pri" value="C"/>
 					<Label text="Coding Code"/>
-					<Input id="code" showValueHelp="true" valueHelpRequest=".onValueHelpRequest" value="EVD"/>
+					<Input id="code" value="EVD"/>
 					<!--<Label text="Customer"/>-->
 					<!--<Input id="cust" showValueHelp="true" valueHelpRequest=".onValueHelpRequest" value="1034420"/>-->
 				</f:content>

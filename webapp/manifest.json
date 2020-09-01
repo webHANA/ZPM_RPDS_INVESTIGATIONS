@@ -34,6 +34,10 @@
 			"localIC": {
 				"uri": "model/itemCode.json",
 				"type": "JSON"
+			},
+			"localPR": {
+				"uri": "model/priorityCode.json",
+				"type": "JSON"
 			}
 		},
 		"sourceTemplate": {
@@ -106,6 +110,10 @@
 			"itemCode": {
 				"type": "sap.ui.model.json.JSONModel",
 				"dataSource": "localIC"
+			},
+			"priorityCode": {
+				"type": "sap.ui.model.json.JSONModel",
+				"dataSource": "localPR"
 			}
 		},
 		"services": {

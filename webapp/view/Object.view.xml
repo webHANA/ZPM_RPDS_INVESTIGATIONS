@@ -10,12 +10,17 @@
 				<layout:VerticalLayout class="sapUiMediumMarginEnd">
 					<ObjectAttribute title="Investigation Number" text="{Notifid}"/>
 					<ObjectAttribute title="Text" text="{Notifshtxt}"/>
-					<ObjectAttribute title="Coding Group" text="{Codinggrp}"/>
+					<ObjectAttribute title="Priority" text="{Priority}"/>
+					<ObjectAttribute title="Status" text="{Notifstatus}"/>
+					<ObjectAttribute text="{Notifstatustxt}"/>
 				</layout:VerticalLayout>
 				<layout:VerticalLayout>
-					<ObjectAttribute title="Notification Date"/>
-					<!--<ObjectStatus text="{Notifdate}"/>-->
-					<ObjectStatus text="{ path: 'Notifdate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium' } }"/>
+					<ObjectAttribute title="Notification Date" text="{ path: 'Notifdate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium' } }"/>
+					<ObjectAttribute title="Equipment" text="{Equipment}"/>
+					<ObjectAttribute title="Equipment Address" text="{Equipdesc}"/>
+					<ObjectAttribute title="Coding Group" text="{Codinggrp}"/>
+					<ObjectAttribute title="Cause Group" text="{Causegrp}"/>
+					<ObjectAttribute title="Item Group" text="{Itobjpartgrp}"/>
 				</layout:VerticalLayout>
 			</layout:HorizontalLayout>
 			<FlexBox alignItems="Start" justifyContent="End">
@@ -52,6 +57,11 @@
 					<IconTabFilter text="{i18n>Partners}">
 						<content>
 							<core:Fragment fragmentName="smud.pm.ZPM_RPDS_INVESTIGATIONS.fragments.Partners" type="XML"/>
+						</content>
+					</IconTabFilter>
+					<IconTabFilter text="{i18n>Notes}">
+						<content>
+							<core:Fragment fragmentName="smud.pm.ZPM_RPDS_INVESTIGATIONS.fragments.Notes" type="XML"/>
 						</content>
 					</IconTabFilter>
 					<IconTabFilter text="{i18n>Attachment}">

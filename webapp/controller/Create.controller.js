@@ -54,6 +54,8 @@ sap.ui.define([
 				}
 			});
 
+			this.getView().byId('pri').setSelectedKey(arg2);
+			this.getView().byId('ccode').setSelectedKey(arg3);
 			this.getView().getModel("tempModel").setProperty("/", {
 				"argsEquip": arg1,
 				"argsPri": arg2,
@@ -99,8 +101,10 @@ sap.ui.define([
 			obj.Itobjpartgrp = this.getView().byId("igrp").getValue();
 			obj.Causegrp = this.getView().byId("cagrp").getValue();
 			obj.Equipment = this.getView().byId("equip").getValue();
-			obj.Priority = this.getView().byId("pri").getValue();
-			obj.Codingcode = this.getView().byId("ccode").getValue();
+			//obj.Priority = this.getView().byId("pri").getValue();
+			obj.Priority = this.getView().byId("pri").getSelectedKey();
+			//obj.Codingcode = this.getView().byId("ccode").getValue();
+			obj.Codingcode = this.getView().byId("ccode").getSelectedKey();
 			// obj.Itobjpartcode = this.getView().byId("icode").getValue();
 			obj.Itobjpartcode = this.byId('icode').getSelectedKey();
 			// obj.Causecode = this.getView().byId("cacode").getValue();

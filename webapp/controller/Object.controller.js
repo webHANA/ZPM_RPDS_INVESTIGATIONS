@@ -2,21 +2,47 @@
 sap.ui.define([
 	'sap/ui/core/Fragment',
 	"smud/pm/ZPM_RPDS_INVESTIGATIONS/controller/BaseController",
+	"sap/ui/core/Core",
 	"sap/ui/model/json/JSONModel",
 	'sap/m/MessageToast',
 	"sap/m/MessageBox",
 	"sap/ui/core/routing/History",
 	"smud/pm/ZPM_RPDS_INVESTIGATIONS/model/formatter",
-	'sap/ui/core/BusyIndicator'
+	'sap/ui/core/BusyIndicator',
+	"sap/ui/layout/HorizontalLayout",
+	"sap/ui/layout/VerticalLayout",
+	"sap/m/Dialog",
+	"sap/m/DialogType",
+	"sap/m/Button",
+	"sap/m/ButtonType",
+	"sap/m/Label",
+	"sap/m/Text",
+	"sap/m/TextArea",
+	"sap/m/Input",
+	"sap/m/DatePicker",
+	"sap/ui/core/format/DateFormat"
 ], function(
 	Fragment,
 	BaseController,
+	Core,
 	JSONModel,
 	MessageToast,
 	MessageBox,
 	History,
 	formatter,
-	BusyIndicator
+	BusyIndicator,
+	HorizontalLayout,
+	VerticalLayout,
+	Dialog,
+	DialogType,
+	Button,
+	ButtonType,
+	Label,
+	Text,
+	TextArea,
+	Input,
+	DatePicker,
+	DateFormat
 ) {
 	"use strict";
 
@@ -53,9 +79,8 @@ sap.ui.define([
 			});
 
 			// Referesh Model
-			debugger;
-		
-//			sap.ui.getCore().byId("THE_ID_OF_YOUR_VIEW").getModel().refresh(true);
+
+			//			sap.ui.getCore().byId("THE_ID_OF_YOUR_VIEW").getModel().refresh(true);
 
 		},
 
@@ -153,6 +178,7 @@ sap.ui.define([
 				title: this.getResourceBundle().getText("objectTitle") + " - " + sObjectName,
 				icon: "sap-icon://enter-more",
 				intent: "#RPDSInvestigations-display&/InvHeaderSet/" + sObjectId
+					//	intent: "#RPDSInvestigations-manage&/InvHeaderSet/" + sObjectId
 			});
 
 			oViewModel.setProperty("/saveAsTileTitle", oResourceBundle.getText("saveAsTileTitle", [sObjectName]));
@@ -164,7 +190,6 @@ sap.ui.define([
 		},
 
 		// taskOnRelease: function(oEvent) {
-		// 	debugger;
 		// 	// if (oEvent.getSource().getParent().getParent().getSelectedItems().length === 0) {
 		// 	// 	return MessageToast.show('Please select a Task');
 		// 	// }
@@ -176,21 +201,18 @@ sap.ui.define([
 
 		// },
 		updateTaskStatus: function(oEvent) {
-			debugger;
+
 			var oItem = oEvent.getParameter("item"),
 				sItemPath = "";
 			while (oItem instanceof sap.m.MenuItem) {
 				sItemPath = oItem.getText() + " > " + sItemPath;
 				oItem = oItem.getParent();
 			}
-
 			sItemPath = sItemPath.substr(0, sItemPath.lastIndexOf(" > "));
 			var sItem = this.getView().getModel().getProperty("Tasksortno", oEvent.getSource().getBindingContext());
 			var sNotifid = this.getView().getModel().getProperty("Notifid", oEvent.getSource().getBindingContext());
-			sap.m.MessageToast.show("Action triggered on item: " + sItem + ' ' + sItemPath);
 
-			//Send Update request
-			// var myModel = sap.ui.getCore().getModel("myModel");
+			// fill object for update
 			var myModel = this.getOwnerComponent().getModel();
 			var uPath = oEvent.getSource().getBindingContext().getPath();
 			var obj = {};
@@ -198,19 +220,132 @@ sap.ui.define([
 			obj.Tasksortno = sItem;
 			obj.Taskstatus = sItemPath;
 
-			myModel.update(uPath, obj, {
-				merge: false,
-				success: function(oData, oResponse) {
+			// Complete Task warning
 
-					console.log('Record Created Successfully...');
-				},
-				error: function(err, oResponse) {
-					//	debugger;
-					sap.m.MessageToast.show("Erro Updating Record: " + err.responseText.split('message')[2]);
-					MessageBox.error("Erro Updating Record: " + err.responseText.split('message')[2]);
-					console.log("Error while creating record - ");
-				}
-			});
+			if (sItemPath === 'Complete') {
+
+				//				if (!this.oConfirmDialog) {
+				var oUser = sap.ushell.Container.getService("UserInfo").getId();
+				var oDate = new Date();
+				debugger;
+				var oDateFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({
+					pattern: "yyyy-MM-dd"
+				});
+				var oDate1 = oDateFormat.format(oDate);
+
+				this.oConfirmDialog = new Dialog({
+					type: DialogType.Message,
+					title: "Confirm",
+					content: [
+						new VerticalLayout({
+							content: [
+								new Text({
+									id: 'iText',
+									text: 'You cannot make changes after completing the Task',
+									fontSize: 20
+								}),
+								new Label({
+									text: "Id: "
+								}),
+								new Input('notif', {
+									value: sNotifid,
+									enabled: false
+								}),
+								new Label({
+									text: "Task Id: "
+								}),
+								new Input('tsort', {
+									value: obj.Tasksortno,
+									enabled: false
+								}),
+								new Label({
+									text: "Status : "
+								}),
+								new Input('tstatus', {
+									value: obj.Taskstatus,
+									enabled: false
+								}),
+								new Label({
+									text: "Completed By: "
+								}),
+								new Input('compby', {
+									value: oUser
+								}),
+								new Label({
+									text: "Completed Date : "
+								}),
+								new DatePicker('cdate', {
+									value: oDate1,
+									valueFormat: "yyyy-MM-dd",
+									displayFormat: "MM/dd/yyyy"
+								})
+							]
+						})
+					],
+					beginButton: new Button({
+						type: ButtonType.Emphasized,
+						text: "Submit",
+						press: function(evt) {
+							debugger;
+							var that = this;
+							//Fill data for Update
+							var obj1 = {};
+							obj1.Notifid = Core.byId("notif").getValue();
+							obj1.Tasknumber = Core.byId("tsort").getValue();
+							obj1.Tasksortno = Core.byId("tsort").getValue();
+							obj1.Taskstatus = Core.byId("tstatus").getValue();
+							obj1.Taskcompby = Core.byId("compby").getValue();
+							obj1.Taskcomdate = Core.byId("cdate").getValue() + "T00:00:00";
+
+							//Send Update request
+
+							myModel.update(uPath, obj1, {
+								merge: false,
+								success: function(oData, oResponse) {
+									debugger;
+									MessageBox.success("Status Update Successful");
+									console.log('Record Created Successfully...');
+									this.oConfirmDialog.destroy();
+								}.bind(this),
+								error: function(err, oResponse) {
+									debugger;
+									sap.m.MessageToast.show("Erro Updating Record: " + err.responseText.split('message')[2]);
+									MessageBox.error("Erro Updating Record: " + err.responseText.split('message')[2]);
+									console.log("Error while creating record - ");
+								}
+							});
+
+							this.oConfirmDialog.close();
+						}.bind(this)
+					}),
+					endButton: new Button({
+						text: "Cancel",
+						press: function() {
+							debugger;
+							this.oConfirmDialog.close();
+							this.oConfirmDialog.destroy();
+
+						}.bind(this)
+					})
+				});
+				//				}
+
+				this.oConfirmDialog.open();
+			} else {
+				//Send Update request
+				myModel.update(uPath, obj, {
+					merge: false,
+					success: function(oData, oResponse) {
+
+						console.log('Record Created Successfully...');
+					},
+					error: function(err, oResponse) {
+						sap.m.MessageToast.show("Erro Updating Record: " + err.responseText.split('message')[2]);
+						MessageBox.error("Erro Updating Record: " + err.responseText.split('message')[2]);
+						console.log("Error while creating record - ");
+					}
+				});
+			}
 
 		},
 		updateUserStatus: function(oEvent) {
@@ -224,7 +359,7 @@ sap.ui.define([
 		// Update Notification Status on detail Page
 
 		statusInProcess: function(oEvent) {
-			debugger;
+
 			var myModel = this.getOwnerComponent().getModel();
 			var uPath = oEvent.getSource().getBindingContext().getPath();
 			var sNotifid = this.getView().getModel().getProperty("Notifid", oEvent.getSource().getBindingContext());

@@ -1,13 +1,36 @@
 {
 	"activityType": [{
 			"ActGroup": "RP010",
+			"ActCode": "010",
+			"ActName": "Power Theft Amount"
+		}, {
+			"ActGroup": "RP010",
+			"ActCode": "020",
+			"ActName": "Revenue Protection Fee"
+		}, {
+			"ActGroup": "RP010",
+			"ActCode": "030",
+			"ActName": "Meter Damage Fee"
+		}, {
+			"ActGroup": "RP010",
+			"ActCode": "040",
+			"ActName": "Reconnect Fee"
+		}, {
+			"ActGroup": "RP010",
 			"ActCode": "080",
 			"ActName": "Billed Amount"
-
 		}, {
 			"ActGroup": "RP010",
 			"ActCode": "090",
 			"ActName": "Payment Received and Sent to Post"
+		}, {
+			"ActGroup": "RP010",
+			"ActCode": "999",
+			"ActName": "Other Fee/Charges"
+		}, {
+			"ActGroup": "RP020",
+			"ActCode": "010",
+			"ActName": "Power Theft Payment Received"
 		}
 
 	]

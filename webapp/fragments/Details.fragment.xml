@@ -1,4 +1,4 @@
-<core:FragmentDefinition xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+<core:FragmentDefinition xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:layout="sap.ui.layout">
 	<!--<Toolbar>-->
 	<!--	<ToolbarSpacer/>-->
 	<!--	<Button text="Put in Process" press="statusInProcess" ariaLabelledBy="editButtonLabel" tooltip="Set Status"/>-->
@@ -6,52 +6,40 @@
 	<!--	<Button text="Complete" press="statusComplete" ariaLabelledBy="editButtonLabel" tooltip="Set Status"/>-->
 	<!--</Toolbar>-->
 	<VBox class="sapUiSmallMargin">
+		<FlexBox alignItems="Start" justifyContent="End">
+			<layout:HorizontalLayout>
+				<Button text="Edit" type="Emphasized" press="onPressDetails" ariaLabelledBy="editButtonLabel" tooltip="Edit Notification Header"/>
+			</layout:HorizontalLayout>
+		</FlexBox>
 		<f:SimpleForm id="detailsFrom" editable="false" layout="ResponsiveGridLayout" singleContainerFullSize="false">
 			<f:content>
 				<!--header Information-->
 				<core:Title text="Header"/>
-				<Label text="Status"/>
-				<Text text="{Notifstatus} - {Notifstatustxt}"/>
-				<Label text="Coding Group"/>
-				<Text text="{Codinggrp}"/>
 				<Label text="Coding Code"/>
-				<Text text="{Codingcode}"/>
-				<Label text="Priority"/>
-				<Text text="{Priority}"/>
-				<Label text="Equipment"/>
-				<Text text="{Equipment} - {Equipdesc}"/>
-				<Label text="Equipment Address"/>
-				<Text text="{Equipaddress}"/>
+				<Text id="Cocode" text="{Codingcode}"/>
 				<!--Causes Information-->
-				<core:Title text="Causes"/>
-				<Label text="Cause Group"/>
-				<Text text="{Causegrp}"/>
+				<!--<core:Title text="Causes"/>-->
 				<Label text="Cause Code"/>
-				<Text text="{Causecode}"/>
+				<Text id="Cacode" text="{Causecode}"/>
 				<Label text="Cause Text"/>
-				<Text text="{Causeshtxt}"/>
+				<Text id="Catxt" text="{Causeshtxt}"/>
 				<!--Item Information-->
-				<core:Title text="Items"/>
-				<Label text="Item Group"/>
-				<Text text="{Itobjpartgrp}"/>
+				<!--<core:Title text="Items"/>-->
 				<Label text="Item Code"/>
-				<Text text="{Itobjpartcode}"/>
+				<Text id="Icode" text="{Itobjpartcode}"/>
 				<Label text="Damage Group"/>
-				<Text text="{Itdamagegrp}"/>
+				<Text id="Dagrp" text="{Itdamagegrp}"/>
 				<Label text="Damage Code"/>
-				<Text text="{Itdamagecode}"/>
+				<Text id="Dacode" text="{Itdamagecode}"/>
+				<core:Title/>
 				<Label text="Grow House"/>
-				<Text text="{Itgrowhouse}"/>
+				<Text id="Growh" text="{Itgrowhouse}"/>
 				<Label text="Rate Type"/>
-				<Text text="{Itratetype}"/>
+				<Text id="Rtype" text="{Itratetype}"/>
 				<Label text="12 Month Forward Billing $"/>
-				<Text text="{Itfwdbill}"/>
+				<Text id="Mbill" text="{Itfwdbill}"/>
 				<Label text="12 Month Forward KWH"/>
-				<Text text="{Itfwdkwh}"/>
-				<!--Item Information-->
-				<core:Title text="Notes"/>
-				<Label text="Notes"/>
-				<TextArea editable="fasle" value="{Notiflongtxt}" rows="6"/>
+				<Text id="Mkwh" text="{Itfwdkwh}"/>
 			</f:content>
 		</f:SimpleForm>
 	</VBox>

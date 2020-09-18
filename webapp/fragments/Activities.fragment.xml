@@ -20,11 +20,14 @@
 				<Text text="Amount" id="actp"/>
 			</Column>
 			<Column>
+				<Text text="Amount Remaining" id="arem"/>
+			</Column>
+			<Column>
 				<Text text="Date" id="actl"/>
 			</Column>
 		</columns>
 		<items>
-			<ColumnListItem type="Navigation" press="onPress">
+			<ColumnListItem type="Navigation" press="onPressActivity">
 				<cells>
 					<ObjectIdentifier title="{Activityno}"/>
 				</cells>
@@ -36,6 +39,9 @@
 				</cells>
 				<cells>
 					<Text text="{Activitytxt}"/>
+				</cells>
+				<cells>
+					<Text text="{Activityamtrem}"/>
 				</cells>
 				<cells>
 					<Text text="{ path: 'Activitystrdate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium' } }"/>

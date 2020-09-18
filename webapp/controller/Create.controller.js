@@ -37,20 +37,24 @@ sap.ui.define([
 
 			// get customer data 
 			var that = this;
+			// BusyIndicator.show();
 			this.getOwnerComponent().getModel().read(`/InvEquipmentSet('${arg1}')`, {
 				success: function(oData, response) {
 					that.getView().byId('equip').setDescription(oData.Equidescr);
 					that.getView().byId('cust').setValue(oData.Customer);
 					that.getView().byId('cdesc').setText(oData.Custname)
 					that.getView().byId('cadd').setText(oData.Custaddress)
+					that.getView().byId('serial').setText(oData.Serialno)
 					var oDateFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({
 						pattern: "dd/MM/yyyy"
 					});
 					var aDate = oDateFormat.format(oData.Actdate)
 					that.getView().byId('dnp').setText('Code: ' + oData.Actstatus + ' : ' + oData.Actstatustxt + ' on ' + aDate)
+						// BusyIndicator.hide();
 				},
 				error: function(oError) {
-					sap.m.MessageToast.show("Error Creating Record: " + oError.responseText.split('message')[2]);
+					sap.m.MessageToast.show("Error Getting Equipment Information: " + oError.responseText.split('message')[2]);
+					BusyIndicator.hide();
 				}
 			});
 
@@ -63,6 +67,18 @@ sap.ui.define([
 				//	"argsCust": arg4,
 				"argUser": arg5
 			});
+			// add notif logic
+			debugger;
+			// this.getOwnerComponent().getModel.read(`/InvEquipmentSet('${arg1}')/toHeader`, {
+			// 	success: function(oData, response) {
+			// 		debugger;
+			// 	},
+			// 	error: function(oError) {
+			// 		debugger;
+			// 	}
+
+			// });
+
 		},
 
 		/**
@@ -117,7 +133,10 @@ sap.ui.define([
 				success: function(oData, oResponse) {
 					BusyIndicator.hide();
 					console.log('Record Created Successfully...');
-					sap.m.MessageToast.show("Notification Created: " + oResponse.data.Notifid);
+					sap.m.MessageToast.show("Notification Created: " + oResponse.data.Notifid, {
+						duration: 15000,
+						animationTimingFunction: "ease-in-out"
+					});
 					//	MessageBox.success("Notification Created: " + oResponse.data.Notifid);
 					debugger;
 					that.getRouter().navTo("object", {
@@ -145,12 +164,14 @@ sap.ui.define([
 			// get customer data 
 			var that = this;
 			var equi = this.getView().byId("equip").getValue();
+			BusyIndicator.show();
 			this.getOwnerComponent().getModel().read(`/InvEquipmentSet('${equi}')`, {
 				success: function(oData, response) {
 					that.getView().byId('equip').setDescription(oData.Equidescr);
 					that.getView().byId('cust').setValue(oData.Customer);
 					that.getView().byId('cdesc').setText(oData.Custname)
 					that.getView().byId('cadd').setText(oData.Custaddress)
+					that.getView().byId('serial').setText(oData.Serialno)
 
 					var oDateFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({
 						pattern: "MM/dd/yyyy"
@@ -158,10 +179,11 @@ sap.ui.define([
 					var aDate = oDateFormat.format(oData.Actdate)
 					that.getView().byId('dnp').setText('Code: ' + oData.Actstatus + ' : ' + oData.Actstatustxt + ' on ' + aDate)
 
-					console.log(oData.Customer);
+					BusyIndicator.hide();
 				},
 				error: function(oError) {
-					sap.m.MessageToast.show("Error Creating Record: " + oError.responseText.split('message')[2]);
+					sap.m.MessageToast.show("ErrorGetting Equipment Record: " + oError.responseText.split('message')[2]);
+					BusyIndicator.hide();
 				}
 			});
 		}

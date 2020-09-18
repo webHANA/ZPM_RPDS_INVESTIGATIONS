@@ -4,7 +4,10 @@
 			<f:SimpleForm id="createForm" editable="true" layout="ResponsiveGridLayout" afterClose="dialogAfterClose" title="{Notifid}">
 				<f:content>
 					<Label text="Task Code"/>
-					<Input id="tcode" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"/>
+					<!--<Input id="tcode" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"/>-->
+					<Select id="tcode" showSecondaryValues="true" items="{ path: '/InvTaskCodeShSet'}">
+						<core:ListItem key="{Code}" text="{Code} - {Kurztext}"/>
+					</Select>
 					<Label text="Task Text"/>
 					<Input id="text" required="true" value=""/>
 					<Label text="Inspector"/>

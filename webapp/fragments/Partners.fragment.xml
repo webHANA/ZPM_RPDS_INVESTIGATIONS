@@ -24,7 +24,7 @@
 			</Column>
 		</columns>
 		<items>
-			<ColumnListItem type="Navigation" press="onPress">
+			<ColumnListItem type="Navigation" press="onPressPartner">
 				<cells>
 					<ObjectIdentifier title="{Partnumber}"/>
 				</cells>

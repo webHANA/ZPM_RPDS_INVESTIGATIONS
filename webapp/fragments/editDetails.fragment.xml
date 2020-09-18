@@ -21,9 +21,15 @@
 						<core:ListItem key="{Code}" text="{Code} - {Kurztext}"/>
 					</Select>
 					<Label text="Damage Group"/>
-					<Input id="dagrp" required="true" value=""/>
+					<Input id="dagrp" required="true" value="" enabled="false"/>
+					<!--<Select id="dagrp" showSecondaryValues="true" items="{ path: 'DCModel>/damageCode'}" change="damageCode" >-->
+					<!--	<core:ListItem key="{DCModel>Code}" text="{DCModel>Code}- {DCModel>Text}"/>-->
+					<!--</Select>-->
 					<Label text="Damage Code"/>
-					<Input id="dacode" required="true" value=""/>
+					<!--<Input id="dacode" required="true" value=""/>-->
+					<Select id="dacode" showSecondaryValues="true" items="{ path: '/InvDamageCodeShSet', templateShareable : false }" change="damageCode">
+						<core:ListItem key="{Codegruppe}{Code}" text="{Codegruppe} - {Code} - {Kurztext}"/>
+					</Select>
 					<Label text="Grow House"/>
 					<Input id="growh" required="true" value=""/>
 					<Label text="Rate Type"/>
@@ -36,7 +42,7 @@
 			</f:SimpleForm>
 		</VBox>
 		<beginButton>
-			<Button text="Save" press="editDetails"/>
+			<Button text="Save" type="Accept" press="editDetails"/>
 		</beginButton>
 		<endButton>
 			<Button text="Close" press="closePartner"/>

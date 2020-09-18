@@ -206,7 +206,8 @@ sap.ui.define([
 			//Fill data to create Task
 			obj.Notifid = this.getView().byId('createForm').getTitle();
 			obj.Taskgrp = 'RP010';
-			obj.Taskcode = this.byId('tcode').getValue();
+			//obj.Taskcode = this.byId('tcode').getValue();
+			obj.Taskcode = this.byId('tcode').getSelectedKey();
 			obj.Taskshrtxt = this.byId('text').getValue();
 			obj.Taskperson = this.byId('tperson').getValue();
 			BusyIndicator.show();
@@ -366,7 +367,10 @@ sap.ui.define([
 			//this.byId('icode').setValue(this.byId('Icode').getText());
 			this.byId('icode').setSelectedKey(this.byId('Icode').getText());
 			this.byId('dagrp').setValue(this.byId('Dagrp').getText());
-			this.byId('dacode').setValue(this.byId('Dacode').getText());
+			// this.byId('dacode').setValue(this.byId('Dacode').getText());
+			var damCode = this.byId('Dagrp').getText() + this.byId('Dacode').getText();
+			// this.byId('dacode').setSelectedKey(this.byId('Dacode').getText());
+			this.byId('dacode').setSelectedKey(damCode);
 			this.byId('growh').setValue(this.byId('Growh').getText());
 			this.byId('rtype').setValue(this.byId('Rtype').getText());
 			this.byId('mbill').setValue(this.byId('Mbill').getText());
@@ -396,7 +400,10 @@ sap.ui.define([
 			//obj.Itobjpartcode = this.byId('icode').getValue();
 			obj.Itobjpartcode = this.byId('icode').getSelectedKey();
 			obj.Itdamagegrp = this.byId('dagrp').getValue();
-			obj.Itdamagecode = this.byId('dacode').getValue();
+			// obj.Itdamagecode = this.byId('dacode').getValue();
+			var getCode = this.byId('dacode').getSelectedKey();
+			var newDacode = getCode.substring(5, 8);
+			obj.Itdamagecode = newDacode;
 			obj.Itgrowhouse = this.byId('growh').getValue();
 			obj.Itratetype = this.byId('rtype').getValue();
 			obj.Itfwdbill = this.byId('mbill').getValue();
@@ -488,6 +495,239 @@ sap.ui.define([
 
 		},
 
+		onPressPartner: function(oEvent) {
+			var oView = this.getView();
+			var oDialog = oView.byId("openDialog");
+			debugger;
+			//get row data
+			var rowData = oEvent.getSource().getBindingContext().getObject();
+			// create dialog lazily
+			if (!oDialog) {
+				// create dialog via fragment factory
+				oDialog = sap.ui.xmlfragment(oView.getId(), "smud.pm.ZPM_RPDS_INVESTIGATIONS.fragments.editPartner", this);
+				oView.addDependent(oDialog);
+			}
+			oDialog.open();
+			debugger;
+			this.byId('partnum').setText(rowData.Partnumber);
+			this.byId('parttype').setText(rowData.Partnerrole);
+			// this.byId('cpart').setValue(rowData.Partner);
+			this.byId('npart').setValue(rowData.Partner);
+		},
+
+		editPartner: function(oEvent) {
+			// Set Model to Edit Activity
+			var oModel = this.oDataModel("activity");
+			sap.ui.getCore().setModel(oModel, "myModel");
+			var myModel = sap.ui.getCore().getModel("myModel");
+			var obj = {};
+			var that = this;
+			//Fill data
+			debugger;
+			var rowData = oEvent.getSource().getBindingContext().getObject();
+			obj.Notifid = rowData.Notifid;
+			obj.Partnumber = this.byId('partnum').getText();
+			obj.Partnerrole = this.byId('parttype').getText();
+			obj.Partner = this.byId('npart').getValue();
+
+			//Send a backend request
+			var oPath = '/InvPartnersSet(Notifid=' + "'" + rowData.Notifid + "'" + ',Partnumber=' + "'" + obj.Partnumber + "'" + ')';
+			BusyIndicator.show();
+			myModel.update(oPath, obj, {
+				merge: false,
+				success: function(oData, oResponse) {
+					BusyIndicator.hide();
+					console.log('Record updated Successfully...');
+					that.getView().byId("openDialog").destroy();
+				},
+				error: function(err, oResponse) {
+					//	debugger;
+					BusyIndicator.hide();
+					sap.m.MessageToast.show("Error Updating Record: " + err.responseText.split('message')[2]);
+					MessageBox.error("Erro Updating Record: " + err.responseText.split('message')[2]);
+					console.log("Error while creating record - ");
+					that.getView().byId("openDialog").destroy();
+				}
+
+			});
+		},
+
+		deletePartner: function(oEvent) {
+			debugger;
+			// Set Model to Delete Partner
+			var oModel = this.oDataModel("activity");
+			sap.ui.getCore().setModel(oModel, "myModel");
+			var myModel = sap.ui.getCore().getModel("myModel");
+			var obj = {};
+			var that = this;
+			//Get Data from screen
+			var rowData = oEvent.getSource().getBindingContext().getObject();
+			obj.Notifid = rowData.Notifid;
+			obj.Partnumber = this.byId('partnum').getText();
+			obj.Partnerrole = this.byId('parttype').getText();
+			obj.Partner = this.byId('npart').getValue();
+
+			//Create path for Backend call
+			var oPath = '/InvPartnersSet(Notifid=' + "'" + rowData.Notifid + "'" + ',Partnumber=' + "'" + obj.Partnumber + "'" + ')';
+			BusyIndicator.show();
+
+			myModel.remove(oPath, {
+				success: function(oData, oResponse) {
+					BusyIndicator.hide();
+					console.log('Record Deleated Successfully...');
+					that.getView().byId("openDialog").destroy();
+				},
+				error: function(err, oResponse) {
+					//	debugger;
+					BusyIndicator.hide();
+					sap.m.MessageToast.show("Error Deleated Record: " + err.responseText.split('message')[2]);
+					MessageBox.error("Error Deleating Record: " + err.responseText.split('message')[2]);
+					console.log("Error while creating record - ");
+					that.getView().byId("openDialog").destroy();
+				}
+
+			});
+
+		},
+
+		deleteActivity: function(oEvent) {
+			debugger;
+			// Set Model to Delete Activity
+			var oModel = this.oDataModel("activity");
+			sap.ui.getCore().setModel(oModel, "myModel");
+			var myModel = sap.ui.getCore().getModel("myModel");
+			var obj = {};
+			var that = this;
+			//Get Data from screen
+			var rowData = oEvent.getSource().getBindingContext().getObject();
+			obj.Notifid = rowData.Notifid;
+			obj.Activityno = this.byId('anum').getText();
+
+			//Create path for Backend call
+			var oPath = '/InvActivitiesSet(Notifid=' + "'" + rowData.Notifid + "'" + ',Activityno=' + "'" + obj.Activityno + "'" + ')';
+			BusyIndicator.show();
+
+			myModel.remove(oPath, {
+				success: function(oData, oResponse) {
+					BusyIndicator.hide();
+					console.log('Record Deleated Successfully...');
+					that.getView().byId("openDialog").destroy();
+				},
+				error: function(err, oResponse) {
+					//	debugger;
+					BusyIndicator.hide();
+					sap.m.MessageToast.show("Error Deleated Record: " + err.responseText.split('message')[2]);
+					MessageBox.error("Error Deleating Record: " + err.responseText.split('message')[2]);
+					console.log("Error while creating record - ");
+					that.getView().byId("openDialog").destroy();
+				}
+
+			});
+
+		},
+
+		deleteTask: function(oEvent) {
+			debugger;
+			// Set Model to Delete Task
+			var oModel = this.oDataModel("activity");
+			sap.ui.getCore().setModel(oModel, "myModel");
+			var myModel = sap.ui.getCore().getModel("myModel");
+			var obj = {};
+			var that = this;
+			//Get Data from screen
+			var rowData = oEvent.getSource().getBindingContext().getObject();
+			obj.Notifid = rowData.Notifid;
+			obj.Tasknumber = this.byId('taskno').getText();
+
+			//Create path for Backend call
+			var oPath = '/InvTasksSet(Notifid=' + "'" + rowData.Notifid + "'" + ',Tasknumber=' + "'" + obj.Tasknumber + "'" + ')';
+			BusyIndicator.show();
+
+			myModel.remove(oPath, {
+				success: function(oData, oResponse) {
+					BusyIndicator.hide();
+					console.log('Record Deleated Successfully...');
+					that.getView().byId("openDialog").destroy();
+				},
+				error: function(err, oResponse) {
+					//	debugger;
+					BusyIndicator.hide();
+					sap.m.MessageToast.show("Error Deleated Record: " + err.responseText.split('message')[2]);
+					MessageBox.error("Error Deleating Record: " + err.responseText.split('message')[2]);
+					console.log("Error while creating record - ");
+					that.getView().byId("openDialog").destroy();
+				}
+
+			});
+
+		},
+
+		onPressActivity: function(oEvent) {
+			var oView = this.getView();
+			var oDialog = oView.byId("openDialog");
+			debugger;
+			//get row data
+			var rowData = oEvent.getSource().getBindingContext().getObject();
+			// create dialog lazily
+			if (!oDialog) {
+				// create dialog via fragment factory
+				oDialog = sap.ui.xmlfragment(oView.getId(), "smud.pm.ZPM_RPDS_INVESTIGATIONS.fragments.editActivity", this);
+				oView.addDependent(oDialog);
+			}
+			oDialog.open();
+			debugger;
+			this.byId('anum').setText(rowData.Activityno);
+			this.byId('agrp').setText(rowData.Activitygrp);
+			this.byId('acode').setValue(rowData.Activitycode);
+			this.byId('aamt').setValue(rowData.Activitytxt);
+			this.byId('adate').setDateValue(rowData.Activitystrdate);
+		},
+		editActivity: function(oEvent) {
+			// Set Model to Edit Activity
+			var oModel = this.oDataModel("activity");
+			sap.ui.getCore().setModel(oModel, "myModel");
+			var myModel = sap.ui.getCore().getModel("myModel");
+			var obj = {};
+			var that = this;
+			//Fill data
+			debugger;
+			var rowData = oEvent.getSource().getBindingContext().getObject();
+			obj.Notifid = rowData.Notifid;
+			obj.Activityno = this.byId('anum').getText();
+			obj.Activitygrp = this.byId('agrp').getText();
+			obj.Activitycode = this.byId('acode').getValue();
+			obj.Activitytxt = this.byId('aamt').getValue();
+			obj.Activitystrdate = this.byId('adate').getValue() + "T00:00:00";
+
+			//Send a backend request
+			var oPath = '/InvActivitiesSet(Notifid=' + "'" + rowData.Notifid + "'" + ',Activityno=' + "'" + obj.Activityno + "'" + ')';
+			BusyIndicator.show();
+			myModel.update(oPath, obj, {
+				merge: false,
+				success: function(oData, oResponse) {
+					BusyIndicator.hide();
+					console.log('Record updated Successfully...');
+					that.getView().byId("openDialog").destroy();
+				},
+				error: function(err, oResponse) {
+					//	debugger;
+					BusyIndicator.hide();
+					sap.m.MessageToast.show("Erro Updating Record: " + err.responseText.split('message')[2]);
+					MessageBox.error("Erro Updating Record: " + err.responseText.split('message')[2]);
+					console.log("Error while creating record - ");
+					that.getView().byId("openDialog").destroy();
+				}
+
+			});
+
+		},
+
+		onPressAttachment: function(oEvent) {
+			debugger;
+			var url = oEvent.getSource().getBindingContext().getObject().Docuri;
+			window.open(url);
+		},
+
 		dialogAfterclose: function(oEvent) {
 			debugger;
 			this.getView().byId("openDialog").destroy();
@@ -497,6 +737,68 @@ sap.ui.define([
 		dialogClear: function() {
 			this.byId('amount').setValue('');
 			this.byId('date').setValue('');
+		},
+
+		/**Hanel Attachment logic
+		 **/
+
+		handleUploadPress: function(oEvent) {
+			var oFileUploader = this.getView().byId("fileUploader");
+			var oDocType = this.byId('rbg3').getSelectedButton().getText();
+			var oNotifId = oEvent.getSource().getParent().getBindingContext().getObject().Notifid;
+			var oFileName = oFileUploader.getValue();
+			var oSlug = oDocType + '#' + oNotifId + '#' + oFileName;
+
+			if (oFileUploader.getValue() === "") {
+				MessageToast.show("Please Choose any File");
+			}
+			oFileUploader.addHeaderParameter(new sap.ui.unified.FileUploaderParameter({
+				name: "SLUG",
+				value: oSlug
+					//value: oFileUploader.getValue()
+			}));
+			oFileUploader.addHeaderParameter(new sap.ui.unified.FileUploaderParameter({
+				name: "x-csrf-token",
+				value: this.getCSRFToken()
+			}));
+			oFileUploader.setSendXHR(true);
+			// oFileUploader.setUploadUrl('/sap/opu/odata/sap/ZTEST_CRUD_SRV/fileuploadSet');
+
+			oFileUploader.upload();
+			if (oFileUploader.getValue()) {
+				BusyIndicator.show();
+			}
+
+		},
+
+		getCSRFToken: function() {
+			var oModel = this.oDataModel("attach");
+			var sTokenName = "x-cs" + "rf-token"; // avoid static code check errors
+			var sToken = oModel.getHeaders()[sTokenName];
+			if (!sToken) {
+				oModel.refreshSecurityToken(
+					function(e, o) {
+						sToken = o.headers[sTokenName];
+					},
+					function() {
+						//jQuery.sap.log.error("Could not get XSRF token");
+						MessageBox.error("Could not get XSRF token");
+					},
+					false);
+			}
+			return sToken;
+		},
+
+		handleUploadComplete: function(oEvent) {
+			// refresh model binding
+			this.getView().getElementBinding().refresh(true);
+			//this.byId('fileUploader').getProperty('value').setValue('');
+			oEvent.getSource().setValue("");
+			BusyIndicator.hide();
+		},
+
+		fileTypeError: function(oEvent) {
+			MessageBox.error("Invalid File Format: use only - txt,jpg,pdf,doc,docx,xls,xlxs");
 		},
 
 		/**

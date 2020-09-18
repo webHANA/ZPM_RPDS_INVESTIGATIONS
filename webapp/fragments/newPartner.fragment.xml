@@ -8,7 +8,7 @@
 						<core:ListItem key="{PTModel>PartnerId}" text="{PTModel>PartnerId} - {PTModel>PartnerIdName}"/>
 					</Select>
 					<Label text="Select a Partner"/>
-					<Input id="partner" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"/>
+					<Input id="partner" />
 				</f:content>
 			</f:SimpleForm>
 		</VBox>

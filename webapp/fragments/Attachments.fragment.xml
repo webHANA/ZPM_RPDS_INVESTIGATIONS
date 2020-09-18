@@ -1,0 +1,71 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:Table="sap.ui.table" xmlns:u="sap.ui.unified" xmlns:l="sap.ui.layout">
+	<FlexBox alignItems="Start" justifyContent="Center">
+		<l:VerticalLayout>
+			<Label labelFor="rbg3" text="Select Business Document Type"/>
+			<RadioButtonGroup id="rbg3">
+				<RadioButton id="RB3-1" text="Post Inveatigation Document"/>
+				<RadioButton id="RB3-2" text="Power Theft Billing Document"/>
+				<RadioButton id="RB3-3" text="Power Theft Investigation Document"/>
+			</RadioButtonGroup>
+			<u:FileUploader id="fileUploader" name="myFileUpload" useMultipart="false" fileType="txt,jpg,pdf,doc,docx,xls,xlxs" typeMissmatch="fileTypeError"
+				uploadUrl="/sap/opu/odata/sap/ZPM_INVESTIGATIONS_SRV/InvUploadFileSet" style="Emphasized" tooltip="Upload your file to EDM"
+				uploadComplete="handleUploadComplete"/>
+			<Button text="Upload File" press="handleUploadPress"/>
+		</l:VerticalLayout>
+	</FlexBox>
+	<Table id="atttable" width="auto" items="{toAttachments}" updateFinished="onListUpdateFinished"  >
+		<headerToolbar>
+			<Toolbar>
+				<ToolbarSpacer/>
+			</Toolbar>
+		</headerToolbar>
+		<columns>
+			<Column id="atcol">
+				<Text text="Document Id" id="docid"/>
+			</Column>
+			<Column>
+				<Text text="Document Name" id="doname"/>
+			</Column>
+			<Column>
+				<Text text="Document Description" id="dodsc"/>
+			</Column>
+			<Column>
+				<Text text="Document Type" id="dotyp"/>
+			</Column>
+			<Column>
+				<Text text="Document Date" id="ddate"/>
+			</Column>
+			<Column>
+				<Text text="Document Creator" id="docre"/>
+			</Column>
+			<!--	<Column>-->
+			<!--		<Text text="Document URL" id="dourl"/>-->
+			<!--	</Column>-->
+		</columns>
+		<items>
+			<ColumnListItem type="Navigation" press="onPressAttachment">
+				<cells>
+					<ObjectIdentifier title="{Docid}"/>
+				</cells>
+				<cells>
+					<Text text="{Docname}"/>
+				</cells>
+				<cells>
+					<Text text="{Docdesc}"/>
+				</cells>
+				<cells>
+					<Text text="{Doctype}"/>
+				</cells>
+				<cells>
+					<Text text="{ path: 'Docdate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium' } }"/>
+				</cells>
+				<cells>
+					<Text text="{Doccreator}"/>
+				</cells>
+				<!--<cells>-->
+				<!--	<Text text="{Docuri}"/>-->
+				<!--</cells>-->
+			</ColumnListItem>
+		</items>
+	</Table>
+</core:FragmentDefinition>

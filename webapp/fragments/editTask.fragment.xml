@@ -5,18 +5,23 @@
 				<f:content>
 					<Text id="taskno" text=""/>
 					<Label text="Task Text"/>
-					<Input id="text" required="true" value=""/>
+					<Input id="text"  value=""/>
 					<Label text="Inspector"/>
-					<Input id="tperson" required="true" value=""/>
+					<Input id="tperson"  value=""/>
 					<CheckBox id="ustat" text="Peer Review Needed" valueState="Warning"/>
 				</f:content>
 			</f:SimpleForm>
 		</VBox>
-		<beginButton>
-			<Button text="Save" press="editTask"/>
-		</beginButton>
-		<endButton>
+		<!--<beginButton>-->
+		<!--	<Button text="Save" press="editTask"/>-->
+		<!--</beginButton>-->
+		<!--<endButton>-->
+		<!--	<Button text="Close" press="closePartner"/>-->
+		<!--</endButton>-->
+		<buttons>
+			<Button text="Save" type="Accept" press="editTask"/>
+			<Button text="Delete" type="Reject" press="deleteTask"/>
 			<Button text="Close" press="closePartner"/>
-		</endButton>
+		</buttons>
 	</Dialog>
 </core:FragmentDefinition>

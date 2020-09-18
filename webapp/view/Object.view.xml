@@ -66,7 +66,7 @@
 					</IconTabFilter>
 					<IconTabFilter text="{i18n>Attachment}">
 						<content>
-							<Text text="Add Document Upload Logic here"/>
+							<core:Fragment fragmentName="smud.pm.ZPM_RPDS_INVESTIGATIONS.fragments.Attachments" type="XML"/>
 						</content>
 					</IconTabFilter>
 				</items>

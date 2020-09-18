@@ -31,12 +31,12 @@
 				"uri": "model/causeCode.json",
 				"type": "JSON"
 			},
-			"localIC": {
-				"uri": "model/itemCode.json",
-				"type": "JSON"
-			},
 			"localPR": {
 				"uri": "model/priorityCode.json",
+				"type": "JSON"
+			},
+			"localDC": {
+				"uri": "model/damageCode.json",
 				"type": "JSON"
 			}
 		},
@@ -107,13 +107,13 @@
 				"type": "sap.ui.model.json.JSONModel",
 				"dataSource": "localCC"
 			},
-			"itemCode": {
-				"type": "sap.ui.model.json.JSONModel",
-				"dataSource": "localIC"
-			},
 			"priorityCode": {
 				"type": "sap.ui.model.json.JSONModel",
 				"dataSource": "localPR"
+			},
+			"damageCode": {
+				"type": "sap.ui.model.json.JSONModel",
+				"dataSource": "localDC"
 			}
 		},
 		"services": {

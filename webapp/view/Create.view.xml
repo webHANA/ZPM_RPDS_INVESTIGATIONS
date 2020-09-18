@@ -64,6 +64,8 @@
 								</HBox>
 								<HBox>
 									<VBox>
+										<Label text="Serial Number"/>
+										<Text id="serial" wrapping="true" text=""/>
 										<Label text="Notification Date"/>
 										<DatePicker id="date" enabled="false" valueFormat="yyyy-MM-dd" displayFormat="long" class="sapUiSmallMarginBottom"/>
 										<Label text="Created By"/>
@@ -77,6 +79,58 @@
 							</f:content>
 						</f:SimpleForm>
 					</VBox>
+					<!--<Table id="table" width="auto" items="{path: '/InvEquipmentSet', Equipment: '11601424', parameters: { expand: 'toHeader' } }"-->
+					<!--<Table id="table" width="auto" items="{toHeader}" noDataText="{worklistView>/tableNoDataText}"-->
+					<!--	busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingThreshold="14" growingScrollToLoad="true"-->
+					<!--	updateFinished="onUpdateFinished">-->
+					<!--	<headerToolbar>-->
+					<!--		<Toolbar>-->
+					<!--			<Title id="tableHeader" text="{worklistView>/worklistTableTitle}"/>-->
+					<!--		</Toolbar>-->
+					<!--	</headerToolbar>-->
+					<!--	<columns>-->
+					<!--		<Column id="nameColumn">-->
+					<!--			<Text text="{i18n>tableNameColumnTitle}" id="notifid"/>-->
+					<!--		</Column>-->
+					<!--		<Column>-->
+					<!--			<Text text="{i18n>NotifDesc}" id="notiftxt"/>-->
+					<!--		</Column>-->
+					<!--		<Column>-->
+					<!--			<Text text="{i18n>EquipmentHeader}" id="equi"/>-->
+					<!--		</Column>-->
+					<!--		<Column>-->
+					<!--			<Text text="{i18n>damage}" id="dcode"/>-->
+					<!--		</Column>-->
+					<!--		<Column>-->
+					<!--			<Text text="{i18n>Notif Status}" id="status"/>-->
+					<!--		</Column>-->
+					<!--		<Column>-->
+					<!--			<Text text="{i18n>cause}" id="cause"/>-->
+					<!--		</Column>-->
+					<!--	</columns>-->
+					<!--	<items>-->
+					<!--		<ColumnListItem type="Navigation" press="onPress">-->
+					<!--			<cells>-->
+					<!--				<ObjectIdentifier title="{toHeader/Notifid}"/>-->
+					<!--			</cells>-->
+					<!--			<cells>-->
+					<!--				<Text text="{Notifshtxt}"/>-->
+					<!--			</cells>-->
+					<!--			<cells>-->
+					<!--				<Text text="{Equipment}"/>-->
+					<!--			</cells>-->
+					<!--			<cells>-->
+					<!--				<Text text="{Itdamagecode}"/>-->
+					<!--			</cells>-->
+					<!--			<cells>-->
+					<!--				<Text text="{Notifstatustxt}"/>-->
+					<!--			</cells>-->
+					<!--			<cells>-->
+					<!--				<Text text="{Causecode}"/>-->
+					<!--			</cells>-->
+					<!--		</ColumnListItem>-->
+					<!--	</items>-->
+					<!--</Table>-->
 				</content>
 				<footer>
 					<OverflowToolbar id="otbFooter">

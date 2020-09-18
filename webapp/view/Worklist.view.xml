@@ -18,7 +18,7 @@
 			<!--	</items>-->
 			<!--	<content>-->
 					<Table id="table" width="auto" items="{ path: '/InvHeaderSet', sorter: { path: 'Notifid', ascending: true } }"
-						noDataText="{worklistView>/tableNoDataText}" busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingThreshold="14"
+						noDataText="{worklistView>/tableNoDataText}" busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingThreshold="20"
 						growingScrollToLoad="true" updateFinished="onUpdateFinished">
 						<headerToolbar>
 							<Toolbar>
@@ -33,10 +33,10 @@
 								<Text text="{i18n>tableNameColumnTitle}" id="notifid"/>
 							</Column>
 							<Column>
-								<Text text="{i18n>NotifDesc}" id="notiftxt"/>
+								<Text text="{i18n>EquipmentHeader}" id="notiftxt"/>
 							</Column>
 							<Column>
-								<Text text="{i18n>EquipmentHeader}" id="equi"/>
+								<Text text="{i18n>equiDesc}" id="equi"/>
 							</Column>
 							<Column>
 								<Text text="{i18n>damage}" id="dcode"/>
@@ -54,10 +54,10 @@
 									<ObjectIdentifier title="{Notifid}"/>
 								</cells>
 								<cells>
-									<Text text="{Notifshtxt}"/>
+									<Text text="{Equipment}"/>
 								</cells>
 								<cells>
-									<Text text="{Equipment}"/>
+									<Text text="{Equipdesc}"/>
 								</cells>
 								<cells>
 									<Text text="{Itdamagecode}"/>

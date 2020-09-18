@@ -321,7 +321,6 @@ sap.ui.define([
 					endButton: new Button({
 						text: "Cancel",
 						press: function() {
-							debugger;
 							this.oConfirmDialog.close();
 							this.oConfirmDialog.destroy();
 
@@ -335,14 +334,10 @@ sap.ui.define([
 				//Send Update request
 				myModel.update(uPath, obj, {
 					merge: false,
-					success: function(oData, oResponse) {
-
-						console.log('Record Created Successfully...');
-					},
+					success: function(oData, oResponse) {},
 					error: function(err, oResponse) {
 						sap.m.MessageToast.show("Erro Updating Record: " + err.responseText.split('message')[2]);
 						MessageBox.error("Erro Updating Record: " + err.responseText.split('message')[2]);
-						console.log("Error while creating record - ");
 					}
 				});
 			}
@@ -378,14 +373,108 @@ sap.ui.define([
 					//	debugger;
 					sap.m.MessageToast.show("Erro Updating Record: " + err.responseText.split('message')[2]);
 					MessageBox.error("Erro Updating Record: " + err.responseText.split('message')[2]);
-					console.log("Error while creating record - ");
 				}
 			});
 
 		},
 		statusComplete: function(oEvent) {
+			var myModel = this.getOwnerComponent().getModel();
+			var uPath = oEvent.getSource().getBindingContext().getPath();
+			var sNotifid = this.getView().getModel().getProperty("Notifid", oEvent.getSource().getBindingContext());
+			var sStatus = "Complete";
+			var obj = {};
+			obj.Notifid = sNotifid;
+			obj.Notifstatus = sStatus;
+			var oUser = sap.ushell.Container.getService("UserInfo").getId();
+			var oDate = new Date();
+			var oDateFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({
+				pattern: "yyyy-MM-dd"
+			});
+			var oDate1 = oDateFormat.format(oDate);
+
+			this.oNotifConfirmDialog = new Dialog({
+				type: DialogType.Message,
+				title: "Confirm Close Investigation",
+				content: [
+					new VerticalLayout({
+						content: [
+							new Text({
+								id: 'iText',
+								text: 'You cannot make changes after you close the Investigation',
+								fontSize: 20
+							}),
+							new Label({
+								text: "Investigation: "
+							}),
+							new Input('notif', {
+								value: sNotifid,
+								enabled: false
+							}),
+							new Label({
+								text: "Status : "
+							}),
+							new Input('nstatus', {
+								value: obj.Notifstatus,
+								enabled: false
+							}),
+							new Label({
+								text: "Completed Date : "
+							}),
+							new DatePicker('cdate', {
+								value: oDate1,
+								valueFormat: "yyyy-MM-dd",
+								displayFormat: "MM/dd/yyyy"
+							})
+						]
+					})
+				],
+				beginButton: new Button({
+					type: ButtonType.Emphasized,
+					text: "Submit",
+					press: function(evt) {
+						var that = this;
+						//Fill data for Update
+						var obj1 = {};
+						obj1.Notifid = Core.byId("notif").getValue();
+						obj1.Notifstatus = Core.byId("nstatus").getValue();
+						obj1.Notifcompdate = Core.byId("cdate").getValue() + "T00:00:00";
+
+						//Send Update request
+
+						myModel.update(uPath, obj1, {
+							merge: false,
+							success: function(oData, oResponse) {
+								MessageBox.success("Notification Completed Successful");
+								this.oNotifConfirmDialog.destroy();
+							}.bind(this),
+							error: function(err, oResponse) {
+								sap.m.MessageToast.show("Erro Updating Record: " + err.responseText.split('message')[2]);
+								MessageBox.error("Erro Updating Record: " + err.responseText.split('message')[2]);
+							}
+						});
+
+						this.oNotifConfirmDialog.close();
+					}.bind(this)
+				}),
+				endButton: new Button({
+					text: "Cancel",
+					press: function() {
+						this.oNotifConfirmDialog.close();
+						this.oNotifConfirmDialog.destroy();
+
+					}.bind(this)
+				})
+			});
+			this.oNotifConfirmDialog.open();
+
+		},
+
+		damageCode: function(oEvent) {
 			debugger;
 
+			var getValue = oEvent.getParameters().selectedItem.mProperties.text;
+			var damCode = getValue.substring(0, 5);
+			this.byId('dagrp').setValue(damCode);
 		}
 
 	});

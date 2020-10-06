@@ -1,0 +1,27 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified"
+	xmlns:l="sap.ui.layout">
+	<Dialog id="openDialog" title="Upload File" afterClose="dialogAfterClose">
+		<VBox class="sapUiSmallMargin">
+			<FlexBox alignItems="Start" justifyContent="Center">
+				<l:VerticalLayout>
+					<Label labelFor="rbg3" text="Select Business Document Type"/>
+					<RadioButtonGroup id="rbg3">
+						<RadioButton id="RB3-1" text="Post Inveatigation Document"/>
+						<RadioButton id="RB3-2" text="Power Theft Billing Document"/>
+						<RadioButton id="RB3-3" text="Power Theft Investigation Document"/>
+					</RadioButtonGroup>
+					<u:FileUploader id="fileUploader" name="myFileUpload" useMultipart="false" fileType="txt,jpg,pdf,doc,docx,xls,xlxs"
+						typeMissmatch="fileTypeError" uploadUrl="/sap/opu/odata/sap/ZPM_INVESTIGATIONS_SRV/InvUploadFileSet" style="Emphasized"
+						tooltip="Upload your file to EDM" uploadComplete="handleUploadComplete" change="handleValueChange"/>
+					<!--<Button text="Upload File" press="handleUploadPress"/>-->
+				</l:VerticalLayout>
+			</FlexBox>
+		</VBox>
+		<beginButton>
+			<Button text="Upload File" type="Emphasized" press="handleUploadPress"/>
+		</beginButton>
+		<endButton>
+			<Button text="Close" press="closePartner"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

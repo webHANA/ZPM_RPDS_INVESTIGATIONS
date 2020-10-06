@@ -38,6 +38,14 @@
 			"localDC": {
 				"uri": "model/damageCode.json",
 				"type": "JSON"
+			},
+			"localGH": {
+				"uri": "model/growHouse.json",
+				"type": "JSON"
+			},
+			"localRT": {
+				"uri": "model/rateType.json",
+				"type": "JSON"
 			}
 		},
 		"sourceTemplate": {
@@ -114,6 +122,14 @@
 			"damageCode": {
 				"type": "sap.ui.model.json.JSONModel",
 				"dataSource": "localDC"
+			},
+			"growHouse": {
+				"type": "sap.ui.model.json.JSONModel",
+				"dataSource": "localGH"
+			},
+			"rateType": {
+				"type": "sap.ui.model.json.JSONModel",
+				"dataSource": "localRT"
 			}
 		},
 		"services": {

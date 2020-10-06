@@ -40,6 +40,14 @@ sap.ui.define([
 			// Damage Code Json Model
 			var dcModel = this.getOwnerComponent().getModel("damageCode");
 			this.getView().setModel(dcModel, "DCModel");
+			
+			// Grow House Json Model
+			var ghModel = this.getOwnerComponent().getModel("growHouse");
+			this.getView().setModel(ghModel, "GHModel");
+			
+			// Rate Type Json Model
+			var rtModel = this.getOwnerComponent().getModel("rateType");
+			this.getView().setModel(rtModel, "RTModel");
 
 			fnSetAppNotBusy = function() {
 				oViewModel.setProperty("/busy", false);

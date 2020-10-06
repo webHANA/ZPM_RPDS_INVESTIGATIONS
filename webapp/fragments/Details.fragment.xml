@@ -40,6 +40,8 @@
 				<Text id="Mbill" text="{Itfwdbill}"/>
 				<Label text="12 Month Forward KWH"/>
 				<Text id="Mkwh" text="{Itfwdkwh}"/>
+				<Label text="12 Month Back KWH"/>
+				<Text id="Bkwh" text="{Itbckbill}"/>
 			</f:content>
 		</f:SimpleForm>
 	</VBox>

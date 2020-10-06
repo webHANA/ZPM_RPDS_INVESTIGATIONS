@@ -27,17 +27,26 @@
 					<!--</Select>-->
 					<Label text="Damage Code"/>
 					<!--<Input id="dacode" required="true" value=""/>-->
-					<Select id="dacode" showSecondaryValues="true" items="{ path: '/InvDamageCodeShSet', templateShareable : false }" change="damageCode">
+					<Select id="dacode" forceSelection="false" showSecondaryValues="true" items="{ path: '/InvDamageCodeShSet', templateShareable : false }"
+						change="damageCode">
 						<core:ListItem key="{Codegruppe}{Code}" text="{Codegruppe} - {Code} - {Kurztext}"/>
 					</Select>
 					<Label text="Grow House"/>
-					<Input id="growh" required="true" value=""/>
+					<!--<Input id="growh" required="true" value=""/>-->
+					<Select id="growh" showSecondaryValues="true" items="{ path: 'GHModel>/growHouse'}">
+						<core:ListItem key="{GHModel>Code}" text="{GHModel>Code}"/>
+					</Select>
 					<Label text="Rate Type"/>
-					<Input id="rtype" required="true" value=""/>
+					<!--<Input id="rtype" required="true" value=""/>-->
+					<Select id="rtype" showSecondaryValues="true" items="{ path: 'RTModel>/rateType'}">
+						<core:ListItem key="{RTModel>Code}" text="{RTModel>Code}"/>
+					</Select>
 					<Label text="12 Month Forward Billing $"/>
 					<Input id="mbill" required="true" value=""/>
 					<Label text="12 Month Forward KWH"/>
 					<Input id="mkwh" required="true" value=""/>
+					<Label text="12 Month Back KWH"/>
+					<Input id="bkwh" required="true" value=""/>
 				</f:content>
 			</f:SimpleForm>
 		</VBox>

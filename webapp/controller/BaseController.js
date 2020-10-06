@@ -371,10 +371,30 @@ sap.ui.define([
 			var damCode = this.byId('Dagrp').getText() + this.byId('Dacode').getText();
 			// this.byId('dacode').setSelectedKey(this.byId('Dacode').getText());
 			this.byId('dacode').setSelectedKey(damCode);
-			this.byId('growh').setValue(this.byId('Growh').getText());
-			this.byId('rtype').setValue(this.byId('Rtype').getText());
+			// Get grow house code
+			var inGH = this.byId('Growh').getText();
+			var getGH = this.getView().getModel('GHModel').getProperty('/growHouse');
+			//var selGH = getGH.filter(desc => desc.Description === inGH);
+			var selGH = getGH.filter(function(e) {
+				return e.Description === inGH;
+			});
+			var setGH = selGH[0].Code;
+			this.byId('growh').setSelectedKey(setGH);
+			// Get Rate Type code
+			var inRT = this.byId('Rtype').getText();
+			var getRT = this.getView().getModel('RTModel').getProperty('/rateType');
+			//var selGH = getGH.filter(desc => desc.Description === inGH);
+			var selRT = getRT.filter(function(e) {
+				return e.Description === inRT;
+			});
+			var setRT = selRT[0].Code;
+			this.byId('rtype').setSelectedKey(setRT);
+
+			//this.byId('rtype').setValue(this.byId('Rtype').getText());
+			//this.byId('rtype').setSelectedKey(this.byId('Rtype').getText());
 			this.byId('mbill').setValue(this.byId('Mbill').getText());
 			this.byId('mkwh').setValue(this.byId('Mkwh').getText());
+			this.byId('bkwh').setValue(this.byId('Bkwh').getText());
 
 		},
 
@@ -404,10 +424,13 @@ sap.ui.define([
 			var getCode = this.byId('dacode').getSelectedKey();
 			var newDacode = getCode.substring(5, 8);
 			obj.Itdamagecode = newDacode;
-			obj.Itgrowhouse = this.byId('growh').getValue();
-			obj.Itratetype = this.byId('rtype').getValue();
+			//obj.Itgrowhouse = this.byId('growh').getValue();
+			//obj.Itratetype = this.byId('rtype').getValue();
+			obj.Itgrowhouse = this.byId('growh').getSelectedKey();
+			obj.Itratetype = this.byId('rtype').getSelectedKey();
 			obj.Itfwdbill = this.byId('mbill').getValue();
 			obj.Itfwdkwh = this.byId('mkwh').getValue();
+			obj.Itbckbill = this.byId('bkwh').getValue();
 
 			var uPath = "/InvHeaderSet('" + oEvent.getSource().getBindingContext().getObject().Notifid + "')";
 			debugger;
@@ -743,6 +766,7 @@ sap.ui.define([
 		 **/
 
 		handleUploadPress: function(oEvent) {
+			debugger;
 			var oFileUploader = this.getView().byId("fileUploader");
 			var oDocType = this.byId('rbg3').getSelectedButton().getText();
 			var oNotifId = oEvent.getSource().getParent().getBindingContext().getObject().Notifid;
@@ -750,7 +774,7 @@ sap.ui.define([
 			var oSlug = oDocType + '#' + oNotifId + '#' + oFileName;
 
 			if (oFileUploader.getValue() === "") {
-				MessageToast.show("Please Choose any File");
+				MessageToast.show("Please Select a  File");
 			}
 			oFileUploader.addHeaderParameter(new sap.ui.unified.FileUploaderParameter({
 				name: "SLUG",
@@ -766,12 +790,13 @@ sap.ui.define([
 
 			oFileUploader.upload();
 			if (oFileUploader.getValue()) {
-				BusyIndicator.show();
+				sap.ui.core.BusyIndicator.show();
 			}
 
 		},
 
 		getCSRFToken: function() {
+			debugger;
 			var oModel = this.oDataModel("attach");
 			var sTokenName = "x-cs" + "rf-token"; // avoid static code check errors
 			var sToken = oModel.getHeaders()[sTokenName];
@@ -792,13 +817,40 @@ sap.ui.define([
 		handleUploadComplete: function(oEvent) {
 			// refresh model binding
 			this.getView().getElementBinding().refresh(true);
+			debugger;
 			//this.byId('fileUploader').getProperty('value').setValue('');
 			oEvent.getSource().setValue("");
-			BusyIndicator.hide();
+			sap.ui.core.BusyIndicator.hide();
+			this.getView().byId("openDialog").destroy();
+			
+			// var error = oEvent.getParameters().response;
+			// if (error) {
+			// 	MessageBox.error(error);
+			// }
 		},
 
 		fileTypeError: function(oEvent) {
 			MessageBox.error("Invalid File Format: use only - txt,jpg,pdf,doc,docx,xls,xlxs");
+		},
+
+		handleValueChange: function(oEvent) {
+			MessageToast.show("Press 'Upload File' to upload file '" +
+				oEvent.getParameter("newValue") + "'");
+		},
+
+		/** Create attachment through Dialog Window */
+
+		newAttachment: function() {
+			var oView = this.getView();
+			var oDialog = oView.byId("openDialog");
+			// create dialog lazily
+			if (!oDialog) {
+				// create dialog via fragment factory
+				oDialog = sap.ui.xmlfragment(oView.getId(), "smud.pm.ZPM_RPDS_INVESTIGATIONS.fragments.newAttachment", this);
+				oView.addDependent(oDialog);
+			}
+			oDialog.open();
+
 		},
 
 		/**

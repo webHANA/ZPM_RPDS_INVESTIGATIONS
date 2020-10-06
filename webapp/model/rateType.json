@@ -1,0 +1,17 @@
+{
+	"rateType": [{
+			"Code": "",
+			"Description": ""
+
+		}, {
+			"Code": "RES",
+			"Description": "Residential"
+
+		}, {
+			"Code": "COM",
+			"Description": "Commercial"
+
+		}
+
+	]
+}

@@ -1,0 +1,21 @@
+{
+	"growHouse": [{
+			"Code": "",
+			"Description": ""
+
+		}, {
+			"Code": "YES",
+			"Description": "Yes"
+
+		}, {
+			"Code": "NO",
+			"Description": "No"
+
+		}, {
+			"Code": "UNK",
+			"Description": "Unknown"
+
+		}
+
+	]
+}

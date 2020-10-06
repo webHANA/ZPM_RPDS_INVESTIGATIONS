@@ -227,7 +227,7 @@ sap.ui.define([
 				//				if (!this.oConfirmDialog) {
 				var oUser = sap.ushell.Container.getService("UserInfo").getId();
 				var oDate = new Date();
-				debugger;
+				//debugger;
 				var oDateFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({
 					pattern: "yyyy-MM-dd"
 				});
@@ -286,7 +286,7 @@ sap.ui.define([
 						type: ButtonType.Emphasized,
 						text: "Submit",
 						press: function(evt) {
-							debugger;
+							//debugger;
 							var that = this;
 							//Fill data for Update
 							var obj1 = {};
@@ -302,13 +302,13 @@ sap.ui.define([
 							myModel.update(uPath, obj1, {
 								merge: false,
 								success: function(oData, oResponse) {
-									debugger;
+									//debugger;
 									MessageBox.success("Status Update Successful");
 									console.log('Record Created Successfully...');
 									this.oConfirmDialog.destroy();
 								}.bind(this),
 								error: function(err, oResponse) {
-									debugger;
+									//debugger;
 									sap.m.MessageToast.show("Erro Updating Record: " + err.responseText.split('message')[2]);
 									MessageBox.error("Erro Updating Record: " + err.responseText.split('message')[2]);
 									console.log("Error while creating record - ");
@@ -344,7 +344,7 @@ sap.ui.define([
 
 		},
 		updateUserStatus: function(oEvent) {
-			debugger;
+			//debugger;
 		},
 
 		goBack: function() {
@@ -470,7 +470,7 @@ sap.ui.define([
 		},
 
 		damageCode: function(oEvent) {
-			debugger;
+			//debugger;
 
 			var getValue = oEvent.getParameters().selectedItem.mProperties.text;
 			var damCode = getValue.substring(0, 5);

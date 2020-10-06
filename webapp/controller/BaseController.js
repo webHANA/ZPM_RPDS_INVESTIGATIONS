@@ -196,7 +196,7 @@ sap.ui.define([
 		},
 
 		createTask: function(oEvent) {
-			debugger;
+		//	debugger;
 			////set Model to create Task
 			var oModel = this.oDataModel("openDialog");
 			sap.ui.getCore().setModel(oModel, "myModel");
@@ -249,7 +249,7 @@ sap.ui.define([
 				oView.addDependent(oDialog);
 			}
 			oDialog.open();
-			debugger;
+		//	debugger;
 			this.byId('tnote').setValue(rowData.Tasklongtxt);
 			this.byId('tnum').setText(rowData.Tasknumber);
 
@@ -262,7 +262,7 @@ sap.ui.define([
 			var myModel = sap.ui.getCore().getModel("myModel");
 			var obj = {};
 			var that = this;
-			debugger;
+			//debugger;
 			//Fill Data to create new Task Note
 			//var rowData = oEvent.getSource().getBindingContext().getObject();
 			var oTaskNumber = this.byId('tnum').getText();
@@ -295,7 +295,7 @@ sap.ui.define([
 
 		//Header Note Create Popup
 		newNote: function() {
-			debugger;
+			//debugger;
 			var oView = this.getView();
 			var oDialog = oView.byId("openDialog");
 			// create dialog lazily
@@ -315,10 +315,10 @@ sap.ui.define([
 			var myModel = sap.ui.getCore().getModel("myModel");
 			var obj = {};
 			var that = this;
-			debugger;
+			//debugger;
 			//Fill data to create Task
 			obj.Notifid = this.getView().byId('noteForm').getTitle();
-			obj.Notiflongtxt = this.getView().byId('hnote').getValue()
+			obj.Notiflongtxt = this.getView().byId('hnote').getValue();
 
 			BusyIndicator.show();
 
@@ -329,7 +329,7 @@ sap.ui.define([
 				merge: false,
 				success: function(oData, oResponse) {
 					//	BusyIndicator.hide();
-					debugger;
+					//debugger;
 					BusyIndicator.hide();
 					that.getView().byId("openDialog").destroy();
 					console.log('Record Created Successfully...');
@@ -338,7 +338,7 @@ sap.ui.define([
 
 				},
 				error: function(err, oResponse) {
-					debugger;
+					//debugger;
 					BusyIndicator.hide();
 					that.getView().byId("opendialog").destroy();
 					console.log("Error while creating record - ");
@@ -433,17 +433,17 @@ sap.ui.define([
 			obj.Itbckbill = this.byId('bkwh').getValue();
 
 			var uPath = "/InvHeaderSet('" + oEvent.getSource().getBindingContext().getObject().Notifid + "')";
-			debugger;
+			//debugger;
 			myModel.update(uPath, obj, {
 				merge: false,
 				success: function(oData, oResponse) {
-					debugger;
+					//debugger;
 					BusyIndicator.hide();
 					console.log('Record updated Successfully...');
 					that.getView().byId("openDialog").destroy();
 				},
 				error: function(err, oResponse) {
-					debugger;
+					//debugger;
 					BusyIndicator.hide();
 					sap.m.MessageToast.show("Erro Updating Record: " + err.responseText.split('message')[2]);
 					MessageBox.error("Erro Updating Record: " + err.responseText.split('message')[2]);
@@ -466,7 +466,7 @@ sap.ui.define([
 				oView.addDependent(oDialog);
 			}
 			oDialog.open();
-			debugger;
+			//debugger;
 			this.byId('editTask').setTitle(rowData.Taskcodetxt);
 			this.byId('taskno').setText(rowData.Tasknumber);
 			this.byId('text').setValue(rowData.Taskshrtxt);
@@ -485,7 +485,7 @@ sap.ui.define([
 			var obj = {};
 			var that = this;
 			// Fill data
-			debugger;
+			//debugger;
 			var rowData = oEvent.getSource().getBindingContext().getObject();
 			obj.Notifid = rowData.Notifid;
 			obj.Taskshrtxt = this.byId('text').getValue();
@@ -521,7 +521,7 @@ sap.ui.define([
 		onPressPartner: function(oEvent) {
 			var oView = this.getView();
 			var oDialog = oView.byId("openDialog");
-			debugger;
+			//debugger;
 			//get row data
 			var rowData = oEvent.getSource().getBindingContext().getObject();
 			// create dialog lazily
@@ -531,7 +531,7 @@ sap.ui.define([
 				oView.addDependent(oDialog);
 			}
 			oDialog.open();
-			debugger;
+			//debugger;
 			this.byId('partnum').setText(rowData.Partnumber);
 			this.byId('parttype').setText(rowData.Partnerrole);
 			// this.byId('cpart').setValue(rowData.Partner);
@@ -546,7 +546,7 @@ sap.ui.define([
 			var obj = {};
 			var that = this;
 			//Fill data
-			debugger;
+			//debugger;
 			var rowData = oEvent.getSource().getBindingContext().getObject();
 			obj.Notifid = rowData.Notifid;
 			obj.Partnumber = this.byId('partnum').getText();
@@ -576,7 +576,7 @@ sap.ui.define([
 		},
 
 		deletePartner: function(oEvent) {
-			debugger;
+			//debugger;
 			// Set Model to Delete Partner
 			var oModel = this.oDataModel("activity");
 			sap.ui.getCore().setModel(oModel, "myModel");
@@ -614,7 +614,7 @@ sap.ui.define([
 		},
 
 		deleteActivity: function(oEvent) {
-			debugger;
+			//debugger;
 			// Set Model to Delete Activity
 			var oModel = this.oDataModel("activity");
 			sap.ui.getCore().setModel(oModel, "myModel");
@@ -650,7 +650,7 @@ sap.ui.define([
 		},
 
 		deleteTask: function(oEvent) {
-			debugger;
+			//debugger;
 			// Set Model to Delete Task
 			var oModel = this.oDataModel("activity");
 			sap.ui.getCore().setModel(oModel, "myModel");
@@ -688,7 +688,7 @@ sap.ui.define([
 		onPressActivity: function(oEvent) {
 			var oView = this.getView();
 			var oDialog = oView.byId("openDialog");
-			debugger;
+			//debugger;
 			//get row data
 			var rowData = oEvent.getSource().getBindingContext().getObject();
 			// create dialog lazily
@@ -698,7 +698,7 @@ sap.ui.define([
 				oView.addDependent(oDialog);
 			}
 			oDialog.open();
-			debugger;
+			//debugger;
 			this.byId('anum').setText(rowData.Activityno);
 			this.byId('agrp').setText(rowData.Activitygrp);
 			this.byId('acode').setValue(rowData.Activitycode);
@@ -713,7 +713,7 @@ sap.ui.define([
 			var obj = {};
 			var that = this;
 			//Fill data
-			debugger;
+			//debugger;
 			var rowData = oEvent.getSource().getBindingContext().getObject();
 			obj.Notifid = rowData.Notifid;
 			obj.Activityno = this.byId('anum').getText();
@@ -746,13 +746,13 @@ sap.ui.define([
 		},
 
 		onPressAttachment: function(oEvent) {
-			debugger;
+			//debugger;
 			var url = oEvent.getSource().getBindingContext().getObject().Docuri;
 			window.open(url);
 		},
 
 		dialogAfterclose: function(oEvent) {
-			debugger;
+			//debugger;
 			this.getView().byId("openDialog").destroy();
 
 		},
@@ -766,7 +766,7 @@ sap.ui.define([
 		 **/
 
 		handleUploadPress: function(oEvent) {
-			debugger;
+			//debugger;
 			var oFileUploader = this.getView().byId("fileUploader");
 			var oDocType = this.byId('rbg3').getSelectedButton().getText();
 			var oNotifId = oEvent.getSource().getParent().getBindingContext().getObject().Notifid;
@@ -796,7 +796,7 @@ sap.ui.define([
 		},
 
 		getCSRFToken: function() {
-			debugger;
+			//debugger;
 			var oModel = this.oDataModel("attach");
 			var sTokenName = "x-cs" + "rf-token"; // avoid static code check errors
 			var sToken = oModel.getHeaders()[sTokenName];
@@ -817,7 +817,7 @@ sap.ui.define([
 		handleUploadComplete: function(oEvent) {
 			// refresh model binding
 			this.getView().getElementBinding().refresh(true);
-			debugger;
+			//debugger;
 			//this.byId('fileUploader').getProperty('value').setValue('');
 			oEvent.getSource().setValue("");
 			sap.ui.core.BusyIndicator.hide();

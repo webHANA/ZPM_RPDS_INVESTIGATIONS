@@ -15,6 +15,7 @@ sap.ui.define([
 		 */
 		onInit: function() {
 			//catch the values after URL
+			debugger;
 			var oRouter = this.getRouter();
 			oRouter.getRoute("create").attachMatched(this._onRouteMatched, this);
 

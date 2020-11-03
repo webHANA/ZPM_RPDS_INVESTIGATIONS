@@ -133,6 +133,8 @@ sap.ui.define([
 				oView.addDependent(oDialog);
 			}
 			oDialog.open();
+			//default date to current date
+			this.byId('date').setDateValue(new Date());
 
 		},
 		closeActivity: function() {
@@ -156,31 +158,44 @@ sap.ui.define([
 			obj.Activitycode = this.byId("atype").getSelectedKey();
 			obj.Activitytxt = this.byId('amount').getValue();
 			obj.Activitystrdate = this.byId('date').getValue() + "T00:00:00";
-			//obj.Activitystrdate  = this.byId('date').getValue();
-			BusyIndicator.show();
 
-			myModel.create('/InvActivitiesSet', obj, {
-				success: function(oData, oResponse) {
-					//	BusyIndicator.hide();
-					console.log('Record Created Successfully...');
-					sap.m.MessageToast.show("New Activity Created: " + oResponse.data.activitycode);
-					//	MessageBox.success("Notification Created: " + oResponse.data.Notifid);
-					BusyIndicator.hide();
-					//that.getView().byId("openDialog").close();
-					that.getView().byId("openDialog").destroy();
-				},
-				error: function(err, oResponse) {
-					//	debugger;
-					BusyIndicator.hide();
-					console.log("Error while creating record - ");
-					//					sap.m.MessageToast.show("Error Creating Record: " + err.responseText.split('message')[2]);
-					sap.m.MessageToast.show("Error Creating Record: " + err.responseText.split('message')[2]);
-					MessageBox.error("Erro Updating Record: " + err.responseText.split('message')[2]);
-					that.getView().byId("openDialog").destroy();
+			// Validate date
 
+			var oStrDate = this.byId('date').getValue();
+
+			if (oStrDate === "" || obj.Activitytxt === "") {
+				this.byId('date').setValueState(sap.ui.core.ValueState.Error);
+				if (obj.Activitytxt === "") {
+					this.byId('amount').setValueState(sap.ui.core.ValueState.Error);
 				}
-			});
+			} else {
 
+				this.byId('date').setValueState(sap.ui.core.ValueState.None);
+				this.byId('amount').setValueState(sap.ui.core.ValueState.None);
+				BusyIndicator.show();
+
+				myModel.create('/InvActivitiesSet', obj, {
+					success: function(oData, oResponse) {
+						//	BusyIndicator.hide();
+						console.log('Record Created Successfully...');
+						sap.m.MessageToast.show("New Activity Created: " + oResponse.data.activitycode);
+						//	MessageBox.success("Notification Created: " + oResponse.data.Notifid);
+						BusyIndicator.hide();
+						//that.getView().byId("openDialog").close();
+						that.getView().byId("openDialog").destroy();
+					},
+					error: function(err, oResponse) {
+						//	debugger;
+						BusyIndicator.hide();
+						console.log("Error while creating record - ");
+						//					sap.m.MessageToast.show("Error Creating Record: " + err.responseText.split('message')[2]);
+						sap.m.MessageToast.show("Error Creating Record: " + err.responseText.split('message')[2]);
+						MessageBox.error("Erro Updating Record: " + err.responseText.split('message')[2]);
+						that.getView().byId("openDialog").destroy();
+
+					}
+				});
+			}
 		},
 		newTask: function() {
 			var oView = this.getView();
@@ -196,7 +211,7 @@ sap.ui.define([
 		},
 
 		createTask: function(oEvent) {
-		//	debugger;
+			//	debugger;
 			////set Model to create Task
 			var oModel = this.oDataModel("openDialog");
 			sap.ui.getCore().setModel(oModel, "myModel");
@@ -249,7 +264,7 @@ sap.ui.define([
 				oView.addDependent(oDialog);
 			}
 			oDialog.open();
-		//	debugger;
+			//	debugger;
 			this.byId('tnote').setValue(rowData.Tasklongtxt);
 			this.byId('tnum').setText(rowData.Tasknumber);
 
@@ -721,27 +736,34 @@ sap.ui.define([
 			obj.Activitycode = this.byId('acode').getValue();
 			obj.Activitytxt = this.byId('aamt').getValue();
 			obj.Activitystrdate = this.byId('adate').getValue() + "T00:00:00";
+			var oStartDate = this.byId('adate').getValue();
 
-			//Send a backend request
-			var oPath = '/InvActivitiesSet(Notifid=' + "'" + rowData.Notifid + "'" + ',Activityno=' + "'" + obj.Activityno + "'" + ')';
-			BusyIndicator.show();
-			myModel.update(oPath, obj, {
-				merge: false,
-				success: function(oData, oResponse) {
-					BusyIndicator.hide();
-					console.log('Record updated Successfully...');
-					that.getView().byId("openDialog").destroy();
-				},
-				error: function(err, oResponse) {
-					//	debugger;
-					BusyIndicator.hide();
-					sap.m.MessageToast.show("Erro Updating Record: " + err.responseText.split('message')[2]);
-					MessageBox.error("Erro Updating Record: " + err.responseText.split('message')[2]);
-					console.log("Error while creating record - ");
-					that.getView().byId("openDialog").destroy();
-				}
+			//Validate Date
+			if (oStartDate === "") {
+				this.byId('adate').setValueState(sap.ui.core.ValueState.Error);
+			} else {
 
-			});
+				//Send a backend request
+				var oPath = '/InvActivitiesSet(Notifid=' + "'" + rowData.Notifid + "'" + ',Activityno=' + "'" + obj.Activityno + "'" + ')';
+				BusyIndicator.show();
+				myModel.update(oPath, obj, {
+					merge: false,
+					success: function(oData, oResponse) {
+						BusyIndicator.hide();
+						console.log('Record updated Successfully...');
+						that.getView().byId("openDialog").destroy();
+					},
+					error: function(err, oResponse) {
+						//	debugger;
+						BusyIndicator.hide();
+						sap.m.MessageToast.show("Erro Updating Record: " + err.responseText.split('message')[2]);
+						MessageBox.error("Erro Updating Record: " + err.responseText.split('message')[2]);
+						console.log("Error while creating record - ");
+						that.getView().byId("openDialog").destroy();
+					}
+
+				});
+			};
 
 		},
 
@@ -771,7 +793,8 @@ sap.ui.define([
 			var oDocType = this.byId('rbg3').getSelectedButton().getText();
 			var oNotifId = oEvent.getSource().getParent().getBindingContext().getObject().Notifid;
 			var oFileName = oFileUploader.getValue();
-			var oSlug = oDocType + '#' + oNotifId + '#' + oFileName;
+			var oFileType = oFileName.split('.').pop();
+			var oSlug = oDocType + '#' + oNotifId + '#' + oFileName + '#' + oFileType;
 
 			if (oFileUploader.getValue() === "") {
 				MessageToast.show("Please Select a  File");
@@ -822,7 +845,7 @@ sap.ui.define([
 			oEvent.getSource().setValue("");
 			sap.ui.core.BusyIndicator.hide();
 			this.getView().byId("openDialog").destroy();
-			
+
 			// var error = oEvent.getParameters().response;
 			// if (error) {
 			// 	MessageBox.error(error);

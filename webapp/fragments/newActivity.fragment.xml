@@ -8,9 +8,9 @@
 						<core:ListItem key="{ATModel>ActCode}" text="{ATModel>ActGroup} - {ATModel>ActName} - {ATModel>ActCode}"/>
 					</Select>
 					<Label text="Enter Amount"/>
-					<Input id="amount" type="Number" />
+					<Input id="amount" required="true" type="Number"/>
 					<Label text="Date"/>
-					<DatePicker id="date" valueFormat="yyyy-MM-dd" displayFormat="MM/dd/yyyy" dateValue="{toActivities>Activitystrdate}"
+					<DatePicker id="date" required="true" valueFormat="yyyy-MM-dd" displayFormat="MM/dd/yyyy" dateValue="{toActivities>Activitystrdate}"
 						class="sapUiSmallMarginBottom"/>
 				</f:content>
 			</f:SimpleForm>

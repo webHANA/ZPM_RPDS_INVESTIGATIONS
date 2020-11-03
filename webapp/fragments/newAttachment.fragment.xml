@@ -10,10 +10,9 @@
 						<RadioButton id="RB3-2" text="Power Theft Billing Document"/>
 						<RadioButton id="RB3-3" text="Power Theft Investigation Document"/>
 					</RadioButtonGroup>
-					<u:FileUploader id="fileUploader" name="myFileUpload" useMultipart="false" fileType="txt,jpg,pdf,doc,docx,xls,xlxs"
+					<u:FileUploader id="fileUploader" name="myFileUpload" useMultipart="false" fileType="txt,jpg,pdf,doc,docx,xls,xlsx"
 						typeMissmatch="fileTypeError" uploadUrl="/sap/opu/odata/sap/ZPM_INVESTIGATIONS_SRV/InvUploadFileSet" style="Emphasized"
 						tooltip="Upload your file to EDM" uploadComplete="handleUploadComplete" change="handleValueChange"/>
-					<!--<Button text="Upload File" press="handleUploadPress"/>-->
 				</l:VerticalLayout>
 			</FlexBox>
 		</VBox>

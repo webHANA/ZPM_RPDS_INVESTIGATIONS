@@ -12,8 +12,8 @@
     "excludedFiles": [
       "test.html"
     ],
-    "buildRequired": true,
-    "lastBuildDateTime": "Tue, 06 Oct 2020 18:18:08 GMT"
+    "buildRequired": false,
+    "lastBuildDateTime": "Thu, 05 Nov 2020 16:09:36 GMT"
   },
   "dataBinding": {
     "/webapp/view/App.view.xml": {

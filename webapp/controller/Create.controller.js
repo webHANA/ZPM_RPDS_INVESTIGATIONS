@@ -39,19 +39,20 @@ sap.ui.define([
 			// get customer data 
 			var that = this;
 			// BusyIndicator.show();
-			this.getOwnerComponent().getModel().read(`/InvEquipmentSet('${arg1}')`, {
+			//this.getOwnerComponent().getModel().read(`/InvEquipmentSet('${arg1}')`, {
+			this.getOwnerComponent().getModel().read("/InvEquipmentSet('${arg1}')", {
 				success: function(oData, response) {
 					that.getView().byId('equip').setDescription(oData.Equidescr);
 					that.getView().byId('cust').setValue(oData.Customer);
-					that.getView().byId('cdesc').setText(oData.Custname)
-					that.getView().byId('cadd').setText(oData.Custaddress)
-					that.getView().byId('serial').setText(oData.Serialno)
+					that.getView().byId('cdesc').setText(oData.Custname);
+					that.getView().byId('cadd').setText(oData.Custaddress);
+					that.getView().byId('serial').setText(oData.Serialno);
 					var oDateFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({
 						pattern: "dd/MM/yyyy"
 					});
-					var aDate = oDateFormat.format(oData.Actdate)
-					that.getView().byId('dnp').setText('Code: ' + oData.Actstatus + ' : ' + oData.Actstatustxt + ' on ' + aDate)
-						// BusyIndicator.hide();
+					var aDate = oDateFormat.format(oData.Actdate);
+					that.getView().byId('dnp').setText('Code: ' + oData.Actstatus + ' : ' + oData.Actstatustxt + ' on ' + aDate);
+					// BusyIndicator.hide();
 				},
 				error: function(oError) {
 					sap.m.MessageToast.show("Error Getting Equipment Information: " + oError.responseText.split('message')[2]);
@@ -166,19 +167,20 @@ sap.ui.define([
 			var that = this;
 			var equi = this.getView().byId("equip").getValue();
 			BusyIndicator.show();
-			this.getOwnerComponent().getModel().read(`/InvEquipmentSet('${equi}')`, {
+			//this.getOwnerComponent().getModel().read(`/InvEquipmentSet('${equi}')`, {
+			this.getOwnerComponent().getModel().read("/InvEquipmentSet('${equi}')", {
 				success: function(oData, response) {
 					that.getView().byId('equip').setDescription(oData.Equidescr);
 					that.getView().byId('cust').setValue(oData.Customer);
-					that.getView().byId('cdesc').setText(oData.Custname)
-					that.getView().byId('cadd').setText(oData.Custaddress)
-					that.getView().byId('serial').setText(oData.Serialno)
+					that.getView().byId('cdesc').setText(oData.Custname);
+					that.getView().byId('cadd').setText(oData.Custaddress);
+					that.getView().byId('serial').setText(oData.Serialno);
 
 					var oDateFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({
 						pattern: "MM/dd/yyyy"
 					});
-					var aDate = oDateFormat.format(oData.Actdate)
-					that.getView().byId('dnp').setText('Code: ' + oData.Actstatus + ' : ' + oData.Actstatustxt + ' on ' + aDate)
+					var aDate = oDateFormat.format(oData.Actdate);
+					that.getView().byId('dnp').setText('Code: ' + oData.Actstatus + ' : ' + oData.Actstatustxt + ' on ' + aDate);
 
 					BusyIndicator.hide();
 				},

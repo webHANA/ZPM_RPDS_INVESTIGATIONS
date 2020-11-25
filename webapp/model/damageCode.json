@@ -1,5 +1,8 @@
 {
 	"damageCode": [{
+			"Code": "",
+			"Text": ""
+		}, {
 			"Code": "RP010",
 			"Text": "RP010"
 		}, {
@@ -11,6 +14,9 @@
 		}, {
 			"Code": "RP040",
 			"Text": "RP040"
+		}, {
+			"Code": "RP050",
+			"Text": "RP050"
 		}
 
 	]

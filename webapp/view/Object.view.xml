@@ -6,24 +6,26 @@
 			<Button icon="sap-icon://nav-back" press="goBack" tooltip="Back To Investigations"/>
 		</semantic:titleHeading>
 		<semantic:headerContent>
-			<layout:HorizontalLayout allowWrapping="true">
+			<!--<layout:HorizontalLayout allowWrapping="true">-->
+			<FlexBox alignItems="Start" justifyContent="SpaceBetween">
 				<layout:VerticalLayout class="sapUiMediumMarginEnd">
 					<ObjectAttribute title="Investigation Number" text="{Notifid}"/>
-					<ObjectAttribute title="Text" text="{Notifshtxt}"/>
+					<ObjectAttribute title="Notification Text" text="{Notifshtxt}"/>
 					<ObjectAttribute title="Priority" text="{Priority}"/>
 					<ObjectAttribute title="Status" text="{Notifstatus}"/>
 					<ObjectAttribute text="{Notifstatustxt}"/>
 				</layout:VerticalLayout>
-				<layout:VerticalLayout>
+				<layout:VerticalLayout class="sapUiMediumMarginEnd">
 					<ObjectAttribute title="Notification Date" text="{ path: 'Notifdate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium' } }"/>
 					<ObjectAttribute title="Equipment" text="{Equipment}"/>
-					<ObjectAttribute title="Equipment Address" text="{Equipdesc}"/>
+					<ObjectAttribute title="Equipment Address" text="{Equipaddress}"/>
 					<ObjectAttribute title="Coding Group" text="{Codinggrp}"/>
 					<ObjectAttribute title="Cause Group" text="{Causegrp}"/>
 					<ObjectAttribute title="Item Group" text="{Itobjpartgrp}"/>
 				</layout:VerticalLayout>
-			</layout:HorizontalLayout>
-			<FlexBox alignItems="Start" justifyContent="End">
+			</FlexBox>
+			<!--</layout:HorizontalLayout>-->
+			<FlexBox alignItems="Start" justifyContent="Center">
 				<layout:HorizontalLayout>
 					<Button text="Put in Process" type="Emphasized" class="sapUiSmallMarginBeginEnd" press="statusInProcess" ariaLabelledBy="editButtonLabel"
 						tooltip="Set Status"/>

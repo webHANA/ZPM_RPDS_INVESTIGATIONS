@@ -129,7 +129,7 @@ sap.ui.define([
 				var sQuery = oEvent.getParameter("query");
 
 				if (sQuery && sQuery.length > 0) {
-					aTableSearchState = [new Filter("Notifshtxt", FilterOperator.Contains, sQuery)];
+					aTableSearchState = [new Filter("Equipaddress", FilterOperator.Contains, sQuery)];
 				}
 				this._applySearch(aTableSearchState);
 			}
@@ -172,9 +172,9 @@ sap.ui.define([
 				oViewModel = this.getModel("worklistView");
 			oTable.getBinding("items").filter(aTableSearchState, "Application");
 			// changes the noDataText of the list in case there are no filter results
-			if (aTableSearchState.length !== 0) {
-				oViewModel.setProperty("/tableNoDataText", this.getResourceBundle().getText("worklistNoDataWithSearchText"));
-			}
+			// if (aTableSearchState.length !== 0) {
+			//oViewModel.setProperty("/tableNoDataText", this.getResourceBundle().getText("worklistNoDataWithSearchText"));
+			//}
 		},
 		fragCreate: function() {
 			var oView = this.getView();

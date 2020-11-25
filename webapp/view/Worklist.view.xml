@@ -7,70 +7,73 @@
 		<semantic:content>
 			<!--<IconTabBar id="iconTabBar" select=".onQuickFilter" expandable="false" headerBackgroundDesign="Transparent">-->
 			<!--	<items>-->
-			<!--		<IconTabFilter key="all" showAll="true" count="{worklistView>/countAll}" text="{i18n>WorklistFilterProductsAll}"/>-->
+			<!--		<IconTabFilter key="all" showAll="true" count="{worklistView>/countAll}" text="All Investigation"/>-->
 			<!--		<IconTabSeparator/>-->
-			<!--		<IconTabFilter key="inStock" icon="sap-icon://message-success" iconColor="Positive" count="{worklistView>/inStock}"-->
-			<!--			text="{i18n>WorklistFilterInStock}"/>-->
-			<!--		<IconTabFilter key="shortage" icon="sap-icon://message-warning" iconColor="Critical" count="{worklistView>/shortage}"-->
-			<!--			text="{i18n>WorklistFilterShortage}"/>-->
-			<!--		<IconTabFilter key="outOfStock" icon="sap-icon://message-error" iconColor="Negative" count="{worklistView>/outOfStock}"-->
-			<!--			text="{i18n>WorklistFilterOutOfStock}"/>-->
+			<!--		<IconTabFilter key="open" icon="sap-icon://message-success" iconColor="Positive" count="{worklistView>/inStock}" text="Open Investigation"/>-->
+			<!--		<IconTabFilter key="inProcess" icon="sap-icon://message-warning" iconColor="Critical" count="{worklistView>/shortage}"-->
+			<!--			text="In Process Investifation"/>-->
+			<!--		<IconTabFilter key="closed" icon="sap-icon://message-error" iconColor="Negative" count="{worklistView>/outOfStock}"-->
+			<!--			text="Closed Investigation"/>-->
 			<!--	</items>-->
 			<!--	<content>-->
-					<Table id="table" width="auto" items="{ path: '/InvHeaderSet', sorter: { path: 'Notifid', ascending: true } }"
-						noDataText="{worklistView>/tableNoDataText}" busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingThreshold="20"
-						growingScrollToLoad="true" updateFinished="onUpdateFinished">
-						<headerToolbar>
-							<Toolbar>
-								<Title id="tableHeader" text="{worklistView>/worklistTableTitle}"/>
-								<ToolbarSpacer/>
-								<Button icon="sap-icon://add" press="fragCreate" ariaLabelledBy="editButtonLabel" tooltip="Create New Investigation"/>
-								<SearchField id="searchField" tooltip="{i18n>worklistSearchTooltip}" search="onSearch" width="auto"></SearchField>
-							</Toolbar>
-						</headerToolbar>
-						<columns>
-							<Column id="nameColumn">
-								<Text text="{i18n>tableNameColumnTitle}" id="notifid"/>
-							</Column>
-							<Column>
-								<Text text="{i18n>EquipmentHeader}" id="notiftxt"/>
-							</Column>
-							<Column>
-								<Text text="{i18n>equiDesc}" id="equi"/>
-							</Column>
-							<Column>
-								<Text text="{i18n>damage}" id="dcode"/>
-							</Column>
-							<Column>
-								<Text text="{i18n>Notif Status}" id="status"/>
-							</Column>
-							<Column>
-								<Text text="{i18n>cause}" id="cause"/>
-							</Column>
-						</columns>
-						<items>
-							<ColumnListItem type="Navigation" press="onPress">
-								<cells>
-									<ObjectIdentifier title="{Notifid}"/>
-								</cells>
-								<cells>
-									<Text text="{Equipment}"/>
-								</cells>
-								<cells>
-									<Text text="{Equipdesc}"/>
-								</cells>
-								<cells>
-									<Text text="{Itdamagecode}"/>
-								</cells>
-								<cells>
-									<Text text="{Notifstatustxt}"/>
-								</cells>
-								<cells>
-									<Text text="{Causecode}"/>
-								</cells>
-							</ColumnListItem>
-						</items>
-					</Table>
+			<Table id="table" width="auto" items="{ path: '/InvHeaderSet', sorter: { path: 'Notifid', ascending: true } }"
+				noDataText="{worklistView>/tableNoDataText}" busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingThreshold="20"
+				growingScrollToLoad="true" updateFinished="onUpdateFinished">
+				<headerToolbar>
+					<Toolbar>
+						<Title id="tableHeader" text="{worklistView>/worklistTableTitle}"/>
+						<ToolbarSpacer/>
+						<Button icon="sap-icon://add" press="fragCreate" ariaLabelledBy="editButtonLabel" tooltip="Create New Investigation"/>
+						<SearchField id="searchField" tooltip="{i18n>worklistSearchTooltip}" search="onSearch" width="auto"></SearchField>
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+					<Column id="nameColumn">
+						<Text text="{i18n>notifNumber}" id="notifid"/>
+					</Column>
+					<Column>
+						<Text text="{i18n>equiNumber}" id="notiftxt"/>
+					</Column>
+					<Column>
+						<Text text="{i18n>notifTxt}" id="equi"/>
+					</Column>
+					<Column>
+						<Text text="{i18n>damage}" id="dcode"/>
+					</Column>
+					<Column>
+						<Text text="{i18n>Notif Status}" id="status"/>
+					</Column>
+					<!--<Column>-->
+					<!--	<Text text="{i18n>Notif Status}" id="status1"/>-->
+					<!--</Column>-->
+					<Column>
+						<Text text="{i18n>cause}" id="cause"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem type="Navigation" press="onPress">
+						<cells>
+							<ObjectIdentifier title="{Notifid}" text="{Equipaddress}"/>
+							<!--</cells>-->
+							<!--<cells>-->
+							<Text text="{Equipment}"/>
+							<!--</cells>-->
+							<!--<cells>-->
+							<Text text="{Notifshtxt}"/>
+							<!--</cells>-->
+							<!--<cells>-->
+							<Text text="{Itdamagecode}"/>
+							<!--</cells>-->
+							<!--<cells>-->
+							<Text text="{Notifstatustxt}"/>
+							<!--<ObjectStatus id="nstatus" state="None" text="{parts: [{path: 'Notifstatustxt'},{path: 'Notifstatus'}], formatter : '.formatter.noStatus'}"/>-->
+							<!--</cells>-->
+							<!--<cells>-->
+							<Text text="{Causecode}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
 			<!--	</content>-->
 			<!--</IconTabBar>-->
 		</semantic:content>

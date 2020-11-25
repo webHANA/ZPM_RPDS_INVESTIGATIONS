@@ -3,8 +3,17 @@ sap.ui.define([
 	'sap/ui/model/json/JSONModel',
 	'sap/m/MessageToast',
 	"sap/m/MessageBox",
-	'sap/ui/core/BusyIndicator'
-], function(Controller, JSONModel, MessageToast, MessageBox, BusyIndicator) {
+	'sap/ui/core/BusyIndicator',
+	"sap/ui/model/Filter",
+	"sap/ui/model/FilterOperator",
+	"sap/ui/core/ValueState",
+	"sap/m/Dialog",
+	"sap/m/DialogType",
+	"sap/m/Button",
+	"sap/m/ButtonType",
+	"sap/m/Text"
+], function(Controller, JSONModel, MessageToast, MessageBox, BusyIndicator, Filter, FilterOperator, ValueState, Dialog, DialogType,
+	Button, ButtonType, Text) {
 	"use strict";
 
 	return Controller.extend("smud.pm.ZPM_RPDS_INVESTIGATIONS.controller.BaseController", {
@@ -96,12 +105,12 @@ sap.ui.define([
 			obj.Notifid = this.getView().byId('createForm').getTitle();
 			obj.Partnerrole = this.byId("ptype").getSelectedKey();
 			obj.Partner = this.byId('partner').getValue();
+			obj.Partner = obj.Partner.toUpperCase();
 			BusyIndicator.show();
 
 			myModel.create('/InvPartnersSet', obj, {
 				success: function(oData, oResponse) {
 					//	BusyIndicator.hide();
-					console.log('Record Created Successfully...');
 					sap.m.MessageToast.show("New Partner Created: " + oResponse.data.Partner);
 					//	MessageBox.success("Notification Created: " + oResponse.data.Notifid);
 					BusyIndicator.hide();
@@ -112,7 +121,6 @@ sap.ui.define([
 				error: function(err, oResponse) {
 					//	debugger;
 					BusyIndicator.hide();
-					console.log("Error while creating record - ");
 					//					sap.m.MessageToast.show("Error Creating Record: " + err.responseText.split('message')[2]);
 					sap.m.MessageToast.show("Error Creating Record: " + err.responseText.split('message')[2]);
 					MessageBox.error("Erro Updating Record: " + err.responseText.split('message')[2]);
@@ -133,9 +141,9 @@ sap.ui.define([
 				oView.addDependent(oDialog);
 			}
 			oDialog.open();
-			//default date to current date
+			//default date to current date, date max is current date
 			this.byId('date').setDateValue(new Date());
-
+			this.byId("date").setMaxDate(new Date());
 		},
 		closeActivity: function() {
 			this.getView().byId("openDialog").close();
@@ -160,9 +168,7 @@ sap.ui.define([
 			obj.Activitystrdate = this.byId('date').getValue() + "T00:00:00";
 
 			// Validate date
-
 			var oStrDate = this.byId('date').getValue();
-
 			if (oStrDate === "" || obj.Activitytxt === "") {
 				this.byId('date').setValueState(sap.ui.core.ValueState.Error);
 				if (obj.Activitytxt === "") {
@@ -177,7 +183,6 @@ sap.ui.define([
 				myModel.create('/InvActivitiesSet', obj, {
 					success: function(oData, oResponse) {
 						//	BusyIndicator.hide();
-						console.log('Record Created Successfully...');
 						sap.m.MessageToast.show("New Activity Created: " + oResponse.data.activitycode);
 						//	MessageBox.success("Notification Created: " + oResponse.data.Notifid);
 						BusyIndicator.hide();
@@ -187,7 +192,6 @@ sap.ui.define([
 					error: function(err, oResponse) {
 						//	debugger;
 						BusyIndicator.hide();
-						console.log("Error while creating record - ");
 						//					sap.m.MessageToast.show("Error Creating Record: " + err.responseText.split('message')[2]);
 						sap.m.MessageToast.show("Error Creating Record: " + err.responseText.split('message')[2]);
 						MessageBox.error("Erro Updating Record: " + err.responseText.split('message')[2]);
@@ -225,6 +229,7 @@ sap.ui.define([
 			obj.Taskcode = this.byId('tcode').getSelectedKey();
 			obj.Taskshrtxt = this.byId('text').getValue();
 			obj.Taskperson = this.byId('tperson').getValue();
+			obj.Taskperson = obj.Taskperson.toUpperCase();
 			BusyIndicator.show();
 
 			//Call backedn Odata Create
@@ -241,7 +246,6 @@ sap.ui.define([
 				error: function(err, oResponse) {
 					//	debugger;
 					BusyIndicator.hide();
-					console.log("Error while creating record - ");
 					//					sap.m.MessageToast.show("Error Creating Record: " + err.responseText.split('message')[2]);
 					sap.m.MessageToast.show("Error Creating Record: " + err.responseText.split('message')[2]);
 					MessageBox.error("Erro Updating Record: " + err.responseText.split('message')[2]);
@@ -292,7 +296,6 @@ sap.ui.define([
 				merge: false,
 				success: function(oData, oResponse) {
 					BusyIndicator.hide();
-					console.log('Record updated Successfully...');
 					that.getView().byId("openDialog").destroy();
 				},
 				error: function(err, oResponse) {
@@ -300,7 +303,6 @@ sap.ui.define([
 					BusyIndicator.hide();
 					sap.m.MessageToast.show("Erro Updating Record: " + err.responseText.split('message')[2]);
 					MessageBox.error("Erro Updating Record: " + err.responseText.split('message')[2]);
-					console.log("Error while creating record - ");
 					that.getView().byId("openDialog").destroy();
 				}
 
@@ -347,7 +349,6 @@ sap.ui.define([
 					//debugger;
 					BusyIndicator.hide();
 					that.getView().byId("openDialog").destroy();
-					console.log('Record Created Successfully...');
 					sap.m.MessageToast.show("Note Updated ");
 					//	MessageBox.success("Notification Created: " + oResponse.data.Notifid);
 
@@ -356,7 +357,6 @@ sap.ui.define([
 					//debugger;
 					BusyIndicator.hide();
 					that.getView().byId("opendialog").destroy();
-					console.log("Error while creating record - ");
 					MessageBox.error("Error Updating Record: " + err.responseText.split('message')[2]);
 
 				}
@@ -373,7 +373,21 @@ sap.ui.define([
 				oDialog = sap.ui.xmlfragment(oView.getId(), "smud.pm.ZPM_RPDS_INVESTIGATIONS.fragments.editDetails", this);
 				oView.addDependent(oDialog);
 			}
+
 			oDialog.open();
+
+			var dcFilter = [];
+			var getValue = this.byId('Dagrp').getText();
+			if (getValue) {
+				dcFilter.push(new Filter("Codegruppe", FilterOperator.Contains, getValue));
+			}
+			//	var ExpenseTypeSet = this.getModel().getProperty("/InvDamageCodeShSet");
+
+			var oList = this.getView().byId("damcode");
+			var oBinding = oList.getBinding("items");
+			oBinding.filter(dcFilter);
+			this.getView().byId("damcode").setEnabled(true);
+
 			//this.byId('cacode').setValue(this.byId('Cacode').getText());
 			this.byId('cacode').setSelectedKey(this.byId('Cacode').getText());
 			//	this.byId('cocode').setValue(this.byId('Cocode').getText());
@@ -381,11 +395,15 @@ sap.ui.define([
 			this.byId('catxt').setValue(this.byId('Catxt').getText());
 			//this.byId('icode').setValue(this.byId('Icode').getText());
 			this.byId('icode').setSelectedKey(this.byId('Icode').getText());
-			this.byId('dagrp').setValue(this.byId('Dagrp').getText());
+			//this.byId('dagrp').setValue(this.byId('Dagrp').getText());
+			//New Damage Group Field
+			this.byId('damgrp').setSelectedKey(this.byId('Dagrp').getText());
 			// this.byId('dacode').setValue(this.byId('Dacode').getText());
 			var damCode = this.byId('Dagrp').getText() + this.byId('Dacode').getText();
 			// this.byId('dacode').setSelectedKey(this.byId('Dacode').getText());
-			this.byId('dacode').setSelectedKey(damCode);
+			//this.byId('dacode').setSelectedKey(damCode);
+			//	var damco = this.byId('Dacode').getText();
+			this.byId('damcode').setSelectedKey(damCode);
 			// Get grow house code
 			var inGH = this.byId('Growh').getText();
 			var getGH = this.getView().getModel('GHModel').getProperty('/growHouse');
@@ -396,14 +414,14 @@ sap.ui.define([
 			var setGH = selGH[0].Code;
 			this.byId('growh').setSelectedKey(setGH);
 			// Get Rate Type code
-			var inRT = this.byId('Rtype').getText();
-			var getRT = this.getView().getModel('RTModel').getProperty('/rateType');
-			//var selGH = getGH.filter(desc => desc.Description === inGH);
-			var selRT = getRT.filter(function(e) {
-				return e.Description === inRT;
-			});
-			var setRT = selRT[0].Code;
-			this.byId('rtype').setSelectedKey(setRT);
+			// var inRT = this.byId('Rtype').getText();
+			// var getRT = this.getView().getModel('RTModel').getProperty('/rateType');
+			// //var selGH = getGH.filter(desc => desc.Description === inGH);
+			// var selRT = getRT.filter(function(e) {
+			// 	return e.Description === inRT;
+			// });
+			// var setRT = selRT[0].Code;
+			// this.byId('rtype').setSelectedKey(setRT);
 
 			//this.byId('rtype').setValue(this.byId('Rtype').getText());
 			//this.byId('rtype').setSelectedKey(this.byId('Rtype').getText());
@@ -434,15 +452,17 @@ sap.ui.define([
 			obj.Itobjpartgrp = "RP010";
 			//obj.Itobjpartcode = this.byId('icode').getValue();
 			obj.Itobjpartcode = this.byId('icode').getSelectedKey();
-			obj.Itdamagegrp = this.byId('dagrp').getValue();
+			//			obj.Itdamagegrp = this.byId('dagrp').getValue();
+			obj.Itdamagegrp = this.byId('damgrp').getSelectedKey();
 			// obj.Itdamagecode = this.byId('dacode').getValue();
-			var getCode = this.byId('dacode').getSelectedKey();
+			//			var getCode = this.byId('dacode').getSelectedKey();
+			var getCode = this.byId('damcode').getSelectedKey();
 			var newDacode = getCode.substring(5, 8);
 			obj.Itdamagecode = newDacode;
 			//obj.Itgrowhouse = this.byId('growh').getValue();
 			//obj.Itratetype = this.byId('rtype').getValue();
 			obj.Itgrowhouse = this.byId('growh').getSelectedKey();
-			obj.Itratetype = this.byId('rtype').getSelectedKey();
+			//obj.Itratetype = this.byId('rtype').getSelectedKey();
 			obj.Itfwdbill = this.byId('mbill').getValue();
 			obj.Itfwdkwh = this.byId('mkwh').getValue();
 			obj.Itbckbill = this.byId('bkwh').getValue();
@@ -454,7 +474,6 @@ sap.ui.define([
 				success: function(oData, oResponse) {
 					//debugger;
 					BusyIndicator.hide();
-					console.log('Record updated Successfully...');
 					that.getView().byId("openDialog").destroy();
 				},
 				error: function(err, oResponse) {
@@ -462,7 +481,6 @@ sap.ui.define([
 					BusyIndicator.hide();
 					sap.m.MessageToast.show("Erro Updating Record: " + err.responseText.split('message')[2]);
 					MessageBox.error("Erro Updating Record: " + err.responseText.split('message')[2]);
-					console.log("Error while creating record - ");
 					that.getView().byId("openDialog").destroy();
 				}
 
@@ -474,22 +492,46 @@ sap.ui.define([
 			var oDialog = oView.byId("openDialog");
 			//get row data
 			var rowData = oEvent.getSource().getBindingContext().getObject();
-			// create dialog lazily
-			if (!oDialog) {
-				// create dialog via fragment factory
-				oDialog = sap.ui.xmlfragment(oView.getId(), "smud.pm.ZPM_RPDS_INVESTIGATIONS.fragments.editTask", this);
-				oView.addDependent(oDialog);
+			//Check If Task is Closed
+			if (rowData.Taskstatus === 'TSCO') {
+				if (!this.oErrorMessageDialog) {
+					this.oErrorMessageDialog = new Dialog({
+						type: DialogType.Message,
+						title: "Error",
+						state: ValueState.Error,
+						content: new Text({
+							text: "Task Completed. Cannot Make Changes"
+						}),
+						beginButton: new Button({
+							type: ButtonType.Emphasized,
+							text: "OK",
+							press: function() {
+								this.oErrorMessageDialog.close();
+							}.bind(this)
+						})
+					});
+				}
+				this.oErrorMessageDialog.open();
 			}
-			oDialog.open();
-			//debugger;
-			this.byId('editTask').setTitle(rowData.Taskcodetxt);
-			this.byId('taskno').setText(rowData.Tasknumber);
-			this.byId('text').setValue(rowData.Taskshrtxt);
-			this.byId('tperson').setValue(rowData.Taskperson);
-			if (rowData.Userstatus) {
-				this.byId('ustat').setSelected(true);
-			} else {
-				this.byId('ustat').setSelected(false);
+			//If Task status is not Complted
+			else {
+				// create dialog lazily
+				if (!oDialog) {
+					// create dialog via fragment factory
+					oDialog = sap.ui.xmlfragment(oView.getId(), "smud.pm.ZPM_RPDS_INVESTIGATIONS.fragments.editTask", this);
+					oView.addDependent(oDialog);
+				}
+				oDialog.open();
+				//debugger;
+				this.byId('editTask').setTitle(rowData.Taskcodetxt);
+				this.byId('taskno').setText(rowData.Tasknumber);
+				this.byId('text').setValue(rowData.Taskshrtxt);
+				this.byId('tperson').setValue(rowData.Taskperson);
+				if (rowData.Userstatus) {
+					this.byId('ustat').setSelected(true);
+				} else {
+					this.byId('ustat').setSelected(false);
+				}
 			}
 		},
 		editTask: function(oEvent) {
@@ -505,6 +547,7 @@ sap.ui.define([
 			obj.Notifid = rowData.Notifid;
 			obj.Taskshrtxt = this.byId('text').getValue();
 			obj.Taskperson = this.byId('tperson').getValue();
+			obj.Taskperson = obj.Taskperson.toUpperCase();
 			obj.Tasknumber = this.byId('taskno').getText();
 			if (this.byId('ustat').getSelected() === true) {
 				obj.Userstatus = 'PEER';
@@ -517,7 +560,6 @@ sap.ui.define([
 				merge: false,
 				success: function(oData, oResponse) {
 					BusyIndicator.hide();
-					console.log('Record updated Successfully...');
 					that.getView().byId("openDialog").destroy();
 				},
 				error: function(err, oResponse) {
@@ -525,7 +567,6 @@ sap.ui.define([
 					BusyIndicator.hide();
 					sap.m.MessageToast.show("Erro Updating Record: " + err.responseText.split('message')[2]);
 					MessageBox.error("Erro Updating Record: " + err.responseText.split('message')[2]);
-					console.log("Error while creating record - ");
 					that.getView().byId("openDialog").destroy();
 				}
 
@@ -567,6 +608,7 @@ sap.ui.define([
 			obj.Partnumber = this.byId('partnum').getText();
 			obj.Partnerrole = this.byId('parttype').getText();
 			obj.Partner = this.byId('npart').getValue();
+			obj.Partner = obj.Partner.toUpperCase();
 
 			//Send a backend request
 			var oPath = '/InvPartnersSet(Notifid=' + "'" + rowData.Notifid + "'" + ',Partnumber=' + "'" + obj.Partnumber + "'" + ')';
@@ -575,7 +617,6 @@ sap.ui.define([
 				merge: false,
 				success: function(oData, oResponse) {
 					BusyIndicator.hide();
-					console.log('Record updated Successfully...');
 					that.getView().byId("openDialog").destroy();
 				},
 				error: function(err, oResponse) {
@@ -583,7 +624,6 @@ sap.ui.define([
 					BusyIndicator.hide();
 					sap.m.MessageToast.show("Error Updating Record: " + err.responseText.split('message')[2]);
 					MessageBox.error("Erro Updating Record: " + err.responseText.split('message')[2]);
-					console.log("Error while creating record - ");
 					that.getView().byId("openDialog").destroy();
 				}
 
@@ -612,7 +652,6 @@ sap.ui.define([
 			myModel.remove(oPath, {
 				success: function(oData, oResponse) {
 					BusyIndicator.hide();
-					console.log('Record Deleated Successfully...');
 					that.getView().byId("openDialog").destroy();
 				},
 				error: function(err, oResponse) {
@@ -620,7 +659,6 @@ sap.ui.define([
 					BusyIndicator.hide();
 					sap.m.MessageToast.show("Error Deleated Record: " + err.responseText.split('message')[2]);
 					MessageBox.error("Error Deleating Record: " + err.responseText.split('message')[2]);
-					console.log("Error while creating record - ");
 					that.getView().byId("openDialog").destroy();
 				}
 
@@ -648,7 +686,6 @@ sap.ui.define([
 			myModel.remove(oPath, {
 				success: function(oData, oResponse) {
 					BusyIndicator.hide();
-					console.log('Record Deleated Successfully...');
 					that.getView().byId("openDialog").destroy();
 				},
 				error: function(err, oResponse) {
@@ -656,7 +693,6 @@ sap.ui.define([
 					BusyIndicator.hide();
 					sap.m.MessageToast.show("Error Deleated Record: " + err.responseText.split('message')[2]);
 					MessageBox.error("Error Deleating Record: " + err.responseText.split('message')[2]);
-					console.log("Error while creating record - ");
 					that.getView().byId("openDialog").destroy();
 				}
 
@@ -684,7 +720,6 @@ sap.ui.define([
 			myModel.remove(oPath, {
 				success: function(oData, oResponse) {
 					BusyIndicator.hide();
-					console.log('Record Deleated Successfully...');
 					that.getView().byId("openDialog").destroy();
 				},
 				error: function(err, oResponse) {
@@ -692,7 +727,6 @@ sap.ui.define([
 					BusyIndicator.hide();
 					sap.m.MessageToast.show("Error Deleated Record: " + err.responseText.split('message')[2]);
 					MessageBox.error("Error Deleating Record: " + err.responseText.split('message')[2]);
-					console.log("Error while creating record - ");
 					that.getView().byId("openDialog").destroy();
 				}
 
@@ -736,11 +770,15 @@ sap.ui.define([
 			obj.Activitycode = this.byId('acode').getValue();
 			obj.Activitytxt = this.byId('aamt').getValue();
 			obj.Activitystrdate = this.byId('adate').getValue() + "T00:00:00";
-			var oStartDate = this.byId('adate').getValue();
 
 			//Validate Date
-			if (oStartDate === "") {
+			var oStartDate = this.byId('adate').getValue();
+			var oAmount = this.byId('aamt').getValue();
+			if (oStartDate === "" || oAmount === "") {
 				this.byId('adate').setValueState(sap.ui.core.ValueState.Error);
+				if (oAmount === "") {
+					this.byId('aamt').setValueState(sap.ui.core.ValueState.Error);
+				}
 			} else {
 
 				//Send a backend request
@@ -750,7 +788,6 @@ sap.ui.define([
 					merge: false,
 					success: function(oData, oResponse) {
 						BusyIndicator.hide();
-						console.log('Record updated Successfully...');
 						that.getView().byId("openDialog").destroy();
 					},
 					error: function(err, oResponse) {
@@ -758,7 +795,6 @@ sap.ui.define([
 						BusyIndicator.hide();
 						sap.m.MessageToast.show("Erro Updating Record: " + err.responseText.split('message')[2]);
 						MessageBox.error("Erro Updating Record: " + err.responseText.split('message')[2]);
-						console.log("Error while creating record - ");
 						that.getView().byId("openDialog").destroy();
 					}
 

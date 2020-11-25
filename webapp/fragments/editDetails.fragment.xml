@@ -20,27 +20,34 @@
 					<Select id="icode" showSecondaryValues="true" items="{ path: '/InvItemCodeShSet'}">
 						<core:ListItem key="{Code}" text="{Code} - {Kurztext}"/>
 					</Select>
-					<Label text="Damage Group"/>
-					<Input id="dagrp" required="true" value="" enabled="false"/>
-					<!--<Select id="dagrp" showSecondaryValues="true" items="{ path: 'DCModel>/damageCode'}" change="damageCode" >-->
-					<!--	<core:ListItem key="{DCModel>Code}" text="{DCModel>Code}- {DCModel>Text}"/>-->
+					<!--<Label text="Damage Group"/>-->
+					<!--<Input id="dagrp" required="true" value="" enabled="false"/>-->
+					<!--<Label text="Damage Code"/>-->
+					<!--<Select id="dacode" forceSelection="false" showSecondaryValues="true" items="{ path: '/InvDamageCodeShSet', templateShareable : false }"-->
+					<!--	change="damageCode">-->
+					<!--	<core:ListItem key="{Codegruppe}{Code}" text="{Codegruppe} - {Code} - {Kurztext}"/>-->
 					<!--</Select>-->
-					<Label text="Damage Code"/>
-					<!--<Input id="dacode" required="true" value=""/>-->
-					<Select id="dacode" forceSelection="false" showSecondaryValues="true" items="{ path: '/InvDamageCodeShSet', templateShareable : false }"
-						change="damageCode">
+					<!--try new damage code logic start-->
+					<Label text="Damage Group New"/>
+					<Select id="damgrp" showSecondaryValues="true" items="{ path: 'DCModel>/damageCode'}" change="damagegrp">
+						<core:ListItem key="{DCModel>Code}" text="{DCModel>Code}"/>
+					</Select>
+					<Label text="Damage Code New"/>
+					<Select id="damcode" forceSelection="false" enabled="false" showSecondaryValues="true"
+						items="{ path: '/InvDamageCodeShSet', templateShareable : false}" change="da">
 						<core:ListItem key="{Codegruppe}{Code}" text="{Codegruppe} - {Code} - {Kurztext}"/>
 					</Select>
+					<!--try new damage code logic end-->
 					<Label text="Grow House"/>
 					<!--<Input id="growh" required="true" value=""/>-->
 					<Select id="growh" showSecondaryValues="true" items="{ path: 'GHModel>/growHouse'}">
 						<core:ListItem key="{GHModel>Code}" text="{GHModel>Code}"/>
 					</Select>
-					<Label text="Rate Type"/>
+					<!--<Label text="Rate Type"/>-->
 					<!--<Input id="rtype" required="true" value=""/>-->
-					<Select id="rtype" showSecondaryValues="true" items="{ path: 'RTModel>/rateType'}">
-						<core:ListItem key="{RTModel>Code}" text="{RTModel>Code}"/>
-					</Select>
+					<!--<Select id="rtype" showSecondaryValues="true" items="{ path: 'RTModel>/rateType'}">-->
+					<!--	<core:ListItem key="{RTModel>Code}" text="{RTModel>Code}"/>-->
+					<!--</Select>-->
 					<Label text="12 Month Forward Billing $"/>
 					<Input id="mbill" required="true" value=""/>
 					<Label text="12 Month Forward KWH"/>

@@ -32,22 +32,55 @@ sap.ui.define([
 			// Activity Type Json Model
 			var ccModel = this.getOwnerComponent().getModel("causeCode");
 			this.getView().setModel(ccModel, "CCModel");
-			
+
 			// Priority Code Json Model
 			var prModel = this.getOwnerComponent().getModel("priorityCode");
 			this.getView().setModel(prModel, "PRModel");
-			
+
 			// Damage Code Json Model
 			var dcModel = this.getOwnerComponent().getModel("damageCode");
 			this.getView().setModel(dcModel, "DCModel");
-			
+
 			// Grow House Json Model
 			var ghModel = this.getOwnerComponent().getModel("growHouse");
 			this.getView().setModel(ghModel, "GHModel");
-			
+
 			// Rate Type Json Model
 			var rtModel = this.getOwnerComponent().getModel("rateType");
 			this.getView().setModel(rtModel, "RTModel");
+
+			//DamageCode Intialization
+			var that = this;
+			//set model for damage code
+			this.getOwnerComponent().getModel().read("/InvDamageCodeShSet", {
+				success: function(OData, response) {
+					var uDamageGroup1 = [];
+					var uDamageGroup = [];
+					var dcData = OData.results;
+					dcData.forEach(function(group) {
+						if (!uDamageGroup1.includes(group.Codegruppe)) {
+							uDamageGroup1.push(group.Codegruppe);
+						}
+					});
+					uDamageGroup1.forEach(function(code) {
+						uDamageGroup.push({
+							code: code
+						});
+					});
+					that.getView().setModel(uDamageGroup, "DaCModel");
+					// uDamageGroup.forEach(function(code) {
+					// 	var oSelect = that.getView().byId("damcode");
+					// 	var newItem = new sap.ui.core.Item({
+					// 		key: code,
+					// 		text: code
+					// 	});
+					// 	oSelect.addItem(newItem);
+					// });
+				},
+				error: function(oError) {
+					//Error Message
+				}
+			});
 
 			fnSetAppNotBusy = function() {
 				oViewModel.setProperty("/busy", false);

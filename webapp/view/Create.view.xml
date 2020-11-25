@@ -26,7 +26,7 @@
 								<HBox>
 									<VBox>
 										<Label text="Notification Text"/>
-										<Input id="ntxt" enabled="false" value="Power Theft Investigation"/>
+										<Input id="ntxt" enabled="false" value=""/>
 										<Label text="Coding Code Group"/>
 										<Input id="ccgrp" enabled="false" value="RPDS"/>
 										<Label text="Item Code Group"/>
@@ -136,7 +136,7 @@
 					<OverflowToolbar id="otbFooter">
 						<ToolbarSpacer/>
 						<Button type="Accept" text="Save" press="createInv"></Button>
-						<Button type="Reject" text="Cancel"></Button>
+						<Button type="Reject" text="Cancel" press="cancelCreate"></Button>
 					</OverflowToolbar>
 				</footer>
 			</Page>

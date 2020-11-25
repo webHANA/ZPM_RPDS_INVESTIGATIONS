@@ -1,0 +1,19 @@
+.greenTxtHlight {
+    color: green;
+    background-color: red;
+}
+
+.yellowTxtHlight {
+    color: yellow;
+    background-color: blue;
+}
+
+.redTxtHlight {
+    color: red;
+    background-color: yellow;
+}
+
+.customStyleClass .sapMText {
+    color: red;
+    font-weight: bold;
+}

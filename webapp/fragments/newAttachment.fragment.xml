@@ -6,7 +6,7 @@
 				<l:VerticalLayout>
 					<Label labelFor="rbg3" text="Select Business Document Type"/>
 					<RadioButtonGroup id="rbg3">
-						<RadioButton id="RB3-1" text="Post Inveatigation Document"/>
+						<RadioButton id="RB3-1" text="Post Investigation Document"/>
 						<RadioButton id="RB3-2" text="Power Theft Billing Document"/>
 						<RadioButton id="RB3-3" text="Power Theft Investigation Document"/>
 					</RadioButtonGroup>

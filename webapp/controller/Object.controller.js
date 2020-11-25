@@ -20,7 +20,9 @@ sap.ui.define([
 	"sap/m/TextArea",
 	"sap/m/Input",
 	"sap/m/DatePicker",
-	"sap/ui/core/format/DateFormat"
+	"sap/ui/core/format/DateFormat",
+	"sap/ui/model/Filter",
+	"sap/ui/model/FilterOperator"
 ], function(
 	Fragment,
 	BaseController,
@@ -42,7 +44,9 @@ sap.ui.define([
 	TextArea,
 	Input,
 	DatePicker,
-	DateFormat
+	DateFormat,
+	Filter,
+	FilterOperator
 ) {
 	"use strict";
 
@@ -304,14 +308,12 @@ sap.ui.define([
 								success: function(oData, oResponse) {
 									//debugger;
 									MessageBox.success("Status Update Successful");
-									console.log('Record Created Successfully...');
 									this.oConfirmDialog.destroy();
 								}.bind(this),
 								error: function(err, oResponse) {
 									//debugger;
 									sap.m.MessageToast.show("Erro Updating Record: " + err.responseText.split('message')[2]);
 									MessageBox.error("Erro Updating Record: " + err.responseText.split('message')[2]);
-									console.log("Error while creating record - ");
 								}
 							});
 
@@ -367,7 +369,6 @@ sap.ui.define([
 				merge: false,
 				success: function(oData, oResponse) {
 
-					console.log('Status Updated Successfully...');
 				},
 				error: function(err, oResponse) {
 					//	debugger;
@@ -470,11 +471,23 @@ sap.ui.define([
 		},
 
 		damageCode: function(oEvent) {
-			//debugger;
-
 			var getValue = oEvent.getParameters().selectedItem.mProperties.text;
 			var damCode = getValue.substring(0, 5);
 			this.byId('dagrp').setValue(damCode);
+		},
+		damagegrp: function(oEvent) {
+
+			var getValue = oEvent.getParameters().selectedItem.mProperties.key;
+			var dcFilter = [];
+			if (getValue) {
+				dcFilter.push(new Filter("Codegruppe", FilterOperator.Contains, getValue));
+			}
+
+			var oList = this.getView().byId("damcode");
+			var oBinding = oList.getBinding("items");
+			oBinding.filter(dcFilter);
+			this.getView().byId("damcode").setEnabled(true);
+
 		}
 
 	});

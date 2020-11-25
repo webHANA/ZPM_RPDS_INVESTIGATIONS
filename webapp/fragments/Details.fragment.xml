@@ -34,8 +34,8 @@
 				<core:Title/>
 				<Label text="Grow House"/>
 				<Text id="Growh" text="{Itgrowhouse}"/>
-				<Label text="Rate Type"/>
-				<Text id="Rtype" text="{Itratetype}"/>
+				<!--<Label text="Rate Type"/>-->
+				<!--<Text id="Rtype" text="{Itratetype}"/>-->
 				<Label text="12 Month Forward Billing $"/>
 				<Text id="Mbill" text="{Itfwdbill}"/>
 				<Label text="12 Month Forward KWH"/>

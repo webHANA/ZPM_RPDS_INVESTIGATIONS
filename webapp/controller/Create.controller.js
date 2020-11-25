@@ -40,8 +40,9 @@ sap.ui.define([
 			var that = this;
 			// BusyIndicator.show();
 			//this.getOwnerComponent().getModel().read(`/InvEquipmentSet('${arg1}')`, {
-			this.getOwnerComponent().getModel().read("/InvEquipmentSet('${arg1}')", {
+			this.getOwnerComponent().getModel().read("/InvEquipmentSet('" + arg1 + "')", {
 				success: function(oData, response) {
+					that.getView().byId('ntxt').setValue(oData.Equidescr);
 					that.getView().byId('equip').setDescription(oData.Equidescr);
 					that.getView().byId('cust').setValue(oData.Customer);
 					that.getView().byId('cdesc').setText(oData.Custname);
@@ -139,8 +140,6 @@ sap.ui.define([
 						duration: 15000,
 						animationTimingFunction: "ease-in-out"
 					});
-					//	MessageBox.success("Notification Created: " + oResponse.data.Notifid);
-					debugger;
 					that.getRouter().navTo("object", {
 						objectId: oResponse.data.Notifid
 					});
@@ -158,17 +157,19 @@ sap.ui.define([
 			});
 
 		},
+		cancelCreate: function() {
+			this.getRouter().navTo("worklist");
+		},
 		goBack: function() {
 			this.getRouter().navTo("worklist");
 		},
 		refreshEqui: function() {
-			debugger;
 			// get customer data 
 			var that = this;
 			var equi = this.getView().byId("equip").getValue();
 			BusyIndicator.show();
 			//this.getOwnerComponent().getModel().read(`/InvEquipmentSet('${equi}')`, {
-			this.getOwnerComponent().getModel().read("/InvEquipmentSet('${equi}')", {
+			this.getOwnerComponent().getModel().read("/InvEquipmentSet('" + equi + "')", {
 				success: function(oData, response) {
 					that.getView().byId('equip').setDescription(oData.Equidescr);
 					that.getView().byId('cust').setValue(oData.Customer);

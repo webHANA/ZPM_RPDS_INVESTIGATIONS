@@ -1,5 +1,4 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:Table="sap.ui.table">
-	<!--<Table id="table" width="auto" items="{ path : '/InvHeaderSet' , parameters : {expand:'toTasks'} }">-->
 	<Table id="table" width="auto" items="{toTasks}" updateFinished="onListUpdateFinished">
 		<headerToolbar>
 			<Toolbar>

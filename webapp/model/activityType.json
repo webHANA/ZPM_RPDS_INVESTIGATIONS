@@ -22,7 +22,7 @@
 		}, {
 			"ActGroup": "RP010",
 			"ActCode": "090",
-			"ActName": "Payment Received and Sent to Post"
+			"ActName": "DO NOT USE"
 		}, {
 			"ActGroup": "RP010",
 			"ActCode": "999",

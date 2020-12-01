@@ -4,19 +4,19 @@
 			"Text": ""
 		}, {
 			"Code": "RP010",
-			"Text": "RP010"
+			"Text": "No Theft of Service"
 		}, {
 			"Code": "RP020",
-			"Text": "RP020"
+			"Text": "Theft of Service"
 		}, {
 			"Code": "RP030",
-			"Text": "RP030"
+			"Text": "Incorrect metering condition"
 		}, {
 			"Code": "RP040",
-			"Text": "RP040"
+			"Text": "Diversion of Service"
 		}, {
 			"Code": "RP050",
-			"Text": "RP050"
+			"Text": "Suspected Tampering"
 		}
 
 	]

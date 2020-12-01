@@ -11,6 +11,9 @@
 		}, {
 			"CauseCode": "TOS",
 			"CauseText": "Theft of Service"
+		}, {
+			"CauseCode": "UU",
+			"CauseText": "Unauthorized Use"
 		}
 
 	]

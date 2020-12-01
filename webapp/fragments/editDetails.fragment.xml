@@ -30,7 +30,7 @@
 					<!--try new damage code logic start-->
 					<Label text="Damage Group New"/>
 					<Select id="damgrp" showSecondaryValues="true" items="{ path: 'DCModel>/damageCode'}" change="damagegrp">
-						<core:ListItem key="{DCModel>Code}" text="{DCModel>Code}"/>
+						<core:ListItem key="{DCModel>Code}" text="{DCModel>Code} - {DCModel>Text}"/>
 					</Select>
 					<Label text="Damage Code New"/>
 					<Select id="damcode" forceSelection="false" enabled="false" showSecondaryValues="true"

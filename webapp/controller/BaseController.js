@@ -101,7 +101,6 @@ sap.ui.define([
 			var myModel = sap.ui.getCore().getModel("myModel");
 			var obj = {};
 			var that = this;
-			// obj.Notifid = this.getView().byId("notifid").getValue();
 			obj.Notifid = this.getView().byId('createForm').getTitle();
 			obj.Partnerrole = this.byId("ptype").getSelectedKey();
 			obj.Partner = this.byId('partner').getValue();
@@ -110,18 +109,13 @@ sap.ui.define([
 
 			myModel.create('/InvPartnersSet', obj, {
 				success: function(oData, oResponse) {
-					//	BusyIndicator.hide();
 					sap.m.MessageToast.show("New Partner Created: " + oResponse.data.Partner);
-					//	MessageBox.success("Notification Created: " + oResponse.data.Notifid);
 					BusyIndicator.hide();
-					//					that.getView().byId("openDialog").close();
 					that.getView().byId("openDialog").destroy();
 
 				},
 				error: function(err, oResponse) {
-					//	debugger;
 					BusyIndicator.hide();
-					//					sap.m.MessageToast.show("Error Creating Record: " + err.responseText.split('message')[2]);
 					sap.m.MessageToast.show("Error Creating Record: " + err.responseText.split('message')[2]);
 					MessageBox.error("Erro Updating Record: " + err.responseText.split('message')[2]);
 					that.getView().byId("openDialog").destroy();
@@ -158,7 +152,6 @@ sap.ui.define([
 			var myModel = sap.ui.getCore().getModel("myModel");
 			var obj = {};
 			var that = this;
-			// obj.Notifid = this.getView().byId("notifid").getValue();
 			var oCode = this.byId("atype")._getSelectedItemText();
 			oCode = oCode.slice(0, 5);
 			obj.Notifid = this.getView().byId('createForm').getTitle();
@@ -752,7 +745,8 @@ sap.ui.define([
 			this.byId('agrp').setText(rowData.Activitygrp);
 			this.byId('acode').setValue(rowData.Activitycode);
 			this.byId('aamt').setValue(rowData.Activitytxt);
-			this.byId('adate').setDateValue(rowData.Activitystrdate);
+			// this.byId('adate').setDateValue(rowData.Activitystrdate);
+			this.byId('adate').setDateValue(rowData.Activitytimestmp);
 		},
 		editActivity: function(oEvent) {
 			// Set Model to Edit Activity
@@ -874,6 +868,13 @@ sap.ui.define([
 		},
 
 		handleUploadComplete: function(oEvent) {
+			// Display Error
+			// var oStatus = oEvent.getParameter("status");
+			// var oResponse = oEvent.getParameter("response");
+			// if (oStatus === 500) {
+			// 	MessageBox.error("Communication Error: Please Refresh and Try again  ----  " + oResponse);
+			// }
+
 			// refresh model binding
 			this.getView().getElementBinding().refresh(true);
 			//debugger;

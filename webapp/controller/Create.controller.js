@@ -111,7 +111,6 @@ sap.ui.define([
 		//	}
 
 		createInv: function() {
-			debugger;
 			var myModel = sap.ui.getCore().getModel("myModel");
 			var obj = {};
 			var that = this;
@@ -176,6 +175,7 @@ sap.ui.define([
 					that.getView().byId('cdesc').setText(oData.Custname);
 					that.getView().byId('cadd').setText(oData.Custaddress);
 					that.getView().byId('serial').setText(oData.Serialno);
+					that.getView().byId('ntxt').setValue(oData.Equidescr);
 
 					var oDateFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({
 						pattern: "MM/dd/yyyy"
@@ -186,7 +186,7 @@ sap.ui.define([
 					BusyIndicator.hide();
 				},
 				error: function(oError) {
-					sap.m.MessageToast.show("ErrorGetting Equipment Record: " + oError.responseText.split('message')[2]);
+					sap.m.MessageToast.show("Error Fetching Equipment Record: " + oError.responseText.split('message')[2]);
 					BusyIndicator.hide();
 				}
 			});

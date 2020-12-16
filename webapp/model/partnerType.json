@@ -1,13 +1,13 @@
 {
 	"partnerType": [{
-			"PartnerId": "AG",
-			"PartnerIdName": "Sold-To"
+		"PartnerId": "ZV",
+		"PartnerIdName": "Investigator"
+	}, {
+		"PartnerId": "ZI",
+		"PartnerIdName": "Inspector"
+	}, {
+		"PartnerId": "AG",
+		"PartnerIdName": "Sold-To"
 
-		}, {
-			"PartnerId": "ZI",
-			"PartnerIdName": "Inspector"
-
-		}
-
-	]
+	}]
 }

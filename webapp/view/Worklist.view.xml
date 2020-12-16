@@ -49,6 +49,9 @@
 					<Column>
 						<Text text="{i18n>cause}" id="cause"/>
 					</Column>
+					<Column>
+						<Text text="charachterstics" id="char"/>
+					</Column>
 				</columns>
 				<items>
 					<ColumnListItem type="Navigation" press="onPress">
@@ -70,6 +73,7 @@
 							<!--</cells>-->
 							<!--<cells>-->
 							<Text text="{Causecode}"/>
+							<Text text="{itfwdkwh} - {itbckbill}"/>
 						</cells>
 					</ColumnListItem>
 				</items>

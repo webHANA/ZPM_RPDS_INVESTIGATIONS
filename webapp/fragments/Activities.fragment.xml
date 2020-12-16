@@ -44,7 +44,8 @@
 					<Text text="{Activityamtrem}"/>
 				</cells>
 				<cells>
-					<Text text="{ path: 'Activitystrdate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium' } }"/>
+					<!--<Text text="{ path: 'Activitystrdate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium' } }"/>-->
+					<Text text="{ path: 'Activitytimestmp', type: 'sap.ui.model.type.Date', formatOptions: { style: 'short' } }"/>
 				</cells>
 			</ColumnListItem>
 		</items>

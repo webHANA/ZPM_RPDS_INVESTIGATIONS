@@ -84,6 +84,20 @@ sap.ui.define([
 
 			// Referesh Model
 
+			// 	 var that = this;
+			//var oView = this.getView();  
+			//   oView.addEventDelegate({  
+			//        onAfterShow: function(oEvent){  
+			//              var oComponent = that.getOwnerComponent();
+			//               var oLocalModel = oComponent.getModel("localModel");
+			//               var oFlag = oLocalModel.getProperty("/oFlag");
+			//                    if(oFlag){
+			//                         that.getRouter().getRoute("object").attachPatternMatched(that._onObjectMatched(false), that);
+			//                    oLocalModel.setProperty("/oFlag", false);
+			//               }
+			//        }  
+			//   }, oView);
+			debugger;
 			//			sap.ui.getCore().byId("THE_ID_OF_YOUR_VIEW").getModel().refresh(true);
 
 		},

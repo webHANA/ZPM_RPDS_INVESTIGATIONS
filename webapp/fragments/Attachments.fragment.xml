@@ -1,6 +1,6 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:Table="sap.ui.table" xmlns:u="sap.ui.unified" xmlns:l="sap.ui.layout">
 	<FlexBox alignItems="Start" justifyContent="End">
-		<Button text="New Attachment" press="newAttachment" ariaLabelledBy="editButtonLabel" tooltip="Add New Attachment"/>
+		<Button text="New Attachment" type="Emphasized" press="newAttachment" ariaLabelledBy="editButtonLabel" tooltip="Add New Attachment"/>
 	</FlexBox>
 	<Table id="atttable" width="auto" items="{toAttachments}" updateFinished="onListUpdateFinished">
 		<headerToolbar>

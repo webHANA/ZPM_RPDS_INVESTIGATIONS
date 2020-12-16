@@ -3,7 +3,7 @@
 		<headerToolbar>
 			<Toolbar>
 				<ToolbarSpacer/>
-				<Button text="New Activity" press="newActivity" ariaLabelledBy="editButtonLabel" tooltip="Set Status"/>
+				<Button text="New Activity" type="Emphasized" press="newActivity" ariaLabelledBy="editButtonLabel" tooltip="Set Status"/>
 			</Toolbar>
 		</headerToolbar>
 		<columns>

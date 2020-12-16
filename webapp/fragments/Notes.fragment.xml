@@ -1,7 +1,7 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:core="sap.ui.core">
 	<!--<VBox class="sapUiSmallMargin">-->
 		<FlexBox alignItems="Start" justifyContent="End">
-			<Button text="New Note" press="newNote" ariaLabelledBy="editButtonLabel" tooltip="Add Header Notes"/>
+			<Button text="New Note" press="newNote" type="Emphasized" ariaLabelledBy="editButtonLabel" tooltip="Add Header Notes"/>
 		</FlexBox>
 		<!--<f:SimpleForm id="notesForm" editable="false" layout="ResponsiveGridLayout" singleContainerFullSize="false">-->
 		<!--<f:content>-->

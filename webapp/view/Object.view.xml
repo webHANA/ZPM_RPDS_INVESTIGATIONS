@@ -9,14 +9,16 @@
 			<!--<layout:HorizontalLayout allowWrapping="true">-->
 			<FlexBox alignItems="Start" justifyContent="SpaceBetween">
 				<layout:VerticalLayout class="sapUiMediumMarginEnd">
-					<ObjectAttribute title="Investigation Number" text="{Notifid}"/>
-					<ObjectAttribute title="Notification Text" text="{Notifshtxt}"/>
-					<ObjectAttribute title="Priority" text="{Priority}"/>
-					<ObjectAttribute title="Status" text="{Notifstatus}"/>
+					<ObjectAttribute title="{i18n>Investigation Number}" text="{Notifid}"/>
+					<ObjectAttribute title="{i18n>NotificationText}" text="{Notifshtxt}"/>
+					<ObjectAttribute title="{i18n>Priority}" text="{Priority}"/>
+					<ObjectAttribute title="{i18n>Status}" text="{Notifstatus}"/>
 					<ObjectAttribute text="{Notifstatustxt}"/>
+					<ObjectAttribute title="{i18n>ContractOwner}" text="{Coacowner}"/>
 				</layout:VerticalLayout>
 				<layout:VerticalLayout class="sapUiMediumMarginEnd">
-					<ObjectAttribute title="Notification Date" text="{ path: 'Notifdate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium' } }"/>
+					<ObjectAttribute title="Notification Date"
+						text="{ path: 'Notifcreatets', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium' } }"/>
 					<ObjectAttribute title="Equipment" text="{Equipment}"/>
 					<ObjectAttribute title="Equipment Address" text="{Equipaddress}"/>
 					<ObjectAttribute title="Coding Group" text="{Codinggrp}"/>
@@ -64,6 +66,11 @@
 					<IconTabFilter text="{i18n>Attachment}">
 						<content>
 							<core:Fragment fragmentName="smud.pm.ZPM_RPDS_INVESTIGATIONS.fragments.Attachments" type="XML"/>
+						</content>
+					</IconTabFilter>
+					<IconTabFilter text="{i18n>Admin}">
+						<content>
+							<core:Fragment fragmentName="smud.pm.ZPM_RPDS_INVESTIGATIONS.fragments.Admin" type="XML"/>
 						</content>
 					</IconTabFilter>
 				</items>

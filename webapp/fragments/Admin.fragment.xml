@@ -1,0 +1,20 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:layout="sap.ui.layout">
+	<VBox class="sapUiSmallMargin">
+		<FlexBox alignItems="Start" justifyContent="End">
+			<layout:HorizontalLayout>
+				<Button text="Edit Admin" type="Emphasized" press="onPressAdmin" ariaLabelledBy="editButtonLabel" tooltip="Edit Admin Details"/>
+			</layout:HorizontalLayout>
+		</FlexBox>
+		<f:SimpleForm id="adminFrom" editable="false" layout="ResponsiveGridLayout" singleContainerFullSize="true">
+			<f:content>
+				<core:Title text="Admin"/>
+				<Label text="12 Month Forward Billing $" labelFor="Mbill" textAlign="Right" wrapping="true"/>
+				<Text id="Mbill" text="{Itfwdbill}"/>
+				<Label text="12 Month Forward KWH"/>
+				<Text id="Mkwh" text="{Itfwdkwh}"/>
+				<Label text="12 Month Back KWH"/>
+				<Text id="Bkwh" text="{Itbckbill}"/>
+			</f:content>
+		</f:SimpleForm>
+	</VBox>
+</core:FragmentDefinition>

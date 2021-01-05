@@ -136,11 +136,18 @@ sap.ui.define([
 					BusyIndicator.hide();
 					console.log('Record Created Successfully...');
 					sap.m.MessageToast.show("Notification Created: " + oResponse.data.Notifid, {
-						duration: 15000,
+						duration: 55000,
 						animationTimingFunction: "ease-in-out"
 					});
-					that.getRouter().navTo("object", {
-						objectId: oResponse.data.Notifid
+					// that.getRouter().navTo("object", {
+					// 	objectId: oResponse.data.Notifid
+					// });
+					MessageBox.success("New Notification created: " + oResponse.data.Notifid, {
+						//that.getRouter().navTo("worklist");
+						onClose: function(sAction) {
+							MessageToast.show("Action selected: " + sAction);
+							that.getRouter().navTo("worklist");
+						}
 					});
 
 				},

@@ -50,7 +50,7 @@
 					<Text text="{Taskcompby}"/>
 				</cells>
 				<cells>
-					<Text text="{ path: 'Taskcomdate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium' } }"/>
+					<Text text="{ path: 'Taskcomtimestmp', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium' } }"/>
 				</cells>
 				<cells>
 					<Text text="{Taskperson}"/>

@@ -82,8 +82,8 @@ sap.ui.define([
 				oViewModel.setProperty("/delay", iOriginalBusyDelay);
 			});
 
-			// Referesh Model
-
+			// Referesh Modzel
+			debugger;
 			// 	 var that = this;
 			//var oView = this.getView();  
 			//   oView.addEventDelegate({  
@@ -97,7 +97,6 @@ sap.ui.define([
 			//               }
 			//        }  
 			//   }, oView);
-			debugger;
 			//			sap.ui.getCore().byId("THE_ID_OF_YOUR_VIEW").getModel().refresh(true);
 
 		},
@@ -502,8 +501,18 @@ sap.ui.define([
 			oBinding.filter(dcFilter);
 			this.getView().byId("damcode").setEnabled(true);
 
+		},
+		onUpdateStart: function(oEvent) {
+
+		},
+		onListUpdateFinished: function(oEvent) {
+
+			//read first record from activity set and populate Amount Remaining
+			var fActivity = oEvent.oSource.mBindingInfos.items.binding.aKeys[0];
+			if (fActivity.startsWith('InvActivitiesSet')) {
+				var amtrem = this.getModel().getProperty('/' + fActivity).Activityamtrem;
+				this.byId('remAmt').setText(amtrem);
+			}
 		}
-
 	});
-
 });

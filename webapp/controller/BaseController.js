@@ -357,6 +357,58 @@ sap.ui.define([
 
 		},
 
+		onPressAdmin: function() {
+			var oView = this.getView();
+			var oDialog = oView.byId("openDialog");
+			//Open dialog Lazily
+			if (!oDialog) {
+				oDialog = sap.ui.xmlfragment(oView.getId(), "smud.pm.ZPM_RPDS_INVESTIGATIONS.fragments.editAdmin", this);
+				oView.addDependent(oDialog);
+			}
+			oDialog.open();
+			//Populate data to Dialog fields
+			this.byId('mbill').setValue(this.byId('Mbill').getText());
+			this.byId('mkwh').setValue(this.byId('Mkwh').getText());
+			this.byId('bkwh').setValue(this.byId('Bkwh').getText());
+		},
+
+		editAdmin: function(oEvent) {
+			// Set Model for Admin change
+			var oModel = this.oDataModel("activity");
+			sap.ui.getCore().setModel(oModel, "myModel");
+			var myModel = sap.ui.getCore().getModel("myModel");
+			var obj = {};
+			var that = this;
+			//Fill data to model
+			obj.Notifid = oEvent.getSource().getBindingContext().getObject().Notifid;
+			obj.Causenum = oEvent.getSource().getBindingContext().getObject().Causenum;
+			obj.Itemnum = oEvent.getSource().getBindingContext().getObject().Itemnum;
+			// Fill Admin changes data
+			obj.Itfwdbill = this.byId('mbill').getValue();
+			obj.Itfwdkwh = this.byId('mkwh').getValue();
+			obj.Itbckbill = this.byId('bkwh').getValue();
+			//create path
+			var uPath = "/InvHeaderSet('" + oEvent.getSource().getBindingContext().getObject().Notifid + "')";
+			//Make a Backend call
+			myModel.update(uPath, obj, {
+				merge: false,
+				success: function(oData, oResponse) {
+					//debugger;
+					BusyIndicator.hide();
+					that.getView().byId("openDialog").destroy();
+				},
+				error: function(err, oResponse) {
+					//debugger;
+					BusyIndicator.hide();
+					sap.m.MessageToast.show("Erro Updating Record: " + err.responseText.split('message')[2]);
+					MessageBox.error("Erro Updating Record: " + err.responseText.split('message')[2]);
+					that.getView().byId("openDialog").destroy();
+				}
+
+			});
+
+		},
+
 		onPressDetails: function() {
 			var oView = this.getView();
 			var oDialog = oView.byId("openDialog");
@@ -418,9 +470,9 @@ sap.ui.define([
 
 			//this.byId('rtype').setValue(this.byId('Rtype').getText());
 			//this.byId('rtype').setSelectedKey(this.byId('Rtype').getText());
-			this.byId('mbill').setValue(this.byId('Mbill').getText());
-			this.byId('mkwh').setValue(this.byId('Mkwh').getText());
-			this.byId('bkwh').setValue(this.byId('Bkwh').getText());
+			// this.byId('mbill').setValue(this.byId('Mbill').getText());
+			// this.byId('mkwh').setValue(this.byId('Mkwh').getText());
+			// this.byId('bkwh').setValue(this.byId('Bkwh').getText());
 
 		},
 
@@ -456,9 +508,9 @@ sap.ui.define([
 			//obj.Itratetype = this.byId('rtype').getValue();
 			obj.Itgrowhouse = this.byId('growh').getSelectedKey();
 			//obj.Itratetype = this.byId('rtype').getSelectedKey();
-			obj.Itfwdbill = this.byId('mbill').getValue();
-			obj.Itfwdkwh = this.byId('mkwh').getValue();
-			obj.Itbckbill = this.byId('bkwh').getValue();
+			// obj.Itfwdbill = this.byId('mbill').getValue();
+			// obj.Itfwdkwh = this.byId('mkwh').getValue();
+			// obj.Itbckbill = this.byId('bkwh').getValue();
 
 			var uPath = "/InvHeaderSet('" + oEvent.getSource().getBindingContext().getObject().Notifid + "')";
 			//debugger;

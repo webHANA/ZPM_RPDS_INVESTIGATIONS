@@ -1,10 +1,4 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:layout="sap.ui.layout">
-	<!--<Toolbar>-->
-	<!--	<ToolbarSpacer/>-->
-	<!--	<Button text="Put in Process" press="statusInProcess" ariaLabelledBy="editButtonLabel" tooltip="Set Status"/>-->
-	<!--	<Button text="Postpone" press="statusPostpone" ariaLabelledBy="editButtonLabel" tooltip="Set Status"/>-->
-	<!--	<Button text="Complete" press="statusComplete" ariaLabelledBy="editButtonLabel" tooltip="Set Status"/>-->
-	<!--</Toolbar>-->
 	<VBox class="sapUiSmallMargin">
 		<FlexBox alignItems="Start" justifyContent="End">
 			<layout:HorizontalLayout>
@@ -27,21 +21,23 @@
 				<!--<core:Title text="Items"/>-->
 				<Label text="Item Code"/>
 				<Text id="Icode" text="{Itobjpartcode}"/>
+				<core:Title/>
 				<Label text="Damage Group"/>
 				<Text id="Dagrp" text="{Itdamagegrp}"/>
 				<Label text="Damage Code"/>
 				<Text id="Dacode" text="{Itdamagecode}"/>
-				<core:Title/>
 				<Label text="Grow House"/>
 				<Text id="Growh" text="{Itgrowhouse}"/>
 				<!--<Label text="Rate Type"/>-->
 				<!--<Text id="Rtype" text="{Itratetype}"/>-->
-				<Label text="12 Month Forward Billing $"/>
-				<Text id="Mbill" text="{Itfwdbill}"/>
-				<Label text="12 Month Forward KWH"/>
-				<Text id="Mkwh" text="{Itfwdkwh}"/>
-				<Label text="12 Month Back KWH"/>
-				<Text id="Bkwh" text="{Itbckbill}"/>
+				<!--<Label text="12 Month Forward Billing $"/>-->
+				<!--<Text id="Mbill" text="{Itfwdbill}"/>-->
+				<!--<Label text="12 Month Forward KWH"/>-->
+				<!--<Text id="Mkwh" text="{Itfwdkwh}"/>-->
+				<!--<Label text="12 Month Back KWH"/>-->
+				<!--<Text id="Bkwh" text="{Itbckbill}"/>-->
+				<!--<Label text="Notif Create Date"/>-->
+				<!--<Text id="ncdate" text="{ path: 'Notifcreatets', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium' } }"/>-->
 			</f:content>
 		</f:SimpleForm>
 	</VBox>

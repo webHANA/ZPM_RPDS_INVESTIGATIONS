@@ -48,12 +48,12 @@
 					<!--<Select id="rtype" showSecondaryValues="true" items="{ path: 'RTModel>/rateType'}">-->
 					<!--	<core:ListItem key="{RTModel>Code}" text="{RTModel>Code}"/>-->
 					<!--</Select>-->
-					<Label text="12 Month Forward Billing $"/>
-					<Input id="mbill" required="true" value=""/>
-					<Label text="12 Month Forward KWH"/>
-					<Input id="mkwh" required="true" value=""/>
-					<Label text="12 Month Back KWH"/>
-					<Input id="bkwh" required="true" value=""/>
+					<!--<Label text="12 Month Forward Billing $"/>-->
+					<!--<Input id="mbill" required="true" value=""/>-->
+					<!--<Label text="12 Month Forward KWH"/>-->
+					<!--<Input id="mkwh" required="true" value=""/>-->
+					<!--<Label text="12 Month Back KWH"/>-->
+					<!--<Input id="bkwh" required="true" value=""/>-->
 				</f:content>
 			</f:SimpleForm>
 		</VBox>

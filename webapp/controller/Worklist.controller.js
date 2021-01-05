@@ -171,10 +171,6 @@ sap.ui.define([
 			var oTable = this.byId("table"),
 				oViewModel = this.getModel("worklistView");
 			oTable.getBinding("items").filter(aTableSearchState, "Application");
-			// changes the noDataText of the list in case there are no filter results
-			// if (aTableSearchState.length !== 0) {
-			//oViewModel.setProperty("/tableNoDataText", this.getResourceBundle().getText("worklistNoDataWithSearchText"));
-			//}
 		},
 		fragCreate: function() {
 			var oView = this.getView();
@@ -202,13 +198,11 @@ sap.ui.define([
 				"Vequip": Pequip,
 				"Vsno": Ppri,
 				"Vcode": Pcode
-					//		"Vcust": Pcust
 			});
 			this.getRouter().navTo("create", {
 				equip: Pequip,
 				pri: Ppri,
 				code: Pcode
-					//				cust: Pcust
 			});
 
 		}

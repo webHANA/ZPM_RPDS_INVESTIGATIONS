@@ -68,14 +68,7 @@ sap.ui.define([
 						});
 					});
 					that.getView().setModel(uDamageGroup, "DaCModel");
-					// uDamageGroup.forEach(function(code) {
-					// 	var oSelect = that.getView().byId("damcode");
-					// 	var newItem = new sap.ui.core.Item({
-					// 		key: code,
-					// 		text: code
-					// 	});
-					// 	oSelect.addItem(newItem);
-					// });
+
 				},
 				error: function(oError) {
 					//Error Message

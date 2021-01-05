@@ -10,7 +10,7 @@
 					<Input id="acode" enabled="false" value=""/>
 					<Label text="Amount"/>
 					<Input id="aamt" required="true" type="Number" value=""/>
-					<Label text="Date"/>
+						<Label text="Date"/>
 					<!--<Input id="adate" required="true" value=""/>-->
 					<DatePicker id="adate" required="true" valueFormat="yyyy-MM-dd" displayFormat="MM/dd/yyyy" dateValue="" class="sapUiSmallMarginBottom"/>
 				</f:content>

@@ -1,11 +1,14 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:Table="sap.ui.table">
-	<Table id="acttable" width="auto" items="{toActivities}" updateFinished="onListUpdateFinished">
+	<Table id="acttable" width="auto" items="{toActivities}" updateFinished="onListUpdateFinished" updateStarted="onUpdateStart">
 		<headerToolbar>
 			<Toolbar>
+				<Label text="Amount Remaining: " labelFor="remAmt"/>
+				<Text id="remAmt" text='here ...'/>
 				<ToolbarSpacer/>
 				<Button text="New Activity" type="Emphasized" press="newActivity" ariaLabelledBy="editButtonLabel" tooltip="Set Status"/>
 			</Toolbar>
 		</headerToolbar>
+		<Text text="{toActivities>Activityamtrem}"/>
 		<columns>
 			<Column id="actcol">
 				<Text text="Activity" id="acti"/>
@@ -19,9 +22,9 @@
 			<Column>
 				<Text text="Amount" id="actp"/>
 			</Column>
-			<Column>
-				<Text text="Amount Remaining" id="arem"/>
-			</Column>
+			<!--<Column>-->
+			<!--	<Text text="Amount Remaining" id="arem"/>-->
+			<!--</Column>-->
 			<Column>
 				<Text text="Date" id="actl"/>
 			</Column>
@@ -40,12 +43,11 @@
 				<cells>
 					<Text text="{Activitytxt}"/>
 				</cells>
+				<!--<cells>-->
+				<!--	<Text text="{Activityamtrem}"/>-->
+				<!--</cells>-->
 				<cells>
-					<Text text="{Activityamtrem}"/>
-				</cells>
-				<cells>
-					<!--<Text text="{ path: 'Activitystrdate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium' } }"/>-->
-					<Text text="{ path: 'Activitytimestmp', type: 'sap.ui.model.type.Date', formatOptions: { style: 'short' } }"/>
+					<Text text="{ path: 'Activitytimestmp', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium' } }"/>
 				</cells>
 			</ColumnListItem>
 		</items>

@@ -6,5 +6,9 @@
 		"PartnerId": "AG",
 		"PartnerIdName": "Sold-To"
 
+	}, {
+		"PartnerId": "PY",
+		"PartnerIdName": "Payer"
+
 	}]
 }

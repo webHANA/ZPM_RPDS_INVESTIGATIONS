@@ -10,9 +10,9 @@
 				<core:Title text="Admin"/>
 				<Label text="12 Month Forward Billing $" labelFor="Mbill" textAlign="Right" wrapping="true"/>
 				<Text id="Mbill" text="{Itfwdbill}"/>
-				<Label text="12 Month Forward KWH"/>
+				<Label text="12 Month Forward kWh"/>
 				<Text id="Mkwh" text="{Itfwdkwh}"/>
-				<Label text="12 Month Back KWH"/>
+				<Label text="Backbill kWh"/>
 				<Text id="Bkwh" text="{Itbckbill}"/>
 			</f:content>
 		</f:SimpleForm>

@@ -15,6 +15,7 @@
 					<ObjectAttribute title="{i18n>Status}" text="{Notifstatus}"/>
 					<ObjectAttribute text="{Notifstatustxt}"/>
 					<ObjectAttribute title="{i18n>ContractOwner}" text="{Coacowner}"/>
+					<ObjectAttribute title="{i18n>Serial No}" text="{Serialno}"/>
 				</layout:VerticalLayout>
 				<layout:VerticalLayout class="sapUiMediumMarginEnd">
 					<ObjectAttribute title="Notification Date"

@@ -1,5 +1,5 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:Table="sap.ui.table">
-	<Table id="bptable" width="auto" items="{toPartners}" updateFinished="onListUpdateFinished">
+	<Table id="bptable" width="auto" alternateRowColors="true" noDataText="No Partners" items="{toPartners}" updateFinished="onListUpdateFinished">
 		<headerToolbar>
 			<Toolbar>
 				<ToolbarSpacer/>

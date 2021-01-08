@@ -4,11 +4,11 @@
 			<f:SimpleForm id="editAdmin" editable="true" layout="ResponsiveGridLayout" afterClose="dialogAfterClose" title="">
 				<f:content>
 					<Label text="12 Month Forward Billing $"/>
-					<Input id="mbill" required="true" value=""/>
+					<Input id="mbill" value=""/>
 					<Label text="12 Month Forward kWh"/>
-					<Input id="mkwh" required="true" value=""/>
+					<Input id="mkwh" value=""/>
 					<Label text="Backbill kWh"/>
-					<Input id="bkwh" required="true" value=""/>
+					<Input id="bkwh" value=""/>
 				</f:content>
 			</f:SimpleForm>
 		</VBox>

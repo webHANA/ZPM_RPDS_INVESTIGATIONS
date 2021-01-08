@@ -2,7 +2,7 @@
 	<FlexBox alignItems="Start" justifyContent="End">
 		<Button text="New Attachment" type="Emphasized" press="newAttachment" ariaLabelledBy="editButtonLabel" tooltip="Add New Attachment"/>
 	</FlexBox>
-	<Table id="atttable" width="auto" items="{toAttachments}" updateFinished="onListUpdateFinished">
+	<Table id="atttable" width="auto" alternateRowColors="true" noDataText="No Attachments" items="{toAttachments}" updateFinished="onListUpdateFinished">
 		<headerToolbar>
 			<Toolbar>
 				<ToolbarSpacer/>

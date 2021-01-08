@@ -14,7 +14,7 @@
 						<core:ListItem key="{CCModel>CauseCode}" text="{CCModel>CauseCode} - {CCModel>CauseText}"/>
 					</Select>
 					<Label text="Cause Text"/>
-					<Input id="catxt" required="true" value=""/>
+					<Input id="catxt" value=""/>
 					<Label text="Item Code"/>
 					<!--<Input id="icode" required="true" value=""/>-->
 					<Select id="icode" showSecondaryValues="true" items="{ path: '/InvItemCodeShSet'}">

@@ -1,5 +1,5 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:Table="sap.ui.table">
-	<Table id="acttable" width="auto" items="{toActivities}" updateFinished="onListUpdateFinished" updateStarted="onUpdateStart">
+	<Table id="acttable" width="auto" alternateRowColors="true" noDataText="No Activities" items="{toActivities}" updateFinished="onListUpdateFinished" updateStarted="onUpdateStart">
 		<headerToolbar>
 			<Toolbar>
 				<Label text="Amount Remaining: " labelFor="remAmt"/>

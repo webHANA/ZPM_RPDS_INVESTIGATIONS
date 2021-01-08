@@ -7,7 +7,7 @@
 					<Select id="ptype" showSecondaryValues="true" items="{ path: 'PTModel>/partnerType'}">
 						<core:ListItem key="{PTModel>PartnerId}" text="{PTModel>PartnerId} - {PTModel>PartnerIdName}"/>
 					</Select>
-					<Label text="Select a Partner"/>
+					<Label text="Enter Partner"/>
 					<Input id="partner" />
 				</f:content>
 			</f:SimpleForm>

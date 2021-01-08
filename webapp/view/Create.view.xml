@@ -9,8 +9,8 @@
 							<content>
 								<FlexBox alignItems="Start" justifyContent="Center">
 									<VBox>
-										<Label text="Equipment"/>
-										<Input id="equip" submit="refreshEqui" value="{tempModel>/argsEquip}"/>
+										<Label text="Equipment" textAlign="Initial" />
+										<Input id="equip" submit="refreshEqui" enabled="false" value="{tempModel>/argsEquip}"/>
 									</VBox>
 								</FlexBox>
 								<FlexBox alignItems="Start" justifyContent="Center">

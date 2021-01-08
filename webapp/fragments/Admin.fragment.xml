@@ -9,14 +9,14 @@
 		<f:SimpleForm id="adminFrom" editable="false" layout="ResponsiveGridLayout" singleContainerFullSize="true">
 			<f:content>
 				<core:Title text="Admin"/>
-				<Label text="12 Month Forward Billing $" labelFor="Mbill" textAlign="Right" wrapping="true"/>
+				<Label text="12 Month Forward Billing $: " labelFor="Mbill" textAlign="Right" wrapping="true"/>
 				<Text id="Mbill" text="{Itfwdbill}"/>
 				<!--<u:Currency value="{Itfwdbill}" currency="USD" useSymbol="false"/>-->
 				<!--<Text id="Mbill" text="{ apth: 'Itfwdbill', formatter: '.formatter.numberformat'}"/>-->
-				<Label text="12 Month Forward kWh" textAlign="Right" wrapping="true"/>
+				<Label text="12 Month Forward kWh: " textAlign="Right" wrapping="true"/>
 				<Text id="Mkwh" text="{Itfwdkwh}"/>
-				<Label text="Backbill kWh"/>
-				<Text id="Bkwh" text="{Itbckbill}" textAlign="Right" wrapping="true"/>
+				<Label text="Backbill kWh: "/>
+				<Text id="Bkwh" text="{Itbckbill}" wrapping="true"/>
 			</f:content>
 		</f:SimpleForm>
 	</VBox>

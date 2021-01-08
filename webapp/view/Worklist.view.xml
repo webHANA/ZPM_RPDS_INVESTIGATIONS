@@ -42,7 +42,7 @@
 								<Text text="{i18n>Notif Status}" id="status"/>
 							</Column>
 							<Column>
-								<Text text="{i18n>Prioritytxt}" id="pri"/>
+								<Text text="{i18n>Prioritytxt}" id="pritxt"/>
 							</Column>
 						</columns>
 						<items>

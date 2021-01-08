@@ -9,9 +9,9 @@
 						<core:ListItem key="{Code}" text="{Code} - {Kurztext}"/>
 					</Select>
 					<Label text="Task Text"/>
-					<Input id="text" required="true" value=""/>
+					<Input id="text" value=""/>
 					<Label text="Inspector"/>
-					<Input id="tperson" required="true" value=""/>
+					<Input id="tperson" value=""/>
 				</f:content>
 			</f:SimpleForm>
 		</VBox>

@@ -1,5 +1,5 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:Table="sap.ui.table">
-	<Table id="table" width="auto" items="{toTasks}" updateFinished="onListUpdateFinished">
+	<Table id="table" width="auto" items="{toTasks}" alternateRowColors="true" noDataText="No Task" updateFinished="onListUpdateFinished">
 		<headerToolbar>
 			<Toolbar>
 				<ToolbarSpacer/>

@@ -11,7 +11,8 @@
 				<layout:VerticalLayout class="sapUiMediumMarginEnd">
 					<ObjectAttribute title="{i18n>Investigation Number}" text="{Notifid}"/>
 					<ObjectAttribute title="{i18n>NotificationText}" text="{Notifshtxt}"/>
-					<ObjectAttribute title="{i18n>Priority}" text="{Priority}"/>
+					<!--<ObjectAttribute title="{i18n>Priority}" text="{Priority}"/>-->
+					<ObjectAttribute title="{i18n>Priority}" text="{path: 'Priority', formatter: '.formatter.priFormatter'}"/>
 					<ObjectAttribute title="{i18n>Status}" text="{Notifstatus}"/>
 					<ObjectAttribute text="{Notifstatustxt}"/>
 					<ObjectAttribute title="{i18n>ContractOwner}" text="{Coacowner}"/>

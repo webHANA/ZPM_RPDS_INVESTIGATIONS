@@ -15,8 +15,9 @@
 								</FlexBox>
 								<FlexBox alignItems="Start" justifyContent="Center">
 									<VBox>
-										<Text/>
-										<MessageStrip id="dnp" type="Warning" text=""/>
+										<TextArea id='eqaddrs' editable="false" rows="1" cols="40" textAlign="Center" value='{Equidescr}' />
+										
+										<!--<MessageStrip id="dnp" type="Warning" text=""/>-->
 									</VBox>
 								</FlexBox>
 							</content>
@@ -39,7 +40,7 @@
 									<VBox>
 										<Label text="Priority"/>
 										<!--<Input id="pri" value="{tempModel>/argsPri}"/>-->
-										<Select id="pri" showSecondaryValues="true" items="{ path: 'PRModel>/priorityCode'}" selectedKey="">
+										<Select id="pri" showSecondaryValues="true" change="setCauseCode" items="{ path: 'PRModel>/priorityCode'}" selectedKey="">
 											<core:ListItem key="{PRModel>Priority}" text="{PRModel>Priority} - {PRModel>PriorityTxt}"/>
 										</Select>
 										<Label text="Coding Code"/>

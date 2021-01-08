@@ -6,13 +6,13 @@
 		</semantic:titleHeading>
 		<semantic:content>
 			<IconTabBar id="iconTabBar" select=".onQuickFilter" expandable="true" headerBackgroundDesign="Transparent">
-				<items>
-					<IconTabFilter key="all" showAll="true" count="50" text="Investigations"/>
-					<IconTabSeparator/>
-					<IconTabFilter key="open" icon="sap-icon://message-success" iconColor="Positive" count="10" text="Open"/>
-					<IconTabFilter key="inProcess" icon="sap-icon://message-warning" iconColor="Critical" count="20" text="InProcess"/>
-					<IconTabFilter key="closed" icon="sap-icon://message-error" iconColor="Negative" count="20" text="Closed"/>
-				</items>
+				<!--<items>-->
+				<!--	<IconTabFilter key="all" showAll="true" count="50" text="Investigations"/>-->
+				<!--	<IconTabSeparator/>-->
+				<!--	<IconTabFilter key="open" icon="sap-icon://message-success" iconColor="Positive" count="10" text="Open"/>-->
+				<!--	<IconTabFilter key="inProcess" icon="sap-icon://message-warning" iconColor="Critical" count="20" text="InProcess"/>-->
+				<!--	<IconTabFilter key="closed" icon="sap-icon://message-error" iconColor="Negative" count="20" text="Closed"/>-->
+				<!--</items>-->
 				<content>
 					<Table id="table" width="auto" items="{ path: '/InvHeaderSet', sorter: { path: 'Notifid', ascending: true } }"
 						noDataText="{worklistView>/tableNoDataText}" busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingThreshold="20"
@@ -42,7 +42,7 @@
 								<Text text="{i18n>Notif Status}" id="status"/>
 							</Column>
 							<Column>
-								<Text text="{i18n>cause}" id="cause"/>
+								<Text text="{i18n>Prioritytxt}" id="pri"/>
 							</Column>
 						</columns>
 						<items>
@@ -53,7 +53,7 @@
 									<Text text="{Equipment}"/>
 									<Text text="{Coacowner}"/>
 									<Text text="{Notifstatustxt}"/>
-									<Text text="{Causecode}"/>
+									<Text text="{path: 'Priority', formatter: '.formatter.priFormatter'}"/>
 								</cells>
 							</ColumnListItem>
 						</items>

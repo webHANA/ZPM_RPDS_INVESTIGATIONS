@@ -83,7 +83,7 @@ sap.ui.define([
 			});
 
 			// Referesh Modzel
-			debugger;
+			// debugger;
 			// 	 var that = this;
 			//var oView = this.getView();  
 			//   oView.addEventDelegate({  

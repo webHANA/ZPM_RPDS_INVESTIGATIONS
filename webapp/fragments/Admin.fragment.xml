@@ -1,4 +1,5 @@
-<core:FragmentDefinition xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:layout="sap.ui.layout">
+<core:FragmentDefinition xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:layout="sap.ui.layout"
+	xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified">
 	<VBox class="sapUiSmallMargin">
 		<FlexBox alignItems="Start" justifyContent="End">
 			<layout:HorizontalLayout>
@@ -10,10 +11,12 @@
 				<core:Title text="Admin"/>
 				<Label text="12 Month Forward Billing $" labelFor="Mbill" textAlign="Right" wrapping="true"/>
 				<Text id="Mbill" text="{Itfwdbill}"/>
-				<Label text="12 Month Forward kWh"/>
+				<!--<u:Currency value="{Itfwdbill}" currency="USD" useSymbol="false"/>-->
+				<!--<Text id="Mbill" text="{ apth: 'Itfwdbill', formatter: '.formatter.numberformat'}"/>-->
+				<Label text="12 Month Forward kWh" textAlign="Right" wrapping="true"/>
 				<Text id="Mkwh" text="{Itfwdkwh}"/>
 				<Label text="Backbill kWh"/>
-				<Text id="Bkwh" text="{Itbckbill}"/>
+				<Text id="Bkwh" text="{Itbckbill}" textAlign="Right" wrapping="true"/>
 			</f:content>
 		</f:SimpleForm>
 	</VBox>

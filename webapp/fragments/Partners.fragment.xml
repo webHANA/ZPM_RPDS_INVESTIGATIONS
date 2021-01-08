@@ -29,7 +29,7 @@
 					<ObjectIdentifier title="{Partnumber}"/>
 				</cells>
 				<cells>
-					<Text text="{Partnerrole}"/>
+					<Text text="{ path: 'Partnerrole', formatter: '.formatter.partnerFormatter'}"/>
 				</cells>
 				<cells>
 					<Text text="{Partner}"/>

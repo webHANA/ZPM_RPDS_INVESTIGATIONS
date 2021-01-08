@@ -15,7 +15,6 @@ sap.ui.define([
 		 */
 		onInit: function() {
 			//catch the values after URL
-			debugger;
 			var oRouter = this.getRouter();
 			oRouter.getRoute("create").attachMatched(this._onRouteMatched, this);
 
@@ -43,7 +42,8 @@ sap.ui.define([
 			this.getOwnerComponent().getModel().read("/InvEquipmentSet('" + arg1 + "')", {
 				success: function(oData, response) {
 					that.getView().byId('ntxt').setValue(oData.Equidescr);
-					that.getView().byId('equip').setDescription(oData.Equidescr);
+					// that.getView().byId('equip').setDescription(oData.Equidescr);
+					that.getView().byId('eqaddrs').setValue(oData.EquidescrFull);
 					that.getView().byId('cust').setValue(oData.Customer);
 					that.getView().byId('cdesc').setText(oData.Custname);
 					that.getView().byId('cadd').setText(oData.Custaddress);
@@ -52,7 +52,7 @@ sap.ui.define([
 						pattern: "dd/MM/yyyy"
 					});
 					var aDate = oDateFormat.format(oData.Actdate);
-					that.getView().byId('dnp').setText('Code: ' + oData.Actstatus + ' : ' + oData.Actstatustxt + ' on ' + aDate);
+					// that.getView().byId('dnp').setText('Code: ' + oData.Actstatus + ' : ' + oData.Actstatustxt + ' on ' + aDate);
 					// BusyIndicator.hide();
 				},
 				error: function(oError) {
@@ -63,6 +63,12 @@ sap.ui.define([
 
 			this.getView().byId('pri').setSelectedKey(arg2);
 			this.getView().byId('ccode').setSelectedKey(arg3);
+			// var chkPri = this.getView().byId('pri').setSelectedKey(arg2);
+			if (arg2 === '0') {
+				this.getView().byId('cacode').setSelectedKey('000');
+			} else {
+				this.getView().byId('cacode').setSelectedKey('010');
+			}
 			this.getView().getModel("tempModel").setProperty("/", {
 				"argsEquip": arg1,
 				"argsPri": arg2,
@@ -71,7 +77,6 @@ sap.ui.define([
 				"argUser": arg5
 			});
 			// add notif logic
-			debugger;
 			// this.getOwnerComponent().getModel.read(`/InvEquipmentSet('${arg1}')/toHeader`, {
 			// 	success: function(oData, response) {
 			// 		debugger;
@@ -177,7 +182,8 @@ sap.ui.define([
 			//this.getOwnerComponent().getModel().read(`/InvEquipmentSet('${equi}')`, {
 			this.getOwnerComponent().getModel().read("/InvEquipmentSet('" + equi + "')", {
 				success: function(oData, response) {
-					that.getView().byId('equip').setDescription(oData.Equidescr);
+					// that.getView().byId('equip').setDescription(oData.Equidescr);
+					that.getView().byId('eqaddrs').setValue(oData.EquidescrFull);
 					that.getView().byId('cust').setValue(oData.Customer);
 					that.getView().byId('cdesc').setText(oData.Custname);
 					that.getView().byId('cadd').setText(oData.Custaddress);
@@ -188,7 +194,7 @@ sap.ui.define([
 						pattern: "MM/dd/yyyy"
 					});
 					var aDate = oDateFormat.format(oData.Actdate);
-					that.getView().byId('dnp').setText('Code: ' + oData.Actstatus + ' : ' + oData.Actstatustxt + ' on ' + aDate);
+					// that.getView().byId('dnp').setText('Code: ' + oData.Actstatus + ' : ' + oData.Actstatustxt + ' on ' + aDate);
 
 					BusyIndicator.hide();
 				},
@@ -197,6 +203,14 @@ sap.ui.define([
 					BusyIndicator.hide();
 				}
 			});
+		},
+		setCauseCode: function() {
+			// debugger;
+			if (this.getView().byId('pri').getSelectedKey() === '0') {
+				this.getView().byId('cacode').setSelectedKey('000');
+			} else {
+				this.getView().byId('cacode').setSelectedKey('010');
+			}
 		}
 
 	});

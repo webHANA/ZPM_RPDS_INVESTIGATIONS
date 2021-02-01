@@ -15,7 +15,7 @@
 								</FlexBox>
 								<FlexBox alignItems="Start" justifyContent="Center">
 									<VBox>
-										<TextArea id='eqaddrs' editable="false" rows="1" cols="40" textAlign="Center" value='{Equidescr}' />
+										<TextArea id='eqaddrs' editable="false" rows="2" cols="40" textAlign="Center" value='{Equidescr}' />
 										
 										<!--<MessageStrip id="dnp" type="Warning" text=""/>-->
 									</VBox>

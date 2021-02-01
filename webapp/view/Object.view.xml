@@ -9,7 +9,7 @@
 			<!--<layout:HorizontalLayout allowWrapping="true">-->
 			<FlexBox alignItems="Start" justifyContent="SpaceBetween">
 				<layout:VerticalLayout class="sapUiMediumMarginEnd">
-					<ObjectAttribute title="{i18n>Investigation Number}" text="{Notifid}"/>
+					<ObjectAttribute id="hnotif" title="{i18n>Investigation Number}" text="{Notifid}"/>
 					<ObjectAttribute title="{i18n>NotificationText}" text="{Notifshtxt}"/>
 					<!--<ObjectAttribute title="{i18n>Priority}" text="{Priority}"/>-->
 					<ObjectAttribute title="{i18n>Priority}" text="{path: 'Priority', formatter: '.formatter.priFormatter'}"/>
@@ -31,9 +31,9 @@
 			<!--</layout:HorizontalLayout>-->
 			<FlexBox alignItems="Start" justifyContent="Center">
 				<layout:HorizontalLayout>
-					<Button text="Put in Process" type="Emphasized" class="sapUiSmallMarginBeginEnd" press="statusInProcess" ariaLabelledBy="editButtonLabel"
+					<Button text="Put in Process" type="Emphasized" visible="false" class="sapUiSmallMarginBeginEnd" press="statusInProcess" ariaLabelledBy="editButtonLabel"
 						tooltip="Set Status"/>
-					<Button text="Complete" type="Emphasized" press="statusComplete" ariaLabelledBy="editButtonLabel" tooltip="Set Status"/>
+					<Button text="Close Investigation" type="Emphasized" press="statusComplete" ariaLabelledBy="editButtonLabel" tooltip="Set Status"/>
 				</layout:HorizontalLayout>
 			</FlexBox>
 		</semantic:headerContent>

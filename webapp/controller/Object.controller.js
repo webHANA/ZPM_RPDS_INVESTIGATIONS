@@ -513,6 +513,39 @@ sap.ui.define([
 				var amtrem = this.getModel().getProperty('/' + fActivity).Activityamtrem;
 				this.byId('remAmt').setText(amtrem);
 			}
+		},
+		
+		completePrimaryTask: function(oEvent) {
+			debugger;
+			var myModel = this.getOwnerComponent().getModel();
+			var userid = sap.ushell.Container.getService("UserInfo").getId();
+			var Notifid = this.getView().byId('hnotif').getText(); 
+			// var uPath = oEvent.getSource().getBindingContext().getPath();
+			var uPath = "/InvTasksSet(Notifid='" + Notifid + "',Tasknumber='0001')";
+			var obj = {};
+			obj.Notifid = Notifid;
+			obj.Tasknumber = '0001';
+			obj.Tasksortno = '0001';
+			obj.Taskstatus = 'Complete';
+			obj.Taskcomdate = new Date();
+			obj.Taskcompby = sap.ushell.Container.getService("UserInfo").getId();
+			
+			//Send backend update
+				myModel.update(uPath, obj, {
+								merge: false,
+								success: function(oData, oResponse) {
+									//debugger;
+									sap.m.MessageToast.show("Staus Updated ");
+									MessageBox.success("Status Update Successful");
+									//this.oConfirmDialog.destroy();
+								}.bind(this),
+								error: function(err, oResponse) {
+									//debugger;
+									sap.m.MessageToast.show("Erro Updating Record: " + err.responseText.split('message')[2]);
+									//MessageBox.error("Erro Updating Record: " + err.responseText.split('message')[2]);
+								}
+							});
+			
 		}
 	});
 });

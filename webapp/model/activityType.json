@@ -17,14 +17,6 @@
 			"ActName": "Reconnect Fee"
 		}, {
 			"ActGroup": "RP010",
-			"ActCode": "080",
-			"ActName": "Billed Amount"
-		}, {
-			"ActGroup": "RP010",
-			"ActCode": "090",
-			"ActName": "DO NOT USE"
-		}, {
-			"ActGroup": "RP010",
 			"ActCode": "999",
 			"ActName": "Other Fee/Charges"
 		}, {

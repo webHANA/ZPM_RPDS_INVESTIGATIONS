@@ -16,13 +16,13 @@ sap.ui.define([
 		onInit: function() {
 			//catch the values after URL
 			var oRouter = this.getRouter();
-			oRouter.getRoute("create").attachMatched(this._onRouteMatched, this);
+			oRouter.getRoute("create").attachMatched(this.onRoute, this);
 
 			//set Model
 			var oModel = this.oDataModel("create");
 			sap.ui.getCore().setModel(oModel, "myModel");
 		},
-		_onRouteMatched: function(oEvent) {
+		onRoute: function(oEvent) {
 			var oArgs;
 			var oView;
 			oArgs = oEvent.getParameter("arguments");
@@ -54,6 +54,9 @@ sap.ui.define([
 					var aDate = oDateFormat.format(oData.Actdate);
 					// that.getView().byId('dnp').setText('Code: ' + oData.Actstatus + ' : ' + oData.Actstatustxt + ' on ' + aDate);
 					// BusyIndicator.hide();
+					if (!oData.EquidescrFull) {
+					MessageBox.error("Equipment Not Found:" + arg1 );
+					}
 				},
 				error: function(oError) {
 					sap.m.MessageToast.show("Error Getting Equipment Information: " + oError.responseText.split('message')[2]);

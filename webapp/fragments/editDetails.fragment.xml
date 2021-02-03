@@ -20,6 +20,8 @@
 					<Select id="icode" showSecondaryValues="true" items="{ path: '/InvItemCodeShSet'}">
 						<core:ListItem key="{Code}" text="{Code} - {Kurztext}"/>
 					</Select>
+					<Label text="Item Text"/>
+					<Input id="ittxt" value=""/>
 					<!--<Label text="Damage Group"/>-->
 					<!--<Input id="dagrp" required="true" value="" enabled="false"/>-->
 					<!--<Label text="Damage Code"/>-->
@@ -28,11 +30,11 @@
 					<!--	<core:ListItem key="{Codegruppe}{Code}" text="{Codegruppe} - {Code} - {Kurztext}"/>-->
 					<!--</Select>-->
 					<!--try new damage code logic start-->
-					<Label text="Damage Group New"/>
+					<Label text="Damage Group"/>
 					<Select id="damgrp" showSecondaryValues="true" items="{ path: 'DCModel>/damageCode'}" change="damagegrp">
 						<core:ListItem key="{DCModel>Code}" text="{DCModel>Code} - {DCModel>Text}"/>
 					</Select>
-					<Label text="Damage Code New"/>
+					<Label text="Damage Code"/>
 					<Select id="damcode" forceSelection="false" enabled="false" showSecondaryValues="true"
 						items="{ path: '/InvDamageCodeShSet', templateShareable : false}" change="da">
 						<core:ListItem key="{Codegruppe}{Code}" text="{Codegruppe} - {Code} - {Kurztext}"/>

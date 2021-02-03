@@ -10,7 +10,8 @@
 				<!--header Information-->
 				<core:Title text="Header"/>
 				<Label text="Coding Code"/>
-				<Text id="Cocode" text="{Codingcode}"/>
+				<Text id="Cocode" text="{ path: 'Codingcode', formatter: '.formatter.cocodeFormatter'}"/>
+				<!--<Text text="{ path: 'Partnerrole', formatter: '.formatter.partnerFormatter'}"/>-->
 				<!--Causes Information-->
 				<!--<core:Title text="Causes"/>-->
 				<Label text="Cause Code"/>
@@ -28,16 +29,8 @@
 				<Text id="Dacode" text="{Itdamagecode}"/>
 				<Label text="Grow House"/>
 				<Text id="Growh" text="{Itgrowhouse}"/>
-				<!--<Label text="Rate Type"/>-->
-				<!--<Text id="Rtype" text="{Itratetype}"/>-->
-				<!--<Label text="12 Month Forward Billing $"/>-->
-				<!--<Text id="Mbill" text="{Itfwdbill}"/>-->
-				<!--<Label text="12 Month Forward KWH"/>-->
-				<!--<Text id="Mkwh" text="{Itfwdkwh}"/>-->
-				<!--<Label text="12 Month Back KWH"/>-->
-				<!--<Text id="Bkwh" text="{Itbckbill}"/>-->
-				<!--<Label text="Notif Create Date"/>-->
-				<!--<Text id="ncdate" text="{ path: 'Notifcreatets', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium' } }"/>-->
+				<Label text="Item Text"/>
+				<Text id="Ittxt" text="{Itshtxt}"/>
 			</f:content>
 		</f:SimpleForm>
 	</VBox>

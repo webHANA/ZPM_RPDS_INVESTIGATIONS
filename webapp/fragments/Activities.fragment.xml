@@ -3,7 +3,7 @@
 		<headerToolbar>
 			<Toolbar>
 				<Label text="Amount Remaining: " labelFor="remAmt"/>
-				<Text id="remAmt" text='here ...'/>
+				<Text id="remAmt" text='0'/>
 				<ToolbarSpacer/>
 				<Button text="New Activity" type="Emphasized" press="newActivity" ariaLabelledBy="editButtonLabel" tooltip="Set Status"/>
 			</Toolbar>

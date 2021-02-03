@@ -516,7 +516,6 @@ sap.ui.define([
 		},
 		
 		completePrimaryTask: function(oEvent) {
-			debugger;
 			var myModel = this.getOwnerComponent().getModel();
 			var userid = sap.ushell.Container.getService("UserInfo").getId();
 			var Notifid = this.getView().byId('hnotif').getText(); 

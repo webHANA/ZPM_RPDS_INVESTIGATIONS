@@ -1,5 +1,5 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:Table="sap.ui.table">
-	<Table id="table" width="auto" items="{toTasks}" alternateRowColors="true" noDataText="No Task" updateFinished="onListUpdateFinished">
+	<Table id="table" items="{toTasks}" alternateRowColors="true" noDataText="No Task" updateFinished="onListUpdateFinished">
 		<headerToolbar>
 			<Toolbar>
 				<ToolbarSpacer/>
@@ -7,31 +7,31 @@
 			</Toolbar>
 		</headerToolbar>
 		<columns>
-			<Column id="nameColumn">
+			<Column id="nameColumn" width="12em">
 				<Text text="Tasks" id="notifid"/>
 			</Column>
-			<Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
 				<Text text="Task Status" id="dcode"/>
 			</Column>
-			<Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
 				<Text text="Task Text" id="ttxt"/>
 			</Column>
-			<Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
 				<Text text="Task Completed By" id="codegrp"/>
 			</Column>
-			<Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
 				<Text text="Task Completed Date" id="edate"/>
 			</Column>
-			<Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
 				<Text text="Inspector" id="Inp"/>
 			</Column>
-			<Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
 				<Text text="User Status" id="ust"/>
 			</Column>
-			<Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
 				<Text text="Notes" id="note"/>
 			</Column>
-			<Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
 				<Text text="Change Task Status " id="tstat"/>
 			</Column>
 		</columns>

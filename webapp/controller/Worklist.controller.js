@@ -129,7 +129,8 @@ sap.ui.define([
 				var sQuery = oEvent.getParameter("query");
 
 				if (sQuery && sQuery.length > 0) {
-					aTableSearchState = [new Filter("Equipaddress", FilterOperator.Contains, sQuery)];
+					 //aTableSearchState = [new Filter("Equipaddress", FilterOperator.Contains, sQuery)];
+					 aTableSearchState = [new Filter("Notifshtxt", FilterOperator.Contains, sQuery)];
 				}
 				this._applySearch(aTableSearchState);
 			}

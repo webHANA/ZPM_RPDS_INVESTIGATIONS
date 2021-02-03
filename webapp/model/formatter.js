@@ -68,6 +68,27 @@ sap.ui.define([], function() {
 			}
 
 		},
+		cocodeFormatter: function(sValue) {
+			if (sValue) {
+			//	debugger;
+				return sValue;
+				// return function() {
+				// 	this.getOwnerComponent().getModel().read("/InvCodingCodeShSet(Codegruppe='RPDS',Code='" + sValue + "')", {
+				// 		success: function(OData, response) {
+				// 			debugger;
+				// 			var returnObj = OData.Kurztext;
+				// 			return returnObj;
+				// 		},
+				// 		error: function(oError) {
+				// 			debugger;
+				// 			//Error Message
+				// 			return null;
+				// 		}
+				// 	});
+				// }
+			} else
+				return sValue;
+		},
 		numberformat: function(sValue) {
 
 		}

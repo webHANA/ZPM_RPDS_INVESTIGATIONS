@@ -433,26 +433,18 @@ sap.ui.define([
 			oBinding.filter(dcFilter);
 			this.getView().byId("damcode").setEnabled(true);
 
-			//this.byId('cacode').setValue(this.byId('Cacode').getText());
 			this.byId('cacode').setSelectedKey(this.byId('Cacode').getText());
-			//	this.byId('cocode').setValue(this.byId('Cocode').getText());
 			this.byId('cocode').setSelectedKey(this.byId('Cocode').getText());
 			this.byId('catxt').setValue(this.byId('Catxt').getText());
-			//this.byId('icode').setValue(this.byId('Icode').getText());
+			this.byId('ittxt').setValue(this.byId('Ittxt').getText());
 			this.byId('icode').setSelectedKey(this.byId('Icode').getText());
-			//this.byId('dagrp').setValue(this.byId('Dagrp').getText());
 			//New Damage Group Field
 			this.byId('damgrp').setSelectedKey(this.byId('Dagrp').getText());
-			// this.byId('dacode').setValue(this.byId('Dacode').getText());
 			var damCode = this.byId('Dagrp').getText() + this.byId('Dacode').getText();
-			// this.byId('dacode').setSelectedKey(this.byId('Dacode').getText());
-			//this.byId('dacode').setSelectedKey(damCode);
-			//	var damco = this.byId('Dacode').getText();
 			this.byId('damcode').setSelectedKey(damCode);
 			// Get grow house code
 			var inGH = this.byId('Growh').getText();
 			var getGH = this.getView().getModel('GHModel').getProperty('/growHouse');
-			//var selGH = getGH.filter(desc => desc.Description === inGH);
 			var selGH = getGH.filter(function(e) {
 				return e.Description === inGH;
 			});
@@ -461,19 +453,6 @@ sap.ui.define([
 			// Get Rate Type code
 			// var inRT = this.byId('Rtype').getText();
 			// var getRT = this.getView().getModel('RTModel').getProperty('/rateType');
-			// //var selGH = getGH.filter(desc => desc.Description === inGH);
-			// var selRT = getRT.filter(function(e) {
-			// 	return e.Description === inRT;
-			// });
-			// var setRT = selRT[0].Code;
-			// this.byId('rtype').setSelectedKey(setRT);
-
-			//this.byId('rtype').setValue(this.byId('Rtype').getText());
-			//this.byId('rtype').setSelectedKey(this.byId('Rtype').getText());
-			// this.byId('mbill').setValue(this.byId('Mbill').getText());
-			// this.byId('mkwh').setValue(this.byId('Mkwh').getText());
-			// this.byId('bkwh').setValue(this.byId('Bkwh').getText());
-
 		},
 
 		editDetails: function(oEvent) {
@@ -488,30 +467,22 @@ sap.ui.define([
 			obj.Causenum = oEvent.getSource().getBindingContext().getObject().Causenum;
 			obj.Itemnum = oEvent.getSource().getBindingContext().getObject().Itemnum;
 			obj.Codinggrp = "RPDS";
-			//obj.Codingcode = this.byId('cocode').getValue();
 			obj.Codingcode = this.byId('cocode').getSelectedKey();
 			obj.Causegrp = "RPRESULT";
-			//obj.Causecode = this.byId('cacode').getValue();
 			obj.Causecode = this.byId('cacode').getSelectedKey();
 			obj.Causeshtxt = this.byId('catxt').getValue();
+			obj.Itshtxt = this.byId('ittxt').getValue();
 			obj.Itobjpartgrp = "RP010";
-			//obj.Itobjpartcode = this.byId('icode').getValue();
 			obj.Itobjpartcode = this.byId('icode').getSelectedKey();
-			//			obj.Itdamagegrp = this.byId('dagrp').getValue();
 			obj.Itdamagegrp = this.byId('damgrp').getSelectedKey();
-			// obj.Itdamagecode = this.byId('dacode').getValue();
-			//			var getCode = this.byId('dacode').getSelectedKey();
+	
 			var getCode = this.byId('damcode').getSelectedKey();
 			var newDacode = getCode.substring(5, 8);
 			obj.Itdamagecode = newDacode;
-			//obj.Itgrowhouse = this.byId('growh').getValue();
 			//obj.Itratetype = this.byId('rtype').getValue();
 			obj.Itgrowhouse = this.byId('growh').getSelectedKey();
 			//obj.Itratetype = this.byId('rtype').getSelectedKey();
-			// obj.Itfwdbill = this.byId('mbill').getValue();
-			// obj.Itfwdkwh = this.byId('mkwh').getValue();
-			// obj.Itbckbill = this.byId('bkwh').getValue();
-
+	
 			var uPath = "/InvHeaderSet('" + oEvent.getSource().getBindingContext().getObject().Notifid + "')";
 			//debugger;
 			myModel.update(uPath, obj, {

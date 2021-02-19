@@ -27,7 +27,7 @@
 								<HBox>
 									<VBox>
 										<Label text="Notification Text"/>
-										<Input id="ntxt" enabled="false" value=""/>
+										<Input id="ntxt" width="300px" enabled="false" value=""/>
 										<Label text="Coding Code Group"/>
 										<Input id="ccgrp" enabled="false" value="RPDS"/>
 										<Label text="Item Code Group"/>

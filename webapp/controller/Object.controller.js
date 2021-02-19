@@ -82,23 +82,6 @@ sap.ui.define([
 				oViewModel.setProperty("/delay", iOriginalBusyDelay);
 			});
 
-			// Referesh Modzel
-			// debugger;
-			// 	 var that = this;
-			//var oView = this.getView();  
-			//   oView.addEventDelegate({  
-			//        onAfterShow: function(oEvent){  
-			//              var oComponent = that.getOwnerComponent();
-			//               var oLocalModel = oComponent.getModel("localModel");
-			//               var oFlag = oLocalModel.getProperty("/oFlag");
-			//                    if(oFlag){
-			//                         that.getRouter().getRoute("object").attachPatternMatched(that._onObjectMatched(false), that);
-			//                    oLocalModel.setProperty("/oFlag", false);
-			//               }
-			//        }  
-			//   }, oView);
-			//			sap.ui.getCore().byId("THE_ID_OF_YOUR_VIEW").getModel().refresh(true);
-
 		},
 
 		/* =========================================================== */
@@ -509,16 +492,18 @@ sap.ui.define([
 
 			//read first record from activity set and populate Amount Remaining
 			var fActivity = oEvent.oSource.mBindingInfos.items.binding.aKeys[0];
-			if (fActivity.startsWith('InvActivitiesSet')) {
-				var amtrem = this.getModel().getProperty('/' + fActivity).Activityamtrem;
-				this.byId('remAmt').setText(amtrem);
+			if (fActivity) {
+				if (fActivity.startsWith('InvActivitiesSet')) {
+					var amtrem = this.getModel().getProperty('/' + fActivity).Activityamtrem;
+					this.byId('remAmt').setText(amtrem);
+				}
 			}
 		},
-		
+
 		completePrimaryTask: function(oEvent) {
 			var myModel = this.getOwnerComponent().getModel();
 			var userid = sap.ushell.Container.getService("UserInfo").getId();
-			var Notifid = this.getView().byId('hnotif').getText(); 
+			var Notifid = this.getView().byId('hnotif').getText();
 			// var uPath = oEvent.getSource().getBindingContext().getPath();
 			var uPath = "/InvTasksSet(Notifid='" + Notifid + "',Tasknumber='0001')";
 			var obj = {};
@@ -528,23 +513,23 @@ sap.ui.define([
 			obj.Taskstatus = 'Complete';
 			obj.Taskcomdate = new Date();
 			obj.Taskcompby = sap.ushell.Container.getService("UserInfo").getId();
-			
+
 			//Send backend update
-				myModel.update(uPath, obj, {
-								merge: false,
-								success: function(oData, oResponse) {
-									//debugger;
-									sap.m.MessageToast.show("Staus Updated ");
-									MessageBox.success("Status Update Successful");
-									//this.oConfirmDialog.destroy();
-								}.bind(this),
-								error: function(err, oResponse) {
-									//debugger;
-									sap.m.MessageToast.show("Erro Updating Record: " + err.responseText.split('message')[2]);
-									//MessageBox.error("Erro Updating Record: " + err.responseText.split('message')[2]);
-								}
-							});
-			
+			myModel.update(uPath, obj, {
+				merge: false,
+				success: function(oData, oResponse) {
+					//debugger;
+					sap.m.MessageToast.show("Staus Updated ");
+					MessageBox.success("Status Update Successful");
+					//this.oConfirmDialog.destroy();
+				}.bind(this),
+				error: function(err, oResponse) {
+					//debugger;
+					sap.m.MessageToast.show("Erro Updating Record: " + err.responseText.split('message')[2]);
+					//MessageBox.error("Erro Updating Record: " + err.responseText.split('message')[2]);
+				}
+			});
+
 		}
 	});
 });

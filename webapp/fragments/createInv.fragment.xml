@@ -4,7 +4,7 @@
 			<f:SimpleForm id="createForm" editable="true" layout="ResponsiveGridLayout" title="Create New Investigation">
 				<f:content>
 					<Label text="Equipment"/>
-					<Input id="equip" value="11601424"/>
+					<Input id="equip" value="11569308"/>
 					<Label text="Priority"/>
 					<Input id="pri" value="C"/>
 					<Label text="Coding Code"/>

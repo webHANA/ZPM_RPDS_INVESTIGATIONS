@@ -183,9 +183,7 @@ sap.ui.define([
 						that.getView().byId("openDialog").destroy();
 					},
 					error: function(err, oResponse) {
-						//	debugger;
 						BusyIndicator.hide();
-						//					sap.m.MessageToast.show("Error Creating Record: " + err.responseText.split('message')[2]);
 						sap.m.MessageToast.show("Error Creating Record: " + err.responseText.split('message')[2]);
 						MessageBox.error("Erro Updating Record: " + err.responseText.split('message')[2]);
 						that.getView().byId("openDialog").destroy();
@@ -475,14 +473,14 @@ sap.ui.define([
 			obj.Itobjpartgrp = "RP010";
 			obj.Itobjpartcode = this.byId('icode').getSelectedKey();
 			obj.Itdamagegrp = this.byId('damgrp').getSelectedKey();
-	
+
 			var getCode = this.byId('damcode').getSelectedKey();
 			var newDacode = getCode.substring(5, 8);
 			obj.Itdamagecode = newDacode;
 			//obj.Itratetype = this.byId('rtype').getValue();
 			obj.Itgrowhouse = this.byId('growh').getSelectedKey();
 			//obj.Itratetype = this.byId('rtype').getSelectedKey();
-	
+
 			var uPath = "/InvHeaderSet('" + oEvent.getSource().getBindingContext().getObject().Notifid + "')";
 			//debugger;
 			myModel.update(uPath, obj, {

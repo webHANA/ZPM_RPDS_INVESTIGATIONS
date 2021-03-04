@@ -1,34 +1,6 @@
 {
   "run": [
     {
-      "filePath": "/ZPM_RPDS_INVESTIGATIONS/webapp/test/flpSandboxMockServer.html",
-      "previewMode": 1,
-      "dataMode": 1,
-      "workspace": "withoutWorkspace",
-      "urlParameters": [
-        {
-          "paramName": "",
-          "paramValue": "",
-          "paramActive": false
-        },
-        {
-          "paramName": "",
-          "paramValue": "",
-          "paramActive": false
-        }
-      ],
-      "hashParameter": "RPDSInvestigations-display",
-      "ui5ActiveVersion": "snapshot",
-      "ui5VerSource": null,
-      "isDefaultVersion": 1,
-      "_metadata": {
-        "id": "7773121",
-        "runnerId": "webapprunner",
-        "displayName": "App in FLP Sandbox (Mock Server)",
-        "lastRunTimeStamp": 1613759329388
-      }
-    },
-    {
       "filePath": "/ZPM_RPDS_INVESTIGATIONS/webapp/test/flpSandbox.html",
       "previewMode": 1,
       "dataMode": 1,
@@ -53,7 +25,35 @@
         "id": "7758874",
         "runnerId": "webapprunner",
         "displayName": "App in FLP Sandbox",
-        "lastRunTimeStamp": 1613759280473
+        "lastRunTimeStamp": 1614901791995
+      }
+    },
+    {
+      "filePath": "/ZPM_RPDS_INVESTIGATIONS/webapp/test/flpSandboxMockServer.html",
+      "previewMode": 1,
+      "dataMode": 1,
+      "workspace": "withoutWorkspace",
+      "urlParameters": [
+        {
+          "paramName": "",
+          "paramValue": "",
+          "paramActive": false
+        },
+        {
+          "paramName": "",
+          "paramValue": "",
+          "paramActive": false
+        }
+      ],
+      "hashParameter": "RPDSInvestigations-display",
+      "ui5ActiveVersion": "snapshot",
+      "ui5VerSource": null,
+      "isDefaultVersion": 1,
+      "_metadata": {
+        "id": "7773121",
+        "runnerId": "webapprunner",
+        "displayName": "App in FLP Sandbox (Mock Server)",
+        "lastRunTimeStamp": 1613782020027
       }
     },
     {
